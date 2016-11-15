@@ -15,6 +15,8 @@
 		2070BB2C1DDA0D560017D59C /* string_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB2B1DDA0D560017D59C /* string_util.cpp */; };
 		2070BB2F1DDAA9B10017D59C /* KeepManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB2D1DDAA9B10017D59C /* KeepManager.cpp */; };
 		2070BB321DDAA9D10017D59C /* TimeObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB301DDAA9D10017D59C /* TimeObserver.cpp */; };
+		2070BB351DDAF57F0017D59C /* DBServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB331DDAF57F0017D59C /* DBServer.cpp */; };
+		2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */; };
 		208D8D701DD30008000D45C6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 208D8D6F1DD30008000D45C6 /* main.cpp */; };
 		20B3156A1DD952530087924A /* runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315691DD952530087924A /* runtime.cpp */; };
 		20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3156B1DD953EF0087924A /* WorldMsg.cpp */; };
@@ -59,6 +61,10 @@
 		2070BB2E1DDAA9B10017D59C /* KeepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepManager.h; sourceTree = "<group>"; };
 		2070BB301DDAA9D10017D59C /* TimeObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeObserver.cpp; sourceTree = "<group>"; };
 		2070BB311DDAA9D10017D59C /* TimeObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeObserver.h; sourceTree = "<group>"; };
+		2070BB331DDAF57F0017D59C /* DBServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DBServer.cpp; sourceTree = "<group>"; };
+		2070BB341DDAF57F0017D59C /* DBServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBServer.h; sourceTree = "<group>"; };
+		2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerManager.cpp; sourceTree = "<group>"; };
+		2070BB371DDAFE5F0017D59C /* PlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManager.h; sourceTree = "<group>"; };
 		208D8D6C1DD30008000D45C6 /* ubserver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ubserver; sourceTree = BUILT_PRODUCTS_DIR; };
 		208D8D6F1DD30008000D45C6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		20B3152F1DD5BF210087924A /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -196,6 +202,10 @@
 				20B3159A1DD9B51A0087924A /* GamePlayer.h */,
 				20B3159C1DD9B5330087924A /* GameSeat.cpp */,
 				20B3159D1DD9B5330087924A /* GameSeat.h */,
+				2070BB331DDAF57F0017D59C /* DBServer.cpp */,
+				2070BB341DDAF57F0017D59C /* DBServer.h */,
+				2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */,
+				2070BB371DDAFE5F0017D59C /* PlayerManager.h */,
 			);
 			name = game;
 			sourceTree = "<group>";
@@ -335,6 +345,7 @@
 				20B315721DD9542D0087924A /* lock.cpp in Sources */,
 				20B315701DD9540E0087924A /* SerHandler.cpp in Sources */,
 				20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */,
+				2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */,
 				20B315891DD96DFB0087924A /* memory_pool.cpp in Sources */,
 				20B315981DD996B30087924A /* GameManager.cpp in Sources */,
 				20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */,
@@ -343,6 +354,7 @@
 				208D8D701DD30008000D45C6 /* main.cpp in Sources */,
 				2070BB321DDAA9D10017D59C /* TimeObserver.cpp in Sources */,
 				2070BB2C1DDA0D560017D59C /* string_util.cpp in Sources */,
+				2070BB351DDAF57F0017D59C /* DBServer.cpp in Sources */,
 				2070BB281DDA0CAB0017D59C /* time_util.cpp in Sources */,
 				20B3157B1DD957CE0087924A /* network.cpp in Sources */,
 				2070BB2A1DDA0CEA0017D59C /* math_util.cpp in Sources */,

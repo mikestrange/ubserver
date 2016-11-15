@@ -18,10 +18,11 @@
 #include "GameManager.h"
 
 #include "keeper.h"
+#include "DBServer.h"
 
 
-//const char* host = "116.62.5.118";
-const char* host = "127.0.0.1";
+const char* host = "116.62.5.118";
+//const char* host = "127.0.0.1";
 
 
 void* thread_event(void* arg)
@@ -67,6 +68,14 @@ void vim_complete(DataArray* array)
         SerHandler::getInstance()->Print();
     }else if(StringUtil::equal(str, "send")){
         Thread::create(&thread_event2);
+    }else if(StringUtil::equal(str, "db")){
+        DBServer::getInstance()->launch(host);
+    }else if(StringUtil::equal(str, "sql")){
+        DataQuery result;
+        std::string sql;
+        sql = array->readString();
+        DBServer::getInstance()->find(result, sql.c_str());
+        result.toString();
     }
 }
 
@@ -74,8 +83,8 @@ Keeper kep(0,1);
 
 int main(int argc, const char * argv[])
 {
+    //
     RunTime::getInstance()->launch();
-    kep.restart(10000);
     //
     epoll_input([](DataArray* data)
     {

@@ -16,6 +16,8 @@
 #include "client.h"
 #include "log.h"
 
+#include "PlayerManager.h"
+
 class WorldMsg
 {
     STATIC_CLASS(WorldMsg);

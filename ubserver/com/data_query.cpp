@@ -76,7 +76,7 @@ DataQuery::DBList* DataQuery::current()
 }
 
 //当前行的一个结果(健和值)
-RowItem* DataQuery::result(int index)
+RowItem* DataQuery::result(size_t index)
 {
     if(exceed()) return NULL;
     DBList& row = *current();
@@ -90,7 +90,7 @@ RowItem* DataQuery::result(const char* key)
     if(exceed()) return NULL;
     //get
     DBList& row = *current();
-    for(int i = 0; i < row.size(); i++)
+    for(size_t i = 0; i < row.size(); i++)
     {
         auto item = row[i];
         if(strcmp(key, item->key) == 0)
@@ -107,7 +107,7 @@ RowItem* DataQuery::operator[] (const char* key)
     return result(key);
 }
 
-RowItem* DataQuery::operator[] (int index)
+RowItem* DataQuery::operator[] (size_t index)
 {
     return result(index);
 }
@@ -125,15 +125,15 @@ bool DataQuery::match(const char* key, const char* value)
     return false;
 }
 
-bool DataQuery::match(int index, const char* value)
+bool DataQuery::match(size_t index, const char* value)
 {
     auto item = result(index);
     if(item && strcmp(item->value, value) == 0)
     {
-        trace("match ok: row:%ld index = %d, math value = %s", _row, index, value);
+        trace("match ok: row:%ld index = %ld, math value = %s", _row, index, value);
         return true;
     }
-    trace("match error: row:%ld index = %d, math value = %s", _row, index, value);
+    trace("match error: row:%ld index = %ld, math value = %s", _row, index, value);
     return false;
 }
 

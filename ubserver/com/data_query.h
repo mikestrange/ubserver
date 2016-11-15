@@ -55,7 +55,7 @@ public:
     virtual DBList* current();
     
     //当前行的一个结果(健和值)
-    virtual RowItem* result(int index);
+    virtual RowItem* result(size_t index);
     
     //当前行的一个结果(匹配key)
     virtual RowItem* result(const char* key);
@@ -63,12 +63,12 @@ public:
     //快捷方式
     RowItem* operator[] (const char* key);
     
-    RowItem* operator[] (int index);
+    RowItem* operator[] (size_t index);
     
     //匹配当前行
     virtual bool match(const char* key, const char* value);
     
-    virtual bool match(int index, const char* value);
+    virtual bool match(size_t index, const char* value);
     
     virtual void clear();
     

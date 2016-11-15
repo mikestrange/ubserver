@@ -10,6 +10,7 @@
 #define input_h
 
 #include <iostream>
+#include <stdio.h>
 
 #include "data_array.h"
 #include "log.h"
@@ -47,22 +48,22 @@ void analytic(DataArray *array, const char* bytes, int size)
     }
 }
 
+#define MAX_INPUT 1024
+
 template <class FUN>
 void epoll_input(FUN fun)
 {
     DataArray input_data;
     std::string str;
-    while(std::cin>>str)
+    while(getline(std::cin, str))
     {
-        trace("##input = %s", str.c_str());
-        //解析
+        std::cout<<"##input = "<<str<<std::endl;
         analytic(&input_data, str.c_str(), (int)str.length());
         try{
             fun(&input_data);
         }catch(...){
             LOG_DEBUG<<"#@input handle error"<<LOG_END;
         }
-        str.clear();
     };
     LOG_DEBUG<<"input exit!"<<LOG_END;
 }
