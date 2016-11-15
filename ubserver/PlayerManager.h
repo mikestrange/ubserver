@@ -11,10 +11,18 @@
 
 #include <stdio.h>
 #include "global.h"
+#include "hashmap.h"
+#include "Player.h"
 
 class PlayerManager
 {
     STATIC_CLASS(PlayerManager);
+    
+private:
+    HashMap<USER_T, Player*> hash;
+public:
+    bool AddPlayer();
+    void DelPlayer();
 };
 
 #endif /* PlayerManager_h */

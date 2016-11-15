@@ -50,6 +50,7 @@ void* thread_event2(void* arg)
         sleep(1);
     }
     //NET_CLOSE(fd);
+    return 0;
 }
 
 //输入

@@ -25,7 +25,7 @@ OBJS        := $(SRCS:.cpp=.o)
 INCLUDE_PATH := -I/usr/include -I/usr/local/include -I/usr/local/mysql/include -I/usr/include/mysql
 
 ## used include librarys file path
-LIBRARY_PATH := -L/usr/local/mysql/lib
+LIB_PATH := -L/usr/local/mysql/lib
 #-pthread
 
 ## need libs, add at here
@@ -33,20 +33,20 @@ LIBS := -pthread -lmysqlclient
 
 DEFS := -DDEBUG
 
-## get all librarys
+## get all defiend
 CFLAGS += $(DEFS)
 
 ## get all include path
 CFLAGS += $(INCLUDE_PATH)
 
 ## get all library path
-CFLAGS += $(LIBRARY_PATH)
+CFLAGS += $(LIB_PATH)
 
 ## get all librarys
-CFLAGS += $(LIBS)
+#CFLAGS += $(LIBS)
 
 build:
-	$(CC) -c $(CFLAGS) $(SRCS)
+	$(CC) -c $(CFLAGS) $(SRCS) $(LIBS)
 
 clean:
 	$(RM) $(OBJS) $(TARGET)

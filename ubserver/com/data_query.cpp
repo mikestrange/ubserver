@@ -144,10 +144,10 @@ void DataQuery::clear()
     _row = 0;
     if(len > 0)
     {
-        for(int i = 0; i < len; i++)
+        for(size_t i = 0; i < len; i++)
         {
             DBList& row = *_Vector[i];
-            for(int j = 0; j < row.size(); j++)
+            for(size_t j = 0; j < row.size(); j++)
             {
                 delete row[j];
             }
@@ -160,13 +160,13 @@ void DataQuery::clear()
 //查看
 void DataQuery::toString()
 {
-    int length = (int)_Vector.size();
-    for(int i = 0; i < length; i++)
+    size_t length = _Vector.size();
+    for(size_t i = 0; i < length; i++)
     {
         DBList& row = *_Vector[i];
         std::cout<<(i+1)<<" = {"<<std::endl;
-        int rowLen = (int)row.size();
-        for(int j = 0; j < rowLen; j++)
+        size_t rowLen = row.size();
+        for(size_t j = 0; j < rowLen; j++)
         {
             RowItem* item = row[j];
             std::cout<<"    key="<<item->key<<", value="<<item->value<<std::endl;

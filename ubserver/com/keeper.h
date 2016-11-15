@@ -17,6 +17,7 @@
 #include "KeepManager.h"
 
 class Keeper;
+class KeepManager;
 
 class ITimeoutHandler
 {
