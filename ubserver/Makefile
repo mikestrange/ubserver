@@ -28,7 +28,7 @@ $(warning  "<<-----begin----->>>")
 $(warning  $(SUB_OBJS)) 
 $(warning  "<<-----end----->>>") 
 ## used headers  file path
-INCLUDE_PATH := -I/usr/include -I/usr/local/include -I/usr/local/mysql/include -I./com
+INCLUDE_PATH := -I/usr/include -I/usr/local/include -I/usr/local/mysql/include -I/usr/include/mysql -I./com
 
 ## used include librarys file path
 LIBRARY_PATH := -L/usr/local/mysql/lib
