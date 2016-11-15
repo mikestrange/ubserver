@@ -7,7 +7,7 @@ namespace Math
     void SRandom()
     {
         is_set = true;
-        srand((unsigned)time(NULL));
+        srand((unsigned)TimeUtil::GetTimer());
     }
     
     //0-(a-1)

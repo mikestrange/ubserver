@@ -20,12 +20,11 @@ class RowItem
 public:
     char* key;
     char* value;
-    virtual void toString();
-    virtual ~RowItem();
+    void toString();
+    ~RowItem();
 public:
     static RowItem* create(char* key, char* value);
 };
-
 
 
 //数据库读取

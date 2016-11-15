@@ -14,7 +14,8 @@ void RowItem::toString()
     std::cout<<"item ## key="<<key<<", value=%s"<<value<<std::endl;
 }
 
-RowItem::~RowItem(){
+RowItem::~RowItem()
+{
     
 }
 

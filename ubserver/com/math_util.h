@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/time.h>
+#include "time_util.h"
 
 
 namespace Math
