@@ -8,7 +8,7 @@
 
 #include "SerTask.h"
 
-SerTask::SerTask(int type1, SOCKET_T fd1, char* bytes1, size_t size1)
+SerTask::SerTask(int type1, FdState* fd1, char* bytes1, size_t size1)
 :type(type1)
 ,fd(fd1)
 ,bytes(bytes1)
@@ -16,7 +16,7 @@ SerTask::SerTask(int type1, SOCKET_T fd1, char* bytes1, size_t size1)
     
 }
 
-SerTask::SerTask(int type1, SOCKET_T fd1)
+SerTask::SerTask(int type1, FdState* fd1)
 :type(type1)
 ,fd(fd1)
 ,bytes(NULL)
@@ -37,35 +37,38 @@ SerTask::~SerTask()
 
 void SerTask::OnTaskHandler()
 {
-    if(type == SOCKET_EVENT_CONNECT)
+    switch(type)
     {
-        SerHandler::getInstance()->OnAccept(fd);
-    }else if(type == SOCKET_EVENT_CLOSE){
-        SerHandler::getInstance()->OnClose(fd);
-    }else if( type == SOCKET_EVENT_READ){
-        auto sock = SerHandler::getInstance()->GetClient(fd);
-        if(sock->isConnect())
-        {
-            sock->LoadBytes(bytes, size);
-            try{
-                while(sock->HasPacket())
+        case SOCKET_EVENT_CONNECT:
+                SerHandler::getInstance()->OnAcceptHandler(fd);
+            break;
+        case SOCKET_EVENT_CLOSE:
+                SerHandler::getInstance()->OnCloseHandler(fd);
+            break;
+        case SOCKET_EVENT_READ:
+            trace("read handler");
+                auto sock = SerHandler::getInstance()->GetClient(fd->getSocketID());
+                if(sock->isConnect())
                 {
-                    sock->ReadBegin();
-                    OnPacketHandler(sock);
-                    sock->ReadEnd();
+                    sock->LoadBytes(bytes, size);
+                    try{
+                        while(sock->HasPacket())
+                        {
+                            sock->ReadBegin();
+                            OnPacketHandler(sock);
+                            sock->ReadEnd();
+                        }
+                    }catch(...){
+                        sock->Disconnect();
+                    }
                 }
-            }catch(...){
-                sock->Disconnect();
-            }
-        }
+            break;
     }
 }
 
 //所有消息处理
 void SerTask::OnPacketHandler(SocketHandler *packet)
 {
-    //std::string str;
-    //packet->self()>>str;
     LOG_DEBUG<<"read: cmd = "<<packet->getCmd()<<" type = "<<packet->getType()<<LOG_END;
     //
     switch(packet->getType())

@@ -23,11 +23,11 @@
 
 //const char* host = "116.62.5.118";
 const char* host = "127.0.0.1";
-
+const int port = 8080;
 
 void* thread_event(void* arg)
 {
-    SOCKET_T serid = network::listener(8080);
+    SOCKET_T serid = network::listener(port);
     if(serid > 0)
     {
         network::epoll_server(serid, SerHandler::getInstance(), 1024);
@@ -37,16 +37,21 @@ void* thread_event(void* arg)
 
 void* thread_socket(void* arg)
 {
-    SOCKET_T fd = network::connect(host, 8080);
-    PacketBuffer bytes;
-    bytes.setBegin(SERVER_CMD_LOGIN);
-    bytes.WriteBegin();
-    bytes.writeUint32(10001);
-    bytes.writeString("abc");
-    bytes.WriteEnd();
+    for(int i = 0; i < 100;i++)
+    {
+        SOCKET_T fd = network::connect(host, port);
+        PacketBuffer bytes;
+        bytes.setBegin(SERVER_CMD_LOGIN);
+        bytes.WriteBegin();
+        bytes.writeUint32(10001);
+        bytes.writeString("abc");
+        bytes.WriteEnd();
+        
+        NET_SEND_PACKET(fd, &bytes);
+        //NET_CLOSE(fd);
+        usleep(1);
+    }
     
-    NET_SEND_PACKET(fd, &bytes);
-    NET_CLOSE(fd);
     return 0;
 }
 

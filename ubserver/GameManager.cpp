@@ -41,27 +41,23 @@ void GameManager::OnPacketHandler(SocketHandler* client)
 {
     LOG_DEBUG<<"game handler cmd = "<<client->getCmd()<<LOG_END;
     auto room = tab.getValue(client->getViewId());
-    if(room){
-        
+    if(!room)
+    {
+        return;
     };
-    USER_T uid;
     switch(client->getCmd())
     {
         case SERVER_CMD_GAME_ENTER:
             room->EnterPlayer(new GamePlayer(client));
             break;
         case SERVER_CMD_GAME_EXIT:
-            client->self()>>uid;
-            room->ExitPlayer(uid);
+            room->ExitPlayer(client->readUint32());
             break;
         case SERVER_CMD_GAME_SITDOWN:
-            SEAT_T sid;
-            client->self()>>uid>>sid;
-            room->SitDown(uid, sid);
+            room->SitDown(client->readUint32(), client->readUint8());
             break;
         case SERVER_CMD_GAME_STAND:
-            client->self()>>uid;
-            room->StandUp(uid);
+            room->StandUp(client->readUint32());
             break;
     }
     

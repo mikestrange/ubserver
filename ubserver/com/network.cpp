@@ -77,48 +77,89 @@ namespace network
         fd_set rset;
         FD_ZERO(&rset);
         FD_SET(serid, &rset);
-        SOCKET_T max_fds = maxfd > serid ? maxfd : serid;
+        const SOCKET_T max_fds = maxfd > MAX_SERVER ? MAX_SERVER : maxfd;
+        FdState* fd_list[MAX_SERVER] = {};
+        fd_list[0] = new FdState(serid);
         net->launch();
+        struct timeval timeout;
         while(net->isRunning())
         {
-            fd_set look = rset;
-            int code = select(max_fds + 1, &look, 0, 0, 0);
-            if(code == 0) continue;
-            //新链接
-            if(FD_ISSET(serid, &look))
-            {
-                int new_fd = accept(serid, NULL, NULL);
-                if(new_fd > 0)
-                {
-                    trace("[accept ok sock = %d]",new_fd);
-                    FD_SET(new_fd, &rset);
-                    FD_SET(new_fd, &look);
-                    net->OnSocketHandler(SOCKET_EVENT_CONNECT, new_fd, 0, 0);
-                    if(new_fd > max_fds) max_fds = new_fd;
-                }else{
-                    trace("[accept error or connect is max]");
-                }
-            }
+            //init
+            SET_TIMEOUT(timeout, 3, 0);
+            fd_set mt = rset;
+            //select
+            int code = select(max_fds, &mt, NULL, NULL, &timeout);
+            if(code < 0) exit(1);
+            std::cout<<"select code:"<<code<<", error:"<<errno<<std::endl;
             //端口情况
-            for(int fd = 0; fd < max_fds; fd++)
+            for(int i = 0 ;i < MAX_SERVER; i++)
             {
-                if(fd != serid && FD_ISSET(fd, &look))
+                if(fd_list[i] == NULL) continue;
+                FdState* target = fd_list[i];
+                SOCKET_T fd = target->getSocketID();
+                if(target->isClosed())
                 {
-                    int ret = NET_RECV(fd, bytes, MAX_BUFFER);
-                    if (ret > 0)
+                    trace("[this fd is close = %d]", fd);
+                    target->DisConnect();
+                    fd_list[i] = NULL;
+                    FD_CLR(fd, &rset);
+                    NET_CLOSE(fd);
+                    net->OnClose(target);
+                }else{
+                    if(FD_ISSET(fd, &mt))
                     {
-                        trace("[recv : size = %d fd = %d]",ret, fd);
-                        net->OnSocketHandler(SOCKET_EVENT_READ, fd, bytes, ret);
-                    }else {
-                        trace("[close fd = %d code = %d]", fd, ret);
-                        FD_CLR(fd, &rset);
-                        NET_CLOSE(fd);
-                        net->OnSocketHandler(SOCKET_EVENT_CLOSE, fd, 0, 0);
+                        if(fd == serid){
+                            //新链接
+                            int new_fd = accept(fd, NULL, NULL);
+                            if(new_fd > 0)
+                            {
+                                trace("[accept ok sock = %d]",new_fd);
+                                FD_SET(new_fd, &rset);
+                                FdState* proxy = new FdState(new_fd);
+                                for(int m = 0; m < MAX_SERVER; m++)
+                                {
+                                    if(fd_list[m] == NULL)
+                                    {
+                                        fd_list[m] = proxy;
+                                        break;
+                                    }
+                                }
+                                net->OnConnect(proxy);
+                            }else{
+                                trace("[accept error or connect is max]");
+                            }
+                        }else{
+                            int ret = NET_RECV(fd, bytes, MAX_BUFFER);
+                            if (ret > 0)
+                            {
+                                trace("[recv : size = %d fd = %d]",ret, fd);
+                                net->OnRead(target, bytes, ret);
+                            }else {
+                                trace("[close fd = %d code = %d]", fd, ret);
+                                target->DisConnect();
+                                fd_list[i] = NULL;
+                                FD_CLR(fd, &rset);
+                                NET_CLOSE(fd);
+                                net->OnClose(target);
+                            }
+                        }
                     }
                 }
             }
         }
+        //--
+        for(int i = 1; i < MAX_SERVER; i++)
+        {
+            FdState* target = fd_list[i];
+            if(target)
+            {
+                NET_CLOSE(target->getSocketID());
+                target->DisConnect();
+                net->OnClose(target);
+            }
+        }
+        SAFE_DELETE(fd_list[0]);
+        //
         NET_CLOSE(serid);
-        net->OnSocketHandler(SOCKET_EVENT_CLOSE, serid, 0, 0);
     }
 }

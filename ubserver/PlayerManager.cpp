@@ -34,7 +34,7 @@ void PlayerManager::DelPlayer(USER_T uid)
     Player* player = m_players.remove(uid);
     if(player)
     {
-        player->getSocket()->Disconnect();
+        //player->getSocket()->Disconnect();
         LOG_INFO<<"del player uid = "<<uid<<LOG_END;
     }
     SAFE_DELETE(player);

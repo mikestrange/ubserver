@@ -34,6 +34,7 @@
 		20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315991DD9B51A0087924A /* GamePlayer.cpp */; };
 		20B3159E1DD9B5330087924A /* GameSeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3159C1DD9B5330087924A /* GameSeat.cpp */; };
 		20C2E9401DDC2FAC00A48276 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C2E93E1DDC2FAC00A48276 /* client.cpp */; };
+		20C2E9591DDC59C000A48276 /* FdState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C2E9571DDC59C000A48276 /* FdState.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -118,6 +119,8 @@
 		20B3159D1DD9B5330087924A /* GameSeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSeat.h; sourceTree = "<group>"; };
 		20C2E93E1DDC2FAC00A48276 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
 		20C2E93F1DDC2FAC00A48276 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
+		20C2E9571DDC59C000A48276 /* FdState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FdState.cpp; sourceTree = "<group>"; };
+		20C2E9581DDC59C000A48276 /* FdState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FdState.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +285,8 @@
 				2070BB2D1DDAA9B10017D59C /* KeepManager.cpp */,
 				2070BB311DDAA9D10017D59C /* TimeObserver.h */,
 				2070BB301DDAA9D10017D59C /* TimeObserver.cpp */,
+				20C2E9571DDC59C000A48276 /* FdState.cpp */,
+				20C2E9581DDC59C000A48276 /* FdState.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 				2070BB281DDA0CAB0017D59C /* time_util.cpp in Sources */,
 				20B3157B1DD957CE0087924A /* network.cpp in Sources */,
 				2070BB2A1DDA0CEA0017D59C /* math_util.cpp in Sources */,
+				20C2E9591DDC59C000A48276 /* FdState.cpp in Sources */,
 				2070BB201DDA044F0017D59C /* data_query.cpp in Sources */,
 				2070BB1F1DDA044F0017D59C /* data_bank.cpp in Sources */,
 				20B315971DD996B30087924A /* GameLogic.cpp in Sources */,

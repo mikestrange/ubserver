@@ -19,17 +19,19 @@
 #include "GameManager.h"
 #include "client.h"
 
+class FdState;
+
 class SerTask : public RunTask
 {
 private:
     int type;
-    SOCKET_T fd;
+    FdState* fd;
     char* bytes;
     size_t size;
 public:
-    SerTask(int type, SOCKET_T fd, char* bytes, size_t size);
+    SerTask(int type, FdState* fd, char* bytes, size_t size);
     
-    SerTask(int type, SOCKET_T fd);
+    SerTask(int type, FdState* fd);
     
     virtual ~SerTask();
     //任务自己处理

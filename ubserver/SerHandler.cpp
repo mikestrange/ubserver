@@ -18,42 +18,44 @@ SerHandler::~SerHandler()
     });
 }
 
-void SerHandler::OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_t size)
+
+void SerHandler::OnConnect(FdState* value)
 {
-    switch(type)
-    {
-        case SOCKET_EVENT_CONNECT:
-            RUN_MAIN(new SerTask(type, fd));
-            break;
-        case SOCKET_EVENT_CLOSE:
-            RUN_MAIN(new SerTask(type, fd));
-            break;
-        case SOCKET_EVENT_READ:
-            RUN_MAIN(new SerTask(type, fd, MemoryPool::getInstance()->alloc_copy((char*)bytes, size), size));
-            break;
-    }
+    RUN_MAIN(new SerTask(SOCKET_EVENT_CONNECT, value));
 };
 
-void SerHandler::OnAccept(SOCKET_T fd)
+void SerHandler::OnClose(FdState* value)
 {
-    if(hash.has(fd))
+    RUN_MAIN(new SerTask(SOCKET_EVENT_CLOSE, value));
+};
+
+void SerHandler::OnRead(FdState* value, const char* bytes, size_t size)
+{
+    RUN_MAIN(new SerTask(SOCKET_EVENT_READ, value, MemoryPool::getInstance()->alloc_copy((char*)bytes, size), size));
+};
+
+void SerHandler::OnAcceptHandler(FdState* value)
+{
+    if(hash.has(value->getSocketID()))
     {
-        NET_CLOSE(fd);
+        value->DisConnect();
     }else{
-        LOG_INFO<<"add client fd = "<<fd<<LOG_END;
-        hash.put(fd, new SocketHandler(fd));
+        LOG_INFO<<"add client fd = "<<value->getSocketID()<<LOG_END;
+        hash.put(value->getSocketID(), new SocketHandler(value));
     }
 }
 
-void SerHandler::OnClose(SOCKET_T fd)
+void SerHandler::OnCloseHandler(FdState* value)
 {
-    SocketHandler* sock = hash.remove(fd);
+    SocketHandler* sock = hash.remove(value->getSocketID());
+    LOG_INFO<<"remove client fd = "<<value->getSocketID()<<LOG_END;
     if(sock)
     {
         PlayerManager::getInstance()->DelPlayer(sock->user_id);
+    }else{
+        SAFE_DELETE(value);
     }
     SAFE_DELETE(sock);
-    LOG_INFO<<"remove client fd = "<<fd<<LOG_END;
 }
 
 SocketHandler* SerHandler::GetClient(SOCKET_T fd)

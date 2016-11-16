@@ -32,14 +32,17 @@ private:
 public:
     virtual ~SerHandler();
     
-    void OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_t size)override;
+    void OnConnect(FdState* value)override;
+    void OnClose(FdState* value)override;
+    void OnRead(FdState* value, const char* bytes, size_t size)override;
+    //void OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_t size)override;
     
 public:
-    void OnClose(SOCKET_T fd);
+    void OnCloseHandler(FdState* value);
     
     SocketHandler* GetClient(SOCKET_T fd);
     
-    void OnAccept(SOCKET_T fd);
+    void OnAcceptHandler(FdState* value);
     
     void Print();
 };

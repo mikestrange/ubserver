@@ -10,6 +10,7 @@
 #define network_h
 
 #include <stdio.h>
+#include <iostream>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -21,9 +22,11 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <err.h>
+#include <list>
 
 #include "global.h"
 #include "packet_buffer.h"
+#include "FdState.h"
 
 #define INVALID_SOCKET -1
 
@@ -43,6 +46,7 @@ enum{
     SOCKET_EVENT_SEND,
 };
 
+class FdState;
 //class
 class INet
 {
@@ -60,7 +64,9 @@ public:
         return is_running;
     };
     
-    virtual void OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_t size)=0;
+    virtual void OnConnect(FdState* value)=0;
+    virtual void OnClose(FdState* value)=0;
+    virtual void OnRead(FdState* value, const char* bytes, size_t size)=0;
 };
 
 
@@ -81,7 +87,7 @@ namespace network
     //链接一个远程
     SOCKET_T connect(const char* ip, int port);
     
-    void epoll_server(SOCKET_T sockid, INet* net, int maxfd = 0);
+    void epoll_server(SOCKET_T serid, INet* net, int maxfd = 0);
 }
 
 #endif /* network_h */
