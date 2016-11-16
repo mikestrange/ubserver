@@ -10,10 +10,22 @@
 #define Player_h
 
 #include <stdio.h>
+#include "global.h"
+#include "client.h"
 
 class Player
 {
+private:
+    SocketHandler* _sock;
+public:
+    USER_T user_id;
+    SOCKET_T sock_id;
     
+    Player(USER_T uid, SocketHandler* sock);
+
+    SocketHandler* getSocket()const;
+    
+    virtual ~Player();
 };
 
 #endif /* Player_h */

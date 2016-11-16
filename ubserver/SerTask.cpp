@@ -37,9 +37,11 @@ SerTask::~SerTask()
 
 void SerTask::OnTaskHandler()
 {
-    if(type == SOCKET_EVENT_CLOSE)
+    if(type == SOCKET_EVENT_CONNECT)
     {
-        SerHandler::getInstance()->DelClient(fd);
+        SerHandler::getInstance()->OnAccept(fd);
+    }else if(type == SOCKET_EVENT_CLOSE){
+        SerHandler::getInstance()->OnClose(fd);
     }else if( type == SOCKET_EVENT_READ){
         auto sock = SerHandler::getInstance()->GetClient(fd);
         if(sock->isConnect())
@@ -62,9 +64,9 @@ void SerTask::OnTaskHandler()
 //所有消息处理
 void SerTask::OnPacketHandler(SocketHandler *packet)
 {
-    std::string str;
-    packet->self()>>str;
-    LOG_DEBUG<<"read: cmd = "<<packet->getCmd()<<" type = "<<packet->getType()<<" msg = "<<str<<LOG_END;
+    //std::string str;
+    //packet->self()>>str;
+    LOG_DEBUG<<"read: cmd = "<<packet->getCmd()<<" type = "<<packet->getType()<<LOG_END;
     //
     switch(packet->getType())
     {

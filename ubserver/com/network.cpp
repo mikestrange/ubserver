@@ -70,14 +70,14 @@ namespace network
         return -1;
     }
     
-    void epoll_server(SOCKET_T sockid, INet* net, int maxfd)
+    void epoll_server(SOCKET_T serid, INet* net, int maxfd)
     {
-        trace("[epoll server sock = %d]", sockid);
+        trace("[epoll server sock = %d]", serid);
         char bytes[MAX_BUFFER];
         fd_set rset;
         FD_ZERO(&rset);
-        FD_SET(sockid, &rset);
-        SOCKET_T max_fds = maxfd > sockid ? maxfd : sockid;
+        FD_SET(serid, &rset);
+        SOCKET_T max_fds = maxfd > serid ? maxfd : serid;
         net->launch();
         while(net->isRunning())
         {
@@ -85,13 +85,14 @@ namespace network
             int code = select(max_fds + 1, &look, 0, 0, 0);
             if(code == 0) continue;
             //新链接
-            if(FD_ISSET(sockid, &look))
+            if(FD_ISSET(serid, &look))
             {
-                int new_fd = accept(sockid, NULL, NULL);
+                int new_fd = accept(serid, NULL, NULL);
                 if(new_fd > 0)
                 {
                     trace("[accept ok sock = %d]",new_fd);
                     FD_SET(new_fd, &rset);
+                    FD_SET(new_fd, &look);
                     net->OnSocketHandler(SOCKET_EVENT_CONNECT, new_fd, 0, 0);
                     if(new_fd > max_fds) max_fds = new_fd;
                 }else{
@@ -99,9 +100,9 @@ namespace network
                 }
             }
             //端口情况
-            for(int fd = 0; fd < max_fds;fd++)
+            for(int fd = 0; fd < max_fds; fd++)
             {
-                if(fd != sockid && FD_ISSET(fd, &look))
+                if(fd != serid && FD_ISSET(fd, &look))
                 {
                     int ret = NET_RECV(fd, bytes, MAX_BUFFER);
                     if (ret > 0)
@@ -117,7 +118,7 @@ namespace network
                 }
             }
         }
-        NET_CLOSE(sockid);
-        net->OnSocketHandler(SOCKET_EVENT_CLOSE, sockid, 0, 0);
+        NET_CLOSE(serid);
+        net->OnSocketHandler(SOCKET_EVENT_CLOSE, serid, 0, 0);
     }
 }

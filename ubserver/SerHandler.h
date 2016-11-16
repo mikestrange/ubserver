@@ -21,8 +21,10 @@
 #include "client.h"
 #include "lock.h"
 #include "memory_pool.h"
+
+#include "packet_buffer.h"
 //
-class SerHandler : public INet, private Locked
+class SerHandler : public INet
 {
     STATIC_CLASS(SerHandler);
 private:
@@ -33,14 +35,13 @@ public:
     void OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_t size)override;
     
 public:
-    void DelClient(SOCKET_T fd);
+    void OnClose(SOCKET_T fd);
     
     SocketHandler* GetClient(SOCKET_T fd);
     
-    void Print();
+    void OnAccept(SOCKET_T fd);
     
-private:
-    bool AddClient(SOCKET_T fd);
+    void Print();
 };
 
 #endif /* SerHandler_h */

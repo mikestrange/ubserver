@@ -10,13 +10,20 @@
 #define client_h
 
 #include <stdio.h>
+#include <iostream>
+
 #include "packet_buffer.h"
 #include "network.h"
 #include "lock.h"
+#include "global.h"
 
-class SocketHandler : public PacketBuffer, private Locked
+class SocketHandler : public PacketBuffer
 {
+private:
+    SOCKET_T  m_sock_fd;
 public:
+    USER_T user_id;
+    
     SocketHandler();
     
     SocketHandler(SOCKET_T sockt_fd);
@@ -36,8 +43,6 @@ public:
     int SendPacket(PacketBuffer& packet);
     
     int SendPacket(PacketBuffer* packet);
-private:
-    SOCKET_T  m_sock_fd;
 };
 
 #endif /* client_h */

@@ -13,16 +13,23 @@
 #include "global.h"
 #include "hashmap.h"
 #include "Player.h"
+#include "packet_buffer.h"
+#include "SerHandler.h"
+
+#include "log.h"
 
 class PlayerManager
 {
     STATIC_CLASS(PlayerManager);
     
 private:
-    HashMap<USER_T, Player*> hash;
+    HashMap<USER_T, Player*> m_players;
 public:
-    bool AddPlayer();
-    void DelPlayer();
+    bool AddPlayer(Player* player);
+    
+    void DelPlayer(USER_T uid);
+    
+    void SendPlayer(USER_T uid, PacketBuffer& buffer);
 };
 
 #endif /* PlayerManager_h */

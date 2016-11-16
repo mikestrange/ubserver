@@ -100,8 +100,8 @@
 		20B315731DD955E30087924A /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		20B3157A1DD957CE0087924A /* network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network.cpp; sourceTree = "<group>"; };
 		20B3157D1DD95CC10087924A /* CmdDefined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CmdDefined.h; sourceTree = "<group>"; };
-		20B3157F1DD960860087924A /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
-		20B315801DD960860087924A /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
+		20B3157F1DD960860087924A /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = client.cpp; path = com/client.cpp; sourceTree = "<group>"; };
+		20B315801DD960860087924A /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client.h; path = com/client.h; sourceTree = "<group>"; };
 		20B315821DD96A860087924A /* SerTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerTask.cpp; sourceTree = "<group>"; };
 		20B315831DD96A860087924A /* SerTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerTask.h; sourceTree = "<group>"; };
 		20B315861DD96B960087924A /* memory_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_pool.h; sourceTree = "<group>"; };
@@ -211,6 +211,8 @@
 				2070BB371DDAFE5F0017D59C /* PlayerManager.h */,
 				2070BB3C1DDB13DD0017D59C /* Player.cpp */,
 				2070BB3D1DDB13DD0017D59C /* Player.h */,
+				20B3157F1DD960860087924A /* client.cpp */,
+				20B315801DD960860087924A /* client.h */,
 			);
 			name = game;
 			sourceTree = "<group>";
@@ -272,8 +274,6 @@
 				20B315731DD955E30087924A /* thread.cpp */,
 				20B3153C1DD5BF210087924A /* network.h */,
 				20B3157A1DD957CE0087924A /* network.cpp */,
-				20B315801DD960860087924A /* client.h */,
-				20B3157F1DD960860087924A /* client.cpp */,
 				20B315861DD96B960087924A /* memory_pool.h */,
 				20B315881DD96DFB0087924A /* memory_pool.cpp */,
 				2070BB251DDA0B040017D59C /* keeper.h */,

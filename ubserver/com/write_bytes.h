@@ -118,6 +118,11 @@ public:
         }
     }
     
+    void writeString(std::string str)
+    {
+        WriteChars(str.c_str(), str.length());
+    }
+    
     //w pos
     virtual size_t wpos()const
     {

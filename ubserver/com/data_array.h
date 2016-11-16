@@ -42,6 +42,109 @@ public:
     {
         data.ReadFor(*this);
     }
+    
+    int8 readInt8()
+    {
+        int8 v;
+        self()>>v;
+        return v;
+    }
+    
+    int16 readInt16()
+    {
+        int16 v;
+        self()>>v;
+        return v;
+    }
+    
+    int32 readInt32()
+    {
+        int32 v;
+        self()>>v;
+        return v;
+    }
+    
+    int64 readInt64()
+    {
+        int64 v;
+        self()>>v;
+        return v;
+    }
+    
+    
+    uint8 readUint8()
+    {
+        uint8 v;
+        self()>>v;
+        return v;
+    }
+    
+    uint16 readUint16()
+    {
+        uint16 v;
+        self()>>v;
+        return v;
+    }
+    
+    uint32 readUint32()
+    {
+        uint32 v;
+        self()>>v;
+        return v;
+    }
+    
+    uint64 readUint64()
+    {
+        uint64 v;
+        self()>>v;
+        return v;
+    }
+    
+    DataArray& self()
+    {
+        return *this;
+    }
+    
+    //write
+    void writeInt8(int8 v)
+    {
+        self()<<v;
+    }
+    
+    void writeInt16(int16 v)
+    {
+        self()<<v;
+    }
+    
+    void writeInt32(int32 v)
+    {
+        self()<<v;
+    }
+    
+    void writeInt64(int64 v)
+    {
+        self()<<v;
+    }
+    
+    void writeUint8(uint8 v)
+    {
+        self()<<v;
+    }
+    
+    void writeUint16(uint16 v)
+    {
+        self()<<v;
+    }
+    
+    void writeUint32(uint32 v)
+    {
+        self()<<v;
+    }
+    
+    void writeUint64(uint64 v)
+    {
+        self()<<v;
+    }
 };
 
 #endif /* data_array_hpp */

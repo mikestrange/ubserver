@@ -9,12 +9,14 @@
 
 SocketHandler::SocketHandler()
 :m_sock_fd(-1)
+,user_id(0)
 {
     
 }
 
 SocketHandler::SocketHandler(SOCKET_T sockt_fd)
 :m_sock_fd(sockt_fd)
+,user_id(0)
 {
     
 }
@@ -26,7 +28,6 @@ SocketHandler::~SocketHandler()
 
 void SocketHandler::Disconnect()
 {
-    AUTO_LOCK(this);
     if(isConnect())
     {
         NET_CLOSE(m_sock_fd);
@@ -52,7 +53,6 @@ SOCKET_T SocketHandler::GetSocketFd()
 
 int SocketHandler::SendPacket(const void* bytes, size_t size)
 {
-    AUTO_LOCK(this);
     if(isConnect())
     {
         return NET_SEND(m_sock_fd, bytes, size);

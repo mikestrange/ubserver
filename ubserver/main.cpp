@@ -21,8 +21,8 @@
 #include "DBServer.h"
 
 
-const char* host = "116.62.5.118";
-//const char* host = "127.0.0.1";
+//const char* host = "116.62.5.118";
+const char* host = "127.0.0.1";
 
 
 void* thread_event(void* arg)
@@ -30,53 +30,54 @@ void* thread_event(void* arg)
     SOCKET_T serid = network::listener(8080);
     if(serid > 0)
     {
-        network::epoll_server(serid, SerHandler::getInstance(), 1023);
+        network::epoll_server(serid, SerHandler::getInstance(), 1024);
     }
     return 0;
 }
 
-void* thread_event2(void* arg)
+void* thread_socket(void* arg)
 {
     SOCKET_T fd = network::connect(host, 8080);
     PacketBuffer bytes;
     bytes.setBegin(SERVER_CMD_LOGIN);
     bytes.WriteBegin();
-    bytes<<"这是一个励志的故事";
+    bytes.writeUint32(10001);
+    bytes.writeString("abc");
     bytes.WriteEnd();
     
-    while(1)
-    {
-        NET_SEND_PACKET(fd, &bytes);
-        sleep(1);
-    }
-    //NET_CLOSE(fd);
+    NET_SEND_PACKET(fd, &bytes);
+    NET_CLOSE(fd);
     return 0;
 }
 
 //输入
 void vim_complete(DataArray* array)
 {
-    std::string str;
-    str = array->readString();
-    std::cout<<"输入:"<<str<<std::endl;
-    if(StringUtil::equal(str, "exit"))
-    {
-        std::cout<<"[进程已完成]"<<std::endl;
-        exit(0);
-    }else if(StringUtil::equal(str, "run")){
-        Thread::create(&thread_event);
-    }else if(StringUtil::equal(str, "print")){
-        SerHandler::getInstance()->Print();
-    }else if(StringUtil::equal(str, "send")){
-        Thread::create(&thread_event2);
-    }else if(StringUtil::equal(str, "db")){
-        DBServer::getInstance()->launch(host);
-    }else if(StringUtil::equal(str, "sql")){
-        DataQuery result;
-        std::string sql;
-        sql = array->readString();
-        DBServer::getInstance()->find(result, sql.c_str());
-        result.toString();
+    try{
+        std::string str;
+        str = array->readString();
+        std::cout<<"输入:"<<str<<std::endl;
+        if(StringUtil::equal(str, "exit"))
+        {
+            std::cout<<"[进程已完成]"<<std::endl;
+            exit(0);
+        }else if(StringUtil::equal(str, "run")){
+            Thread::create(&thread_event);
+        }else if(StringUtil::equal(str, "print")){
+            SerHandler::getInstance()->Print();
+        }else if(StringUtil::equal(str, "send")){
+            Thread::create(&thread_socket);
+        }else if(StringUtil::equal(str, "db")){
+            DBServer::getInstance()->launch("116.62.5.118");
+        }else if(StringUtil::equal(str, "sql")){
+            DataQuery result;
+            std::string sql;
+            sql = array->readString();
+            DBServer::getInstance()->find(result, sql.c_str());
+            result.toString();
+        }
+    }catch(...){
+        std::cout<<"[输入有误]"<<std::endl;
     }
 }
 

@@ -23,7 +23,7 @@ void SerHandler::OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_
     switch(type)
     {
         case SOCKET_EVENT_CONNECT:
-            if(!AddClient(fd)) NET_CLOSE(fd);
+            RUN_MAIN(new SerTask(type, fd));
             break;
         case SOCKET_EVENT_CLOSE:
             RUN_MAIN(new SerTask(type, fd));
@@ -34,19 +34,24 @@ void SerHandler::OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_
     }
 };
 
-bool SerHandler::AddClient(SOCKET_T fd)
+void SerHandler::OnAccept(SOCKET_T fd)
 {
-    AUTO_LOCK(this);
-    if(hash.has(fd)) return false;
-    LOG_INFO<<"add client fd = "<<fd<<LOG_END;
-    hash.put(fd, new SocketHandler(fd));
-    return true;
+    if(hash.has(fd))
+    {
+        NET_CLOSE(fd);
+    }else{
+        LOG_INFO<<"add client fd = "<<fd<<LOG_END;
+        hash.put(fd, new SocketHandler(fd));
+    }
 }
 
-void SerHandler::DelClient(SOCKET_T fd)
+void SerHandler::OnClose(SOCKET_T fd)
 {
-    AUTO_LOCK(this);
     SocketHandler* sock = hash.remove(fd);
+    if(sock)
+    {
+        PlayerManager::getInstance()->DelPlayer(sock->user_id);
+    }
     SAFE_DELETE(sock);
     LOG_INFO<<"remove client fd = "<<fd<<LOG_END;
 }

@@ -64,6 +64,7 @@ void epoll_input(FUN fun)
         }catch(...){
             LOG_DEBUG<<"#@input handle error"<<LOG_END;
         }
+        str.clear();
     };
     LOG_DEBUG<<"input exit!"<<LOG_END;
 }

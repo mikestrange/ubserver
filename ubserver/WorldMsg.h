@@ -15,8 +15,10 @@
 #include "CmdDefined.h"
 #include "client.h"
 #include "log.h"
+#include "string_util.h"
 
 #include "PlayerManager.h"
+#include "DBServer.h"
 
 class WorldMsg
 {
