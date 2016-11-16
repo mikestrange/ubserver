@@ -25,7 +25,6 @@
 		20B315721DD9542D0087924A /* lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315711DD9542D0087924A /* lock.cpp */; };
 		20B315741DD955E30087924A /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315731DD955E30087924A /* thread.cpp */; };
 		20B3157B1DD957CE0087924A /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3157A1DD957CE0087924A /* network.cpp */; };
-		20B315811DD960860087924A /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3157F1DD960860087924A /* client.cpp */; };
 		20B315841DD96A860087924A /* SerTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315821DD96A860087924A /* SerTask.cpp */; };
 		20B315891DD96DFB0087924A /* memory_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315881DD96DFB0087924A /* memory_pool.cpp */; };
 		20B3158C1DD975A40087924A /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3158A1DD975A40087924A /* log.cpp */; };
@@ -34,6 +33,7 @@
 		20B315981DD996B30087924A /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315941DD996B30087924A /* GameManager.cpp */; };
 		20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315991DD9B51A0087924A /* GamePlayer.cpp */; };
 		20B3159E1DD9B5330087924A /* GameSeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3159C1DD9B5330087924A /* GameSeat.cpp */; };
+		20C2E9401DDC2FAC00A48276 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C2E93E1DDC2FAC00A48276 /* client.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -100,8 +100,6 @@
 		20B315731DD955E30087924A /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		20B3157A1DD957CE0087924A /* network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network.cpp; sourceTree = "<group>"; };
 		20B3157D1DD95CC10087924A /* CmdDefined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CmdDefined.h; sourceTree = "<group>"; };
-		20B3157F1DD960860087924A /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = client.cpp; path = com/client.cpp; sourceTree = "<group>"; };
-		20B315801DD960860087924A /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = client.h; path = com/client.h; sourceTree = "<group>"; };
 		20B315821DD96A860087924A /* SerTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerTask.cpp; sourceTree = "<group>"; };
 		20B315831DD96A860087924A /* SerTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerTask.h; sourceTree = "<group>"; };
 		20B315861DD96B960087924A /* memory_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_pool.h; sourceTree = "<group>"; };
@@ -118,6 +116,8 @@
 		20B3159A1DD9B51A0087924A /* GamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayer.h; sourceTree = "<group>"; };
 		20B3159C1DD9B5330087924A /* GameSeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSeat.cpp; sourceTree = "<group>"; };
 		20B3159D1DD9B5330087924A /* GameSeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSeat.h; sourceTree = "<group>"; };
+		20C2E93E1DDC2FAC00A48276 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
+		20C2E93F1DDC2FAC00A48276 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,8 +211,8 @@
 				2070BB371DDAFE5F0017D59C /* PlayerManager.h */,
 				2070BB3C1DDB13DD0017D59C /* Player.cpp */,
 				2070BB3D1DDB13DD0017D59C /* Player.h */,
-				20B3157F1DD960860087924A /* client.cpp */,
-				20B315801DD960860087924A /* client.h */,
+				20C2E93E1DDC2FAC00A48276 /* client.cpp */,
+				20C2E93F1DDC2FAC00A48276 /* client.h */,
 			);
 			name = game;
 			sourceTree = "<group>";
@@ -342,7 +342,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B315811DD960860087924A /* client.cpp in Sources */,
 				20B315961DD996B30087924A /* GameData.cpp in Sources */,
 				20B3159E1DD9B5330087924A /* GameSeat.cpp in Sources */,
 				20B315741DD955E30087924A /* thread.cpp in Sources */,
@@ -352,6 +351,7 @@
 				20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */,
 				2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */,
 				20B315891DD96DFB0087924A /* memory_pool.cpp in Sources */,
+				20C2E9401DDC2FAC00A48276 /* client.cpp in Sources */,
 				20B315981DD996B30087924A /* GameManager.cpp in Sources */,
 				2070BB3E1DDB13DD0017D59C /* Player.cpp in Sources */,
 				20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */,
