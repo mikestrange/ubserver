@@ -16,44 +16,49 @@ KeepManager::KeepManager()
     start();
 }
 
-void KeepManager::AddTimer(Keeper* timer, TIME_T delay)
+//a线程
+int KeepManager::CreateTimer(Clock* timer, TIME_T delay)
 {
-    //AUTO_LOCK(this);
-    while(hash.has(++currentTimeid))
-    {
-        if(currentTimeid == MAX_INT32) currentTimeid = 0;
-    };
-    int time_id = currentTimeid;
-    timer->timeid = time_id;
-    hash.put(time_id, new TimeObserver(time_id, timer, delay));
-    LOG_DEBUG<<"START TIME : id = "<<timer->timeid<<LOG_END;
+    int time_id = 0;
+    do{
+        //AUTO_LOCK(this);
+        while(hash.has(++currentTimeid))
+        {
+            if(currentTimeid == MAX_INT32) currentTimeid = 0;
+        };
+        time_id = currentTimeid;
+        hash.put(currentTimeid, new TimeObserver(currentTimeid, timer, delay));
+        LOG_DEBUG<<"START TIME : id = "<<currentTimeid<<LOG_END;
+    }while (0);
     resume();
+    return time_id;
 }
 
-
-void KeepManager::DelTimer(Keeper* timer)
+//a线程
+void KeepManager::DelTimer(int timeid)
 {
-    int timeid = timer->timeid;
     if(timeid == 0) return;
-    //AUTO_LOCK(this);
-    TimeObserver* obser = hash.getValue(timeid);
-    timer->timeid = 0;
-    if(obser)
-    {
-        obser->stop();
-    }
-    LOG_DEBUG<<"STOP TIME : id = "<<timeid<<LOG_END;
+    do{
+        //AUTO_LOCK(this);
+        TimeObserver* obser = hash.getValue(timeid);
+        if(obser)
+        {
+            obser->stop();
+        }
+        LOG_DEBUG<<"STOP TIME : id = "<<timeid<<LOG_END;
+    }while(0);
     resume();
 }
 
-//主线处理
+//a线程
 void KeepManager::MainHandlerTimer(int timeid)
 {
+    //AUTO_LOCK(this);
     TimeObserver* obser = hash.remove(timeid);
     //如果obser为null,证明程序泄漏
-    if(obser->isLive())
+    if(obser && obser->isRunning())
     {
-        obser->target->_OnTimeoutHandler();
+        obser->getClock()->_OnTimeoutHandler();
     }
     SAFE_DELETE(obser);
 }
@@ -64,7 +69,7 @@ void KeepManager::run()
     while(isRunning())
     {
         std::vector<uint32> timers;
-        TIME_T wait_time = CompleteTimer(timers);
+        TIME_T wait_time = GetCompleteTimers(timers);
         //
         if(!timers.empty())
         {
@@ -83,9 +88,8 @@ void KeepManager::run()
     }
 }
 
-
 //返回最近的一个时间
-TIME_T KeepManager::CompleteTimer(std::vector<uint32>& timers)
+TIME_T KeepManager::GetCompleteTimers(std::vector<uint32>& timers)
 {
     //AUTO_LOCK(this);
     HashMap<int, TimeObserver*>::Iterator iter;
@@ -94,24 +98,25 @@ TIME_T KeepManager::CompleteTimer(std::vector<uint32>& timers)
     for(iter = hash.begin(); iter!=hash.end(); iter++)
     {
         auto obser = iter->second;
-        if(obser->isLive())
+        if(obser->isRunning())
         {
-            if(current_time >= obser->runtime)
+            TIME_T runtime = obser->getRuntime();
+            if(current_time >= runtime)
             {
                 obser->reset(current_time);
-                timers.push_back(obser->timeid);
+                timers.push_back(obser->getTimerID());
             }else{
                 if(next_time == 0){
-                    next_time = obser->runtime;
+                    next_time = runtime;
                 }else{
-                    if(next_time > obser->runtime)
+                    if(next_time > runtime)
                     {
-                        next_time = obser->runtime;
+                        next_time = runtime;
                     }
                 }
             }
         }else{
-            timers.push_back(obser->timeid);
+            timers.push_back(obser->getTimerID());
         }
     }
     return next_time;

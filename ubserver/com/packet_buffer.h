@@ -11,6 +11,7 @@
 
 #include "data_array.h"
 #include "packet_header.h"
+#include "log.h"
 
 //头大小
 #define PACKET_BEGIN 4
@@ -27,7 +28,7 @@ private:
 private:
     size_t m_rpos;
 private:
-    uint32 packet_size;
+    size_t packet_size;
     
 public:
     PacketBuffer()
@@ -71,27 +72,19 @@ public:
     {
         if(packet_size > 0)
         {
-            if(wpos() >= packet_size + rpos())
+            return wpos() >= packet_size + m_rpos;
+        }
+        //
+        if(wpos() - rpos() >= PACKET_BEGIN)
+        {
+            packet_size = readInt32();
+            m_rpos = rpos();
+            if(packet_size <= 0 || packet_size > PACKET_MAX)
             {
-                return true;
-            }
-            return false;
-        }else{
-            if(wpos() - rpos() >= sizeof(packet_size))
-            {
-                self()>>packet_size;
-                m_rpos = rpos();
-                if(packet_size <= 0 || packet_size > PACKET_MAX)
-                {
-                    ERROR_LOG("this packlen is overrun %u %ld", packet_size, wpos());
-                }else{
-                    trace(">>##ReadBegin Pocket Length %u %zu %zu", packet_size, rpos(), wpos());
-                    if(wpos() >= packet_size + rpos())
-                    {
-                        return true;
-                    }
-                    return false;
-                }
+                ERROR_LOG("this packlen is overrun %u %ld", packet_size, wpos());
+            }else{
+                LOG_DEBUG<<">>##ReadBegin Pocket: size="<<packet_size<<",r="<<rpos()<<",w="<<wpos()<<LOG_END;
+                return HasPacket();
             }
         }
         return false;
@@ -99,8 +92,7 @@ public:
     
     virtual void ReadBegin()
     {
-        rpos(m_rpos);
-        ReadObject(*this);
+        ReadBegin(*this);
     }
     
     //自定义读取头
@@ -121,9 +113,10 @@ public:
         if(packet_size > 0)
         {
             rpos(m_rpos + packet_size);
-            packet_size = m_rpos = 0;
-            if(rpos() == wpos()) reset();
-            trace(">>##ReadEnd is Flush");
+            packet_size = 0;
+            m_rpos = 0;
+            if(rpos() == wpos()) clear();
+            LOG_DEBUG<<">>##ReadEnd is Flush"<<LOG_END;
         }
     }
     
@@ -136,13 +129,6 @@ public:
     virtual size_t subLeng()
     {
         return packet_size - (_rpos - m_rpos);
-    }
-    
-    virtual
-    
-    PacketBuffer& self()
-    {
-        return *this;
     }
 };
 

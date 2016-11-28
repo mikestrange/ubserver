@@ -11,6 +11,7 @@
 
 #include "read_bytes.h"
 #include "write_bytes.h"
+//#include <iostream>
 
 class ReadBytes;
 class WriteBytes;
@@ -33,6 +34,11 @@ public:
     virtual ~DataArray(){};
     
 public:
+    DataArray& self()
+    {
+        return *this;
+    }
+    
     void WriteObject(IReader& data)
     {
         data.WriteTo(*this);
@@ -43,6 +49,7 @@ public:
         data.ReadFor(*this);
     }
     
+    //read
     int8 readInt8()
     {
         int8 v;
@@ -98,11 +105,6 @@ public:
         uint64 v;
         self()>>v;
         return v;
-    }
-    
-    DataArray& self()
-    {
-        return *this;
     }
     
     //write

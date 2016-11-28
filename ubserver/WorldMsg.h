@@ -30,6 +30,7 @@ public:
     void OnPacketHandler(SocketHandler *packet);
     
 private:
+    void test(SocketHandler *packet);
     void Login(SocketHandler *packet);
     void Logout(SocketHandler *packet);
 };

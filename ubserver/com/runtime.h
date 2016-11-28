@@ -47,12 +47,14 @@ public:
     };
 };
 
+
 //全局构造
 template <class T, class F>
 BlockTask<T>* NewBlock(T v, F f)
 {
     return new BlockTask<T>(v, f);
 }
+
 
 //添加主线程任务
 #define RUN_MAIN(task)  RunTime::getInstance()->AddTask(task)

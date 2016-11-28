@@ -16,16 +16,16 @@
 
 #include "KeepManager.h"
 
-class Keeper;
+class Clock;
 class KeepManager;
 
 class ITimeoutHandler
 {
 public:
-    virtual void OnTimeProcess(Keeper* timer)=0;
+    virtual void OnTimeProcess(int type)=0;
 };
 
-class Keeper
+class Clock
 {
 private:
     friend class KeepManager;
@@ -34,28 +34,18 @@ private:
     TIME_T delay;
     int currentCount;
     int repeatCount;
-    int tag;
     ITimeoutHandler* delegate;
+    int m_type;
 public:
-    Keeper();
+    Clock();
     
-    Keeper(TIME_T delay, int repeatCount = 0);
+    virtual ~Clock();
     
-    virtual ~Keeper();
-    
-    void restart(TIME_T value = 0);
-    
-    void start();
+    void start(TIME_T value, int count = 1, int type = 0);
     
     void stop();
     
     bool isRunning()const;
-    
-    void reset(TIME_T delay, int repeatCount = 0);
-    
-    void setTag(int tag);
-    
-    int getTag();
     
     void setEventDelegate(ITimeoutHandler* target);
     

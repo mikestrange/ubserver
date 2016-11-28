@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#include "SerTask.h"
+#include "SerEvent.h"
 
 #include "global.h"
 #include "log.h"
@@ -20,7 +20,7 @@
 #include "hashmap.h"
 #include "client.h"
 #include "lock.h"
-#include "memory_pool.h"
+#include "memorys.h"
 
 #include "packet_buffer.h"
 //
@@ -31,18 +31,17 @@ private:
     HashMap<SOCKET_T, SocketHandler*> hash;
 public:
     virtual ~SerHandler();
-    
-    void OnConnect(FdState* value)override;
-    void OnClose(FdState* value)override;
-    void OnRead(FdState* value, const char* bytes, size_t size)override;
-    //void OnSocketHandler(int type, SOCKET_T fd, const char* bytes, size_t size)override;
+    //
+    void OnConnect(NetLink* value)override;
+    void OnClose(NetLink* value)override;
+    void OnRead(NetLink* value, char* bytes, size_t size)override;
     
 public:
-    void OnCloseHandler(FdState* value);
+    void OnCloseHandler(NetLink* value);
     
     SocketHandler* GetClient(SOCKET_T fd);
     
-    void OnAcceptHandler(FdState* value);
+    void OnAcceptHandler(NetLink* value);
     
     void Print();
 };

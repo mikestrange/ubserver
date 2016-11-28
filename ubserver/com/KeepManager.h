@@ -10,7 +10,7 @@
 #define KeepManager_h
 
 #include <stdio.h>
-#include "keeper.h"
+#include "clock.h"
 #include "hashmap.h"
 #include "TimeObserver.h"
 #include "thread.h"
@@ -20,7 +20,7 @@
 #include "time_util.h"
 
 class TimeObserver;
-class Keeper;
+class Clock;
 
 class KeepManager : private Thread, private Locked
 {
@@ -32,9 +32,9 @@ public:
     
     KeepManager();
     
-    void AddTimer(Keeper* timer, TIME_T delay = 0);
+    int CreateTimer(Clock* timer, TIME_T delay = 0);
     
-    void DelTimer(Keeper* timer);
+    void DelTimer(int timeid);
     
     void MainHandlerTimer(int timeid);
     
@@ -42,7 +42,7 @@ protected:
     void run()override;
     
 private:
-    TIME_T CompleteTimer(std::vector<uint32>& ticks);
+    TIME_T GetCompleteTimers(std::vector<uint32>& ticks);
 };
 
 #endif /* KeepManager_h */

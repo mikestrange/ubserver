@@ -68,7 +68,7 @@ void DataBank::close()
         #endif
         LOG_DEBUG<<"mysql close ok!"<<LOG_END;
     }else{
-        trace("mysql close error: is no open");
+        LOG_ERROR<<"mysql close error: is no open"<<LOG_END;
     }
 }
 
@@ -83,7 +83,7 @@ bool DataBank::apply(const char* sql)
         LOG_WARN<<"mysql apply error: is no open"<<LOG_END;
         return false;
     }
-    trace("sql execute:%s",sql);
+    LOG_DEBUG<<"mysql = "<<sql<<LOG_END;
     int ret = -1;
     #ifdef MY_SQL
     ret = mysql_query(&myCont, sql);
@@ -130,16 +130,12 @@ bool DataBank::find(DataQuery& query, const char* sql)
             while((sql_row = mysql_fetch_row(result)))
             {
                 DataQuery::DBList &row = query.Next();
-                //trace("------line begin------");
                 for(int i = 0; i < line; i++)
                 {
                     MYSQL_FIELD* field = keys[i];
                     //当前行添加
                     row.push_back(RowItem::create(field->name, sql_row[i]));
-                    //hash[field->name] = sql_row[i];
-                    //trace("key = %s, value = %s", field->name, hash[field->name]);
                 }
-                //trace("------line end------");
             }
             //释放结果资源
             mysql_free_result(result);

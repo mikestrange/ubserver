@@ -17,41 +17,52 @@
 #include "WorldMsg.h"
 #include "GameManager.h"
 
-#include "keeper.h"
+#include "clock.h"
 #include "DBServer.h"
-
+#include "time_util.h"
+#include "netsock.h"
 
 //const char* host = "116.62.5.118";
 const char* host = "127.0.0.1";
 const int port = 8080;
+
+NetSocket m_socket;
 
 void* thread_event(void* arg)
 {
     SOCKET_T serid = network::listener(port);
     if(serid > 0)
     {
-        network::epoll_server(serid, SerHandler::getInstance(), 1024);
+        network::epoll_server(serid, SerHandler::getInstance());
     }
     return 0;
 }
 
 void* thread_socket(void* arg)
 {
-    for(int i = 0; i < 100;i++)
+    m_socket.Connect(host, port);
+    //--
+    PacketBuffer bytes;
+    //登录
+    bytes.setBegin(SERVER_CMD_LOGIN);
+    bytes.WriteBegin();
+    bytes.writeUint32(10001);
+    bytes.writeString("abc");
+    bytes.WriteEnd();
+//    //进入房间
+    bytes.setBegin(SERVER_CMD_GAME_ENTER, SERVER_GAME_MESSAGE, 101);
+    bytes.WriteBegin();
+    bytes.WriteEnd();
+    //下注
+    for(int i = 0;i<30;i++)
     {
-        SOCKET_T fd = network::connect(host, port);
-        PacketBuffer bytes;
-        bytes.setBegin(SERVER_CMD_LOGIN);
+        bytes.setBegin(SERVER_CMD_TIGER_GBET, SERVER_GAME_MESSAGE, 101);
         bytes.WriteBegin();
-        bytes.writeUint32(10001);
-        bytes.writeString("abc");
+        bytes.writeInt8(1+i%8);
+        bytes.writeUint32(100);
         bytes.WriteEnd();
-        
-        NET_SEND_PACKET(fd, &bytes);
-        //NET_CLOSE(fd);
-        usleep(1);
     }
-    
+    m_socket.SendPacket(bytes);
     return 0;
 }
 
@@ -61,10 +72,10 @@ void vim_complete(DataArray* array)
     try{
         std::string str;
         str = array->readString();
-        std::cout<<"输入:"<<str<<std::endl;
+        LOG_DEBUG<<"输入:"<<str<<LOG_END;
         if(StringUtil::equal(str, "exit"))
         {
-            std::cout<<"[进程已完成]"<<std::endl;
+            LOG_DEBUG<<"[进程已完成]"<<LOG_END;
             exit(0);
         }else if(StringUtil::equal(str, "run")){
             Thread::create(&thread_event);
@@ -82,17 +93,15 @@ void vim_complete(DataArray* array)
             result.toString();
         }
     }catch(...){
-        std::cout<<"[输入有误]"<<std::endl;
+        LOG_DEBUG<<"[输入有误]"<<LOG_END;
     }
 }
 
-Keeper kep(0,1);
 
 int main(int argc, const char * argv[])
 {
-    //
     RunTime::getInstance()->launch();
-    //
+    //--
     epoll_input([](DataArray* data)
     {
         RUN_MAIN(NewBlock(data, &vim_complete));

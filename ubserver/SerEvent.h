@@ -14,26 +14,26 @@
 #include "client.h"
 #include "SerHandler.h"
 #include "WorldMsg.h"
-#include "memory_pool.h"
+#include "memorys.h"
 #include "network.h"
 #include "GameManager.h"
 #include "client.h"
 
-class FdState;
+class NetLink;
 
-class SerTask : public RunTask
+class SerEvent : public RunTask
 {
 private:
     int type;
-    FdState* fd;
+    NetLink* m_link;
     char* bytes;
     size_t size;
 public:
-    SerTask(int type, FdState* fd, char* bytes, size_t size);
+    SerEvent(int type, NetLink* link, char* bytes, size_t size);
     
-    SerTask(int type, FdState* fd);
+    SerEvent(int type, NetLink* link);
     
-    virtual ~SerTask();
+    virtual ~SerEvent();
     //任务自己处理
     void OnTaskHandler()override;
     

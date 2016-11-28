@@ -27,7 +27,7 @@ namespace StringUtil
 }
 
 
-namespace Basal
+namespace UNIT
 {
     int parseInt(const char* src)
     {

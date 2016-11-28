@@ -19,22 +19,22 @@ SerHandler::~SerHandler()
 }
 
 
-void SerHandler::OnConnect(FdState* value)
+void SerHandler::OnConnect(NetLink* value)
 {
-    RUN_MAIN(new SerTask(SOCKET_EVENT_CONNECT, value));
+    RUN_MAIN(new SerEvent(SOCKET_EVENT_CONNECT, value));
 };
 
-void SerHandler::OnClose(FdState* value)
+void SerHandler::OnClose(NetLink* value)
 {
-    RUN_MAIN(new SerTask(SOCKET_EVENT_CLOSE, value));
+    RUN_MAIN(new SerEvent(SOCKET_EVENT_CLOSE, value));
 };
 
-void SerHandler::OnRead(FdState* value, const char* bytes, size_t size)
+void SerHandler::OnRead(NetLink* value, char* bytes, size_t size)
 {
-    RUN_MAIN(new SerTask(SOCKET_EVENT_READ, value, MemoryPool::getInstance()->alloc_copy((char*)bytes, size), size));
+    RUN_MAIN(new SerEvent(SOCKET_EVENT_READ, value, bytes, size));
 };
 
-void SerHandler::OnAcceptHandler(FdState* value)
+void SerHandler::OnAcceptHandler(NetLink* value)
 {
     if(hash.has(value->getSocketID()))
     {
@@ -45,13 +45,13 @@ void SerHandler::OnAcceptHandler(FdState* value)
     }
 }
 
-void SerHandler::OnCloseHandler(FdState* value)
+void SerHandler::OnCloseHandler(NetLink* value)
 {
     SocketHandler* sock = hash.remove(value->getSocketID());
     LOG_INFO<<"remove client fd = "<<value->getSocketID()<<LOG_END;
     if(sock)
     {
-        PlayerManager::getInstance()->DelPlayer(sock->user_id);
+        PlayerManager::getInstance()->DelPlayer(sock->getUserID());
     }else{
         SAFE_DELETE(value);
     }
@@ -66,10 +66,10 @@ SocketHandler* SerHandler::GetClient(SOCKET_T fd)
 void SerHandler::Print()
 {
     HashMap<SOCKET_T, SocketHandler*>::Iterator iter;
-    std::cout<<"SerHandler fds ={"<<std::endl;
+    LOG_DEBUG<<"SerHandler fds ={"<<LOG_END;
     for(iter = hash.begin();iter!=hash.end();iter++)
     {
-        std::cout<<"fd = "<<iter->second->GetSocketFd()<<std::endl;
+        LOG_DEBUG<<"fd = "<<iter->second->GetSocketFd()<<LOG_END;
     }
-    std::cout<<"}"<<std::endl;
+    LOG_DEBUG<<"}"<<LOG_END;
 }

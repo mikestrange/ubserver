@@ -10,21 +10,21 @@
 #define TimeObserver_h
 
 #include <stdio.h>
-#include "keeper.h"
+#include "clock.h"
 #include "time_util.h"
+//#include "lock.h"
 
-class Keeper;
+class Clock;
 
 class TimeObserver
 {
-public:
-    int timeid;
-    Keeper* target;
-    TIME_T runtime;
 private:
+    int timeid;
+    Clock* target;
+    TIME_T runtime;
     TIME_T delay;
 public:
-    TimeObserver(int tid, Keeper* value, TIME_T delay);
+    TimeObserver(int tid, Clock* value, TIME_T delay);
     
     virtual ~TimeObserver();
     
@@ -32,7 +32,13 @@ public:
     
     void reset(TIME_T current);
     
-    bool isLive();
+    Clock* getClock()const;
+    
+    TIME_T getRuntime()const;
+    
+    int getTimerID()const;
+    
+    bool isRunning();
 };
 
 #endif /* TimeObserver_h */

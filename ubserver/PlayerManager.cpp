@@ -34,7 +34,7 @@ void PlayerManager::DelPlayer(USER_T uid)
     Player* player = m_players.remove(uid);
     if(player)
     {
-        //player->getSocket()->Disconnect();
+        player->getSocket()->Disconnect();
         LOG_INFO<<"del player uid = "<<uid<<LOG_END;
     }
     SAFE_DELETE(player);
@@ -46,5 +46,24 @@ void PlayerManager::SendPlayer(USER_T uid, PacketBuffer& buffer)
     if(player)
     {
         player->getSocket()->SendPacket(buffer);
+    }
+}
+
+bool PlayerManager::EnterView(USER_T uid, TABLE_ID tid)
+{
+    Player* player = m_players.getValue(uid);
+    if(player)
+    {
+        return player->EnterRoom(tid);
+    }
+    return false;
+}
+
+void PlayerManager::ExitView(USER_T uid)
+{
+    Player* player = m_players.getValue(uid);
+    if(player)
+    {
+        player->ExitRoom();
     }
 }

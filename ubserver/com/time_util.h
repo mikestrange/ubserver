@@ -15,6 +15,8 @@
 #include <sys/time.h>
 #include <unistd.h>
 
+#include "log.h"
+
 typedef struct timeval TimeVal;
 typedef long TIME_T;
 
@@ -42,7 +44,9 @@ namespace TimeUtil
     
     void ConverSpec(TIME_T v, struct timespec& t);
     
-    void Print(TimeVal& tv);
+    void begin();
+    
+    void end();
 }
 
 

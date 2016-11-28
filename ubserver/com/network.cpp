@@ -1,7 +1,5 @@
 #include "network.h"
 
-
-
 //net
 bool NET_CLOSE(SOCKET_T fd)
 {
@@ -37,10 +35,10 @@ namespace network
         if(::bind(listen_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) == 0 &&
            listen(listen_fd, MAX_LISTENE) == 0)
         {
-            trace("open server ok port = %d serid = %d", port, listen_fd);
+            LOG_DEBUG<<"open server ok port = "<<port<<" serid = "<<listen_fd<<LOG_END;
             return listen_fd;
         }else{
-            trace("open server error port = %d", port);
+            LOG_WARN<<"open server error port = "<<port<<LOG_END;
         }
         return -1;
     }
@@ -51,7 +49,7 @@ namespace network
         SOCKET_T listen_fd;
         if ((listen_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         {
-            trace("socket af_inet error: %s:%d", ip, port);
+            LOG_WARN<<"socket af_inet error: "<<ip<<":"<<port<<LOG_END;
         }else{
             struct sockaddr_in sock_addr;
             memset(&sock_addr, 0, sizeof(sock_addr));
@@ -61,9 +59,9 @@ namespace network
             //
             if (::connect(listen_fd, (struct sockaddr *)&sock_addr, sizeof(struct sockaddr)) == -1)
             {
-                trace("socket connect error: %s:%d %d", ip, port, listen_fd);
+                LOG_WARN<<"socket connect error: "<<ip<<":"<<port<<":"<<listen_fd<<LOG_END;
             }else{
-                trace("socket connect ok: %s:%d %d", ip, port, listen_fd);
+                LOG_WARN<<"socket connect ok: "<<ip<<":"<<port<<":"<<listen_fd<<LOG_END;
                 return listen_fd;
             }
         }
@@ -72,14 +70,15 @@ namespace network
     
     void epoll_server(SOCKET_T serid, INet* net, int maxfd)
     {
-        trace("[epoll server sock = %d]", serid);
         char bytes[MAX_BUFFER];
         fd_set rset;
         FD_ZERO(&rset);
         FD_SET(serid, &rset);
-        const SOCKET_T max_fds = maxfd > MAX_SERVER ? MAX_SERVER : maxfd;
-        FdState* fd_list[MAX_SERVER] = {};
-        fd_list[0] = new FdState(serid);
+        NetLink* fd_list[MAX_SERVER] = {};
+        fd_list[0] = NetLink::create(serid, true);
+        //输入的是链接数目
+        const SOCKET_T max_fds = maxfd >= MAX_SERVER ? MAX_SERVER : maxfd + 1;
+        LOG_DEBUG<<"[epoll server serid = "<<serid<<" max = "<<max_fds<<"]"<<LOG_END;
         net->launch();
         struct timeval timeout;
         while(net->isRunning())
@@ -88,18 +87,18 @@ namespace network
             SET_TIMEOUT(timeout, 3, 0);
             fd_set mt = rset;
             //select
-            int code = select(max_fds, &mt, NULL, NULL, &timeout);
+            int code = select(MAX_SERVER, &mt, NULL, NULL, &timeout);
             if(code < 0) exit(1);
-            std::cout<<"select code:"<<code<<", error:"<<errno<<std::endl;
+            //LOG_DEBUG<<"select code:"<<code<<", error:"<<errno<<LOG_END;
             //端口情况
-            for(int i = 0 ;i < MAX_SERVER; i++)
+            for(int i = 0 ;i < max_fds; i++)
             {
                 if(fd_list[i] == NULL) continue;
-                FdState* target = fd_list[i];
+                NetLink* target = fd_list[i];
                 SOCKET_T fd = target->getSocketID();
                 if(target->isClosed())
                 {
-                    trace("[this fd is close = %d]", fd);
+                    //LOG_INFO<<"server cut fd = "<<fd<<LOG_END;
                     target->DisConnect();
                     fd_list[i] = NULL;
                     FD_CLR(fd, &rset);
@@ -113,29 +112,40 @@ namespace network
                             int new_fd = accept(fd, NULL, NULL);
                             if(new_fd > 0)
                             {
-                                trace("[accept ok sock = %d]",new_fd);
+                                //LOG_INFO<<"accept ok fd = "<<new_fd<<LOG_END;
                                 FD_SET(new_fd, &rset);
-                                FdState* proxy = new FdState(new_fd);
-                                for(int m = 0; m < MAX_SERVER; m++)
+                                NetLink* new_link = NetLink::create(new_fd);
+                                //第一个被占
+                                for(int m = 1; m < max_fds; m++)
                                 {
                                     if(fd_list[m] == NULL)
                                     {
-                                        fd_list[m] = proxy;
+                                        fd_list[m] = new_link;
+                                        new_link->OnConnect();
                                         break;
                                     }
                                 }
-                                net->OnConnect(proxy);
+                                //--
+                                if(new_link->isConnect())
+                                {
+                                    net->OnConnect(new_link);
+                                }else{
+                                    FD_CLR(new_fd, &rset);
+                                    NET_CLOSE(new_fd);
+                                    SAFE_DELETE(new_link);
+                                    //LOG_INFO<<"accept over max close fd = "<<new_fd<<LOG_END;
+                                }
                             }else{
-                                trace("[accept error or connect is max]");
+                                LOG_INFO<<"accept error or over max"<<LOG_END;
                             }
                         }else{
-                            int ret = NET_RECV(fd, bytes, MAX_BUFFER);
+                            int ret = target->OnRead(bytes, MAX_BUFFER);
                             if (ret > 0)
                             {
-                                trace("[recv : size = %d fd = %d]",ret, fd);
+                                //LOG_INFO<<"recv : size = "<<ret<<" fd = "<<fd<<LOG_END;
                                 net->OnRead(target, bytes, ret);
                             }else {
-                                trace("[close fd = %d code = %d]", fd, ret);
+                                //LOG_INFO<<"client close fd = "<<fd<<" ret = "<<ret<<LOG_END;
                                 target->DisConnect();
                                 fd_list[i] = NULL;
                                 FD_CLR(fd, &rset);
@@ -147,10 +157,10 @@ namespace network
                 }
             }
         }
-        //--
-        for(int i = 1; i < MAX_SERVER; i++)
+        //--(释放所有链接)
+        for(int i = 1; i < max_fds; i++)
         {
-            FdState* target = fd_list[i];
+            NetLink* target = fd_list[i];
             if(target)
             {
                 NET_CLOSE(target->getSocketID());
@@ -159,7 +169,6 @@ namespace network
             }
         }
         SAFE_DELETE(fd_list[0]);
-        //
         NET_CLOSE(serid);
     }
 }

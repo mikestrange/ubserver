@@ -19,7 +19,7 @@ WorldMsg::WorldMsg()
 //所有消息处理
 void WorldMsg::OnPacketHandler(SocketHandler *packet)
 {
-    LOG_DEBUG<<"world handler cmd = "<<packet->getCmd()<<LOG_END;
+    //LOG_DEBUG<<"world handler cmd = "<<packet->getCmd()<<LOG_END;
     switch(packet->getCmd())
     {
         case SERVER_CMD_LOGIN:
@@ -27,6 +27,9 @@ void WorldMsg::OnPacketHandler(SocketHandler *packet)
             break;
         case SERVER_CMD_LOGOUT:
             Logout(packet);
+            break;
+        case SERVER_CMD_TEST:
+            test(packet);
             break;
     }
 };
@@ -47,9 +50,16 @@ void WorldMsg::Login(SocketHandler *packet)
     }else{
         LOG_WARN<<"log ok uid = "<<uid<<LOG_END;
         //未登录可以登录
-        if(packet->user_id == 0)
+        if(packet->isNoLogin())
         {
             PlayerManager::getInstance()->AddPlayer(new Player(uid, packet));
+            //--
+            PacketBuffer buffer;
+            buffer.setBegin(SERVER_CMD_LOGIN);
+            buffer.WriteBegin();
+            //玩家信息
+            buffer.WriteEnd();
+            packet->SendPacket(buffer);
         }
     }
 }
@@ -57,4 +67,16 @@ void WorldMsg::Login(SocketHandler *packet)
 void WorldMsg::Logout(SocketHandler *packet)
 {
     //no handler
+}
+
+void WorldMsg::test(SocketHandler *packet)
+{
+    trace("test cmd = %d", packet->readInt8());
+    PacketBuffer bytes;
+    bytes.setBegin(packet->getCmd());
+    bytes.WriteBegin();
+    bytes.writeInt8(112);
+    bytes.writeUint32(1234);
+    bytes.WriteEnd();
+    GameManager::getInstance()->SendPacket(packet->getUserID(), bytes);
 }

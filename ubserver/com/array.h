@@ -158,6 +158,11 @@ public:
         }
     }
     
+    bool empty()const
+    {
+        return elements.empty();
+    }
+    
     Iterator begin()
     {
         return elements.begin();

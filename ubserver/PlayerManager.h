@@ -18,6 +18,8 @@
 
 #include "log.h"
 
+class Player;
+
 class PlayerManager
 {
     STATIC_CLASS(PlayerManager);
@@ -30,6 +32,10 @@ public:
     void DelPlayer(USER_T uid);
     
     void SendPlayer(USER_T uid, PacketBuffer& buffer);
+    
+    bool EnterView(USER_T uid, TABLE_ID tid);
+    
+    void ExitView(USER_T uid);
 };
 
 #endif /* PlayerManager_h */

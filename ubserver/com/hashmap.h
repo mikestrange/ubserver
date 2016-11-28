@@ -47,7 +47,6 @@ public:
             return iter->second;
         }
         return NULL;
-        
     }
     
     bool has(K k)
@@ -55,11 +54,9 @@ public:
         return elements.find(k) != elements.end();
     }
     
-    bool put(K k, V v)
+    void put(K k, V v)
     {
-        if(has(k)) return false;
         elements.insert(std::pair<K,V>(k, v));
-        return true;
     }
     
     int length()
@@ -114,7 +111,7 @@ public:
         Iterator iter;
         for(iter = elements.begin(); iter != elements.end(); ++iter)
         {
-            func(iter->first);
+            fun(iter->first);
         }
     }
     
@@ -136,6 +133,11 @@ public:
     std::map<K, V>& getElements()
     {
         return elements;
+    }
+    
+    bool empty()const
+    {
+        return elements.empty();
     }
     
     void print()

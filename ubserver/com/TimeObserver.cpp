@@ -9,7 +9,7 @@
 #include "TimeObserver.h"
 
 
-TimeObserver::TimeObserver(int tid, Keeper* t1, TIME_T t2)
+TimeObserver::TimeObserver(int tid, Clock* t1, TIME_T t2)
 :timeid(tid)
 ,target(t1)
 ,runtime(0)
@@ -33,7 +33,22 @@ void TimeObserver::stop()
     target = NULL;
 }
 
-bool TimeObserver::isLive()
+bool TimeObserver::isRunning()
 {
     return target != NULL;
+}
+
+Clock* TimeObserver::getClock()const
+{
+    return target;
+}
+
+TIME_T TimeObserver::getRuntime()const
+{
+    return runtime;
+}
+
+int TimeObserver::getTimerID()const
+{
+    return timeid;
 }

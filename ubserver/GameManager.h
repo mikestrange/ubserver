@@ -17,6 +17,9 @@
 #include "log.h"
 #include "GameLogic.h"
 #include "CmdDefined.h"
+#include "PlayerManager.h"
+
+class GameLogic;
 
 //mananger
 class GameManager
@@ -25,11 +28,17 @@ class GameManager
 private:
     HashMap<TABLE_ID, GameLogic*> tab;
 public:
-    void launch(GameData* data);
+    GameManager();
+    
+    void launch(TABLE_ID tid, int ruleid = 0, int type = 0);
     
     void shut(TABLE_ID tid);
     
     void OnPacketHandler(SocketHandler* client);
+    
+    void SendPacket(USER_T uid, PacketBuffer& packet);
+    
+    void ExitGame(USER_T uid, TABLE_ID tid);
     
 private:
     GameLogic* getLogic(TABLE_ID tid);

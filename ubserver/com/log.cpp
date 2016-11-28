@@ -10,8 +10,28 @@
 
 STATIC_CLASS_INIT(Log);
 
+const char* LOG_LIST[] = {"[NONE]", "[DEBUG]","[INFO]","[WARN]","[ERROR]"};
 
 Log& Log::getLogger(int lv)
 {
     return Log::getInstance()->setLogger(lv);
 }
+
+Log& Log::setLogger(int lv)
+{
+    lock();
+    std::cout<<LOG_LIST[lv];
+    return *this;
+}
+
+Log& Log::operator <<(const char* v)
+{
+    if(v == LOG_END)
+    {
+        std::cout<<std::endl;
+        unlock();
+    }else{
+        std::cout<<v;
+    }
+    return *this;
+};

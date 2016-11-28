@@ -13,37 +13,21 @@
 #include <iostream>
 #include "global.h"
 
+#include "lock.h"
+
 #define LOG_DEBUG       Log::getLogger(1)
 #define LOG_INFO        Log::getLogger(2)
 #define LOG_WARN        Log::getLogger(3)
 #define LOG_ERROR       Log::getLogger(4)
 #define LOG_END         "\n"
 
-class Log
+class Log : private Locked
 {
     STATIC_CLASS(Log);
 public:
-    Log& setLogger(int lv)
-    {
-        switch (lv) {
-            case 1:
-                std::cout<<"[DEBUG]";
-                break;
-            case 2:
-                std::cout<<"[INFO]";
-                break;
-            case 3:
-                std::cout<<"[WARN]";
-                break;
-            case 4:
-                std::cout<<"[ERROR]";
-                break;
-            default:
-                std::cout<<"[NONE]";
-                break;
-        }
-        return *this;
-    }
+    Log& setLogger(int lv);
+    
+    Log& operator <<(const char* v);
     
     template <class V>
     Log& operator <<(V v)

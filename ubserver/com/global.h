@@ -78,11 +78,7 @@ typedef uint8 SEAT_T;                   //座位 255够了
 
 
 //输出看台
-#ifdef DEBUG
-    #define trace(fm, args...)      printf(fm"\n", ##args)
-#else
-    #define trace(fm, args...)      printf(fm"\n", ##args)
-#endif
+#define trace(fm, args...)      printf(fm"\n", ##args)
 
 //字段替换
 #define STR_FORMAT(size) \

@@ -26,7 +26,8 @@
 
 #include "global.h"
 #include "packet_buffer.h"
-#include "FdState.h"
+#include "netlink.h"
+#include "log.h"
 
 #define INVALID_SOCKET -1
 
@@ -46,7 +47,7 @@ enum{
     SOCKET_EVENT_SEND,
 };
 
-class FdState;
+class NetLink;
 //class
 class INet
 {
@@ -64,9 +65,9 @@ public:
         return is_running;
     };
     
-    virtual void OnConnect(FdState* value)=0;
-    virtual void OnClose(FdState* value)=0;
-    virtual void OnRead(FdState* value, const char* bytes, size_t size)=0;
+    virtual void OnConnect(NetLink* value)=0;
+    virtual void OnClose(NetLink* value)=0;
+    virtual void OnRead(NetLink* value, char* bytes, size_t size)=0;
 };
 
 
@@ -87,7 +88,7 @@ namespace network
     //链接一个远程
     SOCKET_T connect(const char* ip, int port);
     
-    void epoll_server(SOCKET_T serid, INet* net, int maxfd = 0);
+    void epoll_server(SOCKET_T serid, INet* net, int maxfd = 10);
 }
 
 #endif /* network_h */

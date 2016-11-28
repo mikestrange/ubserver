@@ -1,7 +1,7 @@
 //
 //  memory_pool.hpp
 //  ServerPlugIn
-//  字节缓存
+//  字节缓存池
 //  Created by MikeRiy on 16/8/11.
 //  Copyright © 2016年 MikeRiy. All rights reserved.
 //

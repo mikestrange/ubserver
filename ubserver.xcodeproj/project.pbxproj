@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		204312E71DDE067300A18C0A /* GamePuzzle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 204312E51DDE067300A18C0A /* GamePuzzle.cpp */; };
 		2070BB1F1DDA044F0017D59C /* data_bank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB1B1DDA044F0017D59C /* data_bank.cpp */; };
 		2070BB201DDA044F0017D59C /* data_query.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB1D1DDA044F0017D59C /* data_query.cpp */; };
-		2070BB261DDA0B040017D59C /* keeper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB241DDA0B040017D59C /* keeper.cpp */; };
+		2070BB261DDA0B040017D59C /* clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB241DDA0B040017D59C /* clock.cpp */; };
 		2070BB281DDA0CAB0017D59C /* time_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB271DDA0CAB0017D59C /* time_util.cpp */; };
 		2070BB2A1DDA0CEA0017D59C /* math_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB291DDA0CEA0017D59C /* math_util.cpp */; };
 		2070BB2C1DDA0D560017D59C /* string_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB2B1DDA0D560017D59C /* string_util.cpp */; };
@@ -19,22 +20,23 @@
 		2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */; };
 		2070BB3E1DDB13DD0017D59C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB3C1DDB13DD0017D59C /* Player.cpp */; };
 		208D8D701DD30008000D45C6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 208D8D6F1DD30008000D45C6 /* main.cpp */; };
+		20AB02381DDD846900102A07 /* GameSeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20AB02361DDD846900102A07 /* GameSeat.cpp */; };
+		20AB023B1DDD991300102A07 /* netsock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20AB02391DDD991300102A07 /* netsock.cpp */; };
+		20AB023E1DDDA13600102A07 /* SockEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20AB023C1DDDA13600102A07 /* SockEvent.cpp */; };
 		20B3156A1DD952530087924A /* runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315691DD952530087924A /* runtime.cpp */; };
 		20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3156B1DD953EF0087924A /* WorldMsg.cpp */; };
 		20B315701DD9540E0087924A /* SerHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3156E1DD9540E0087924A /* SerHandler.cpp */; };
 		20B315721DD9542D0087924A /* lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315711DD9542D0087924A /* lock.cpp */; };
 		20B315741DD955E30087924A /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315731DD955E30087924A /* thread.cpp */; };
 		20B3157B1DD957CE0087924A /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3157A1DD957CE0087924A /* network.cpp */; };
-		20B315841DD96A860087924A /* SerTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315821DD96A860087924A /* SerTask.cpp */; };
-		20B315891DD96DFB0087924A /* memory_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315881DD96DFB0087924A /* memory_pool.cpp */; };
+		20B315841DD96A860087924A /* SerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315821DD96A860087924A /* SerEvent.cpp */; };
+		20B315891DD96DFB0087924A /* memorys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315881DD96DFB0087924A /* memorys.cpp */; };
 		20B3158C1DD975A40087924A /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3158A1DD975A40087924A /* log.cpp */; };
-		20B315961DD996B30087924A /* GameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315901DD996B30087924A /* GameData.cpp */; };
 		20B315971DD996B30087924A /* GameLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315921DD996B30087924A /* GameLogic.cpp */; };
 		20B315981DD996B30087924A /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315941DD996B30087924A /* GameManager.cpp */; };
 		20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315991DD9B51A0087924A /* GamePlayer.cpp */; };
-		20B3159E1DD9B5330087924A /* GameSeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3159C1DD9B5330087924A /* GameSeat.cpp */; };
 		20C2E9401DDC2FAC00A48276 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C2E93E1DDC2FAC00A48276 /* client.cpp */; };
-		20C2E9591DDC59C000A48276 /* FdState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C2E9571DDC59C000A48276 /* FdState.cpp */; };
+		20C2E9591DDC59C000A48276 /* netlink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C2E9571DDC59C000A48276 /* netlink.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,12 +52,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		204312E51DDE067300A18C0A /* GamePuzzle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePuzzle.cpp; sourceTree = "<group>"; };
+		204312E61DDE067300A18C0A /* GamePuzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePuzzle.h; sourceTree = "<group>"; };
 		2070BB1B1DDA044F0017D59C /* data_bank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_bank.cpp; sourceTree = "<group>"; };
 		2070BB1C1DDA044F0017D59C /* data_bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_bank.h; sourceTree = "<group>"; };
 		2070BB1D1DDA044F0017D59C /* data_query.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_query.cpp; sourceTree = "<group>"; };
 		2070BB1E1DDA044F0017D59C /* data_query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_query.h; sourceTree = "<group>"; };
-		2070BB241DDA0B040017D59C /* keeper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keeper.cpp; sourceTree = "<group>"; };
-		2070BB251DDA0B040017D59C /* keeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keeper.h; sourceTree = "<group>"; };
+		2070BB241DDA0B040017D59C /* clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clock.cpp; sourceTree = "<group>"; };
+		2070BB251DDA0B040017D59C /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clock.h; sourceTree = "<group>"; };
 		2070BB271DDA0CAB0017D59C /* time_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time_util.cpp; sourceTree = "<group>"; };
 		2070BB291DDA0CEA0017D59C /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_util.cpp; sourceTree = "<group>"; };
 		2070BB2B1DDA0D560017D59C /* string_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_util.cpp; sourceTree = "<group>"; };
@@ -71,6 +75,12 @@
 		2070BB3D1DDB13DD0017D59C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		208D8D6C1DD30008000D45C6 /* ubserver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ubserver; sourceTree = BUILT_PRODUCTS_DIR; };
 		208D8D6F1DD30008000D45C6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		20AB02361DDD846900102A07 /* GameSeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSeat.cpp; sourceTree = "<group>"; };
+		20AB02371DDD846900102A07 /* GameSeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSeat.h; sourceTree = "<group>"; };
+		20AB02391DDD991300102A07 /* netsock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = netsock.cpp; sourceTree = "<group>"; };
+		20AB023A1DDD991300102A07 /* netsock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netsock.h; sourceTree = "<group>"; };
+		20AB023C1DDDA13600102A07 /* SockEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SockEvent.cpp; sourceTree = "<group>"; };
+		20AB023D1DDDA13600102A07 /* SockEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SockEvent.h; sourceTree = "<group>"; };
 		20B3152F1DD5BF210087924A /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
 		20B315311DD5BF210087924A /* buffer_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer_base.h; sourceTree = "<group>"; };
 		20B315321DD5BF210087924A /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = command.h; sourceTree = "<group>"; };
@@ -101,26 +111,22 @@
 		20B315731DD955E30087924A /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		20B3157A1DD957CE0087924A /* network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network.cpp; sourceTree = "<group>"; };
 		20B3157D1DD95CC10087924A /* CmdDefined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CmdDefined.h; sourceTree = "<group>"; };
-		20B315821DD96A860087924A /* SerTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerTask.cpp; sourceTree = "<group>"; };
-		20B315831DD96A860087924A /* SerTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerTask.h; sourceTree = "<group>"; };
-		20B315861DD96B960087924A /* memory_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_pool.h; sourceTree = "<group>"; };
-		20B315881DD96DFB0087924A /* memory_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory_pool.cpp; sourceTree = "<group>"; };
+		20B315821DD96A860087924A /* SerEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerEvent.cpp; sourceTree = "<group>"; };
+		20B315831DD96A860087924A /* SerEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerEvent.h; sourceTree = "<group>"; };
+		20B315861DD96B960087924A /* memorys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memorys.h; sourceTree = "<group>"; };
+		20B315881DD96DFB0087924A /* memorys.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memorys.cpp; sourceTree = "<group>"; };
 		20B3158A1DD975A40087924A /* log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log.cpp; sourceTree = "<group>"; };
 		20B3158B1DD975A40087924A /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
-		20B315901DD996B30087924A /* GameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameData.cpp; sourceTree = "<group>"; };
-		20B315911DD996B30087924A /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		20B315921DD996B30087924A /* GameLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLogic.cpp; sourceTree = "<group>"; };
 		20B315931DD996B30087924A /* GameLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLogic.h; sourceTree = "<group>"; };
 		20B315941DD996B30087924A /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
 		20B315951DD996B30087924A /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		20B315991DD9B51A0087924A /* GamePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePlayer.cpp; sourceTree = "<group>"; };
 		20B3159A1DD9B51A0087924A /* GamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayer.h; sourceTree = "<group>"; };
-		20B3159C1DD9B5330087924A /* GameSeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSeat.cpp; sourceTree = "<group>"; };
-		20B3159D1DD9B5330087924A /* GameSeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSeat.h; sourceTree = "<group>"; };
 		20C2E93E1DDC2FAC00A48276 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
 		20C2E93F1DDC2FAC00A48276 /* client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
-		20C2E9571DDC59C000A48276 /* FdState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FdState.cpp; sourceTree = "<group>"; };
-		20C2E9581DDC59C000A48276 /* FdState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FdState.h; sourceTree = "<group>"; };
+		20C2E9571DDC59C000A48276 /* netlink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = netlink.cpp; sourceTree = "<group>"; };
+		20C2E9581DDC59C000A48276 /* netlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netlink.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,8 @@
 		208D8D6E1DD30008000D45C6 /* ubserver */ = {
 			isa = PBXGroup;
 			children = (
+				20AB02351DDD839300102A07 /* base */,
+				20AB02341DDD838500102A07 /* world */,
 				20B315491DD6B5A50087924A /* game */,
 				20B3152E1DD5BF210087924A /* com */,
 				208D8D6F1DD30008000D45C6 /* main.cpp */,
@@ -171,15 +179,55 @@
 			path = ubserver;
 			sourceTree = "<group>";
 		};
+		20AB02331DDD5CE500102A07 /* private */ = {
+			isa = PBXGroup;
+			children = (
+				2070BB2E1DDAA9B10017D59C /* KeepManager.h */,
+				2070BB2D1DDAA9B10017D59C /* KeepManager.cpp */,
+				2070BB311DDAA9D10017D59C /* TimeObserver.h */,
+				2070BB301DDAA9D10017D59C /* TimeObserver.cpp */,
+			);
+			name = private;
+			sourceTree = "<group>";
+		};
+		20AB02341DDD838500102A07 /* world */ = {
+			isa = PBXGroup;
+			children = (
+				2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */,
+				2070BB371DDAFE5F0017D59C /* PlayerManager.h */,
+				2070BB3C1DDB13DD0017D59C /* Player.cpp */,
+				2070BB3D1DDB13DD0017D59C /* Player.h */,
+				20B3156B1DD953EF0087924A /* WorldMsg.cpp */,
+				20B3156C1DD953EF0087924A /* WorldMsg.h */,
+			);
+			name = world;
+			sourceTree = "<group>";
+		};
+		20AB02351DDD839300102A07 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				20B3157D1DD95CC10087924A /* CmdDefined.h */,
+				2070BB331DDAF57F0017D59C /* DBServer.cpp */,
+				2070BB341DDAF57F0017D59C /* DBServer.h */,
+				20B3156E1DD9540E0087924A /* SerHandler.cpp */,
+				20B3156F1DD9540E0087924A /* SerHandler.h */,
+				20B315821DD96A860087924A /* SerEvent.cpp */,
+				20B315831DD96A860087924A /* SerEvent.h */,
+				20C2E93E1DDC2FAC00A48276 /* client.cpp */,
+				20C2E93F1DDC2FAC00A48276 /* client.h */,
+			);
+			name = base;
+			sourceTree = "<group>";
+		};
 		20B3152E1DD5BF210087924A /* com */ = {
 			isa = PBXGroup;
 			children = (
-				2070BB1A1DDA04460017D59C /* db */,
 				20B315791DD957950087924A /* core */,
 				20B315781DD957840087924A /* hash */,
 				20B315771DD957750087924A /* bytes */,
 				20B315761DD9576B0087924A /* utils */,
 				20B315751DD957620087924A /* event */,
+				2070BB1A1DDA04460017D59C /* db */,
 				20B315361DD5BF210087924A /* global.h */,
 				20B3153A1DD5BF210087924A /* input.h */,
 				20B3153E1DD5BF210087924A /* runtime.h */,
@@ -191,31 +239,16 @@
 		20B315491DD6B5A50087924A /* game */ = {
 			isa = PBXGroup;
 			children = (
-				20B315901DD996B30087924A /* GameData.cpp */,
-				20B315911DD996B30087924A /* GameData.h */,
 				20B315921DD996B30087924A /* GameLogic.cpp */,
 				20B315931DD996B30087924A /* GameLogic.h */,
 				20B315941DD996B30087924A /* GameManager.cpp */,
 				20B315951DD996B30087924A /* GameManager.h */,
-				20B3156B1DD953EF0087924A /* WorldMsg.cpp */,
-				20B3156C1DD953EF0087924A /* WorldMsg.h */,
-				20B3156E1DD9540E0087924A /* SerHandler.cpp */,
-				20B3156F1DD9540E0087924A /* SerHandler.h */,
-				20B3157D1DD95CC10087924A /* CmdDefined.h */,
-				20B315821DD96A860087924A /* SerTask.cpp */,
-				20B315831DD96A860087924A /* SerTask.h */,
 				20B315991DD9B51A0087924A /* GamePlayer.cpp */,
 				20B3159A1DD9B51A0087924A /* GamePlayer.h */,
-				20B3159C1DD9B5330087924A /* GameSeat.cpp */,
-				20B3159D1DD9B5330087924A /* GameSeat.h */,
-				2070BB331DDAF57F0017D59C /* DBServer.cpp */,
-				2070BB341DDAF57F0017D59C /* DBServer.h */,
-				2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */,
-				2070BB371DDAFE5F0017D59C /* PlayerManager.h */,
-				2070BB3C1DDB13DD0017D59C /* Player.cpp */,
-				2070BB3D1DDB13DD0017D59C /* Player.h */,
-				20C2E93E1DDC2FAC00A48276 /* client.cpp */,
-				20C2E93F1DDC2FAC00A48276 /* client.h */,
+				20AB02361DDD846900102A07 /* GameSeat.cpp */,
+				20AB02371DDD846900102A07 /* GameSeat.h */,
+				204312E51DDE067300A18C0A /* GamePuzzle.cpp */,
+				204312E61DDE067300A18C0A /* GamePuzzle.h */,
 			);
 			name = game;
 			sourceTree = "<group>";
@@ -233,6 +266,8 @@
 		20B315761DD9576B0087924A /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				20B3158B1DD975A40087924A /* log.h */,
+				20B3158A1DD975A40087924A /* log.cpp */,
 				20B3153F1DD5BF210087924A /* string_util.h */,
 				2070BB2B1DDA0D560017D59C /* string_util.cpp */,
 				20B315441DD5BF4D0087924A /* time_util.h */,
@@ -269,24 +304,23 @@
 		20B315791DD957950087924A /* core */ = {
 			isa = PBXGroup;
 			children = (
-				20B3158B1DD975A40087924A /* log.h */,
-				20B3158A1DD975A40087924A /* log.cpp */,
+				20AB02331DDD5CE500102A07 /* private */,
 				20B3153B1DD5BF210087924A /* lock.h */,
 				20B315711DD9542D0087924A /* lock.cpp */,
 				20B315401DD5BF210087924A /* thread.h */,
 				20B315731DD955E30087924A /* thread.cpp */,
 				20B3153C1DD5BF210087924A /* network.h */,
 				20B3157A1DD957CE0087924A /* network.cpp */,
-				20B315861DD96B960087924A /* memory_pool.h */,
-				20B315881DD96DFB0087924A /* memory_pool.cpp */,
-				2070BB251DDA0B040017D59C /* keeper.h */,
-				2070BB241DDA0B040017D59C /* keeper.cpp */,
-				2070BB2E1DDAA9B10017D59C /* KeepManager.h */,
-				2070BB2D1DDAA9B10017D59C /* KeepManager.cpp */,
-				2070BB311DDAA9D10017D59C /* TimeObserver.h */,
-				2070BB301DDAA9D10017D59C /* TimeObserver.cpp */,
-				20C2E9571DDC59C000A48276 /* FdState.cpp */,
-				20C2E9581DDC59C000A48276 /* FdState.h */,
+				20C2E9581DDC59C000A48276 /* netlink.h */,
+				20C2E9571DDC59C000A48276 /* netlink.cpp */,
+				20AB023A1DDD991300102A07 /* netsock.h */,
+				20AB02391DDD991300102A07 /* netsock.cpp */,
+				20AB023D1DDDA13600102A07 /* SockEvent.h */,
+				20AB023C1DDDA13600102A07 /* SockEvent.cpp */,
+				20B315861DD96B960087924A /* memorys.h */,
+				20B315881DD96DFB0087924A /* memorys.cpp */,
+				2070BB251DDA0B040017D59C /* clock.h */,
+				2070BB241DDA0B040017D59C /* clock.cpp */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -347,34 +381,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B315961DD996B30087924A /* GameData.cpp in Sources */,
-				20B3159E1DD9B5330087924A /* GameSeat.cpp in Sources */,
 				20B315741DD955E30087924A /* thread.cpp in Sources */,
+				20AB023B1DDD991300102A07 /* netsock.cpp in Sources */,
 				20B3158C1DD975A40087924A /* log.cpp in Sources */,
 				20B315721DD9542D0087924A /* lock.cpp in Sources */,
 				20B315701DD9540E0087924A /* SerHandler.cpp in Sources */,
 				20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */,
 				2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */,
-				20B315891DD96DFB0087924A /* memory_pool.cpp in Sources */,
+				20B315891DD96DFB0087924A /* memorys.cpp in Sources */,
 				20C2E9401DDC2FAC00A48276 /* client.cpp in Sources */,
 				20B315981DD996B30087924A /* GameManager.cpp in Sources */,
 				2070BB3E1DDB13DD0017D59C /* Player.cpp in Sources */,
 				20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */,
 				20B3156A1DD952530087924A /* runtime.cpp in Sources */,
-				2070BB261DDA0B040017D59C /* keeper.cpp in Sources */,
+				204312E71DDE067300A18C0A /* GamePuzzle.cpp in Sources */,
+				20AB023E1DDDA13600102A07 /* SockEvent.cpp in Sources */,
+				2070BB261DDA0B040017D59C /* clock.cpp in Sources */,
 				208D8D701DD30008000D45C6 /* main.cpp in Sources */,
 				2070BB321DDAA9D10017D59C /* TimeObserver.cpp in Sources */,
+				20AB02381DDD846900102A07 /* GameSeat.cpp in Sources */,
 				2070BB2C1DDA0D560017D59C /* string_util.cpp in Sources */,
 				2070BB351DDAF57F0017D59C /* DBServer.cpp in Sources */,
 				2070BB281DDA0CAB0017D59C /* time_util.cpp in Sources */,
 				20B3157B1DD957CE0087924A /* network.cpp in Sources */,
 				2070BB2A1DDA0CEA0017D59C /* math_util.cpp in Sources */,
-				20C2E9591DDC59C000A48276 /* FdState.cpp in Sources */,
+				20C2E9591DDC59C000A48276 /* netlink.cpp in Sources */,
 				2070BB201DDA044F0017D59C /* data_query.cpp in Sources */,
 				2070BB1F1DDA044F0017D59C /* data_bank.cpp in Sources */,
 				20B315971DD996B30087924A /* GameLogic.cpp in Sources */,
 				2070BB2F1DDAA9B10017D59C /* KeepManager.cpp in Sources */,
-				20B315841DD96A860087924A /* SerTask.cpp in Sources */,
+				20B315841DD96A860087924A /* SerEvent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

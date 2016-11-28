@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include "global.h"
 #include "client.h"
+#include "GameManager.h"
+
+class GameManager;
 
 class Player
 {
@@ -20,12 +23,17 @@ private:
 public:
     USER_T user_id;
     SOCKET_T sock_id;
+    TABLE_ID view_id;
     
     Player(USER_T uid, SocketHandler* sock);
 
     SocketHandler* getSocket()const;
     
     virtual ~Player();
+    
+    void ExitRoom();
+    
+    bool EnterRoom(TABLE_ID tid);
 };
 
 #endif /* Player_h */

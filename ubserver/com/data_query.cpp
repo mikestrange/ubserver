@@ -119,10 +119,8 @@ bool DataQuery::match(const char* key, const char* value)
     auto item = result(key);
     if(item && strcmp(item->value, value) == 0)
     {
-        trace("match ok: row:%ld key = %s, math value = %s", _row, key, value);
         return true;
     }
-    trace("match error: row:%ld key = %s, math value = %s", _row, key, value);
     return false;
 }
 
@@ -131,10 +129,8 @@ bool DataQuery::match(size_t index, const char* value)
     auto item = result(index);
     if(item && strcmp(item->value, value) == 0)
     {
-        trace("match ok: row:%ld index = %ld, math value = %s", _row, index, value);
         return true;
     }
-    trace("match error: row:%ld index = %ld, math value = %s", _row, index, value);
     return false;
 }
 

@@ -57,7 +57,6 @@ void epoll_input(FUN fun)
     std::string str;
     while(getline(std::cin, str))
     {
-        std::cout<<"##input = "<<str<<std::endl;
         analytic(&input_data, str.c_str(), (int)str.length());
         try{
             fun(&input_data);

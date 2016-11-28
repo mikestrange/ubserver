@@ -26,8 +26,9 @@ namespace StringUtil
     bool scope(std::string &str, size_t left, size_t right);
 }
 
+#define parseByte(v) (v - '\0')
 
-namespace Basal
+namespace UNIT
 {
     int parseInt(const char* src);
     
