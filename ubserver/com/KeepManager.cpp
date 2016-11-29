@@ -19,27 +19,16 @@ KeepManager::KeepManager()
 //a线程
 int KeepManager::CreateTimer(Clock* timer, TIME_T delay)
 {
-    int time_id = 0;
-    do{
-        //AUTO_LOCK(this);
-        while(hash.has(++currentTimeid))
-        {
-            if(currentTimeid == MAX_INT32) currentTimeid = 0;
-        };
-        time_id = currentTimeid;
-        hash.put(currentTimeid, new TimeObserver(currentTimeid, timer, delay));
-        LOG_DEBUG<<"START TIME : id = "<<currentTimeid<<LOG_END;
-    }while (0);
+    int time_id = AddTime(timer, delay);
     resume();
     return time_id;
 }
 
 //a线程
-void KeepManager::DelTimer(int timeid)
+void KeepManager::StopTimer(int timeid)
 {
     if(timeid == 0) return;
     do{
-        //AUTO_LOCK(this);
         TimeObserver* obser = hash.getValue(timeid);
         if(obser)
         {
@@ -47,14 +36,14 @@ void KeepManager::DelTimer(int timeid)
         }
         LOG_DEBUG<<"STOP TIME : id = "<<timeid<<LOG_END;
     }while(0);
+    //--
     resume();
 }
 
 //a线程
 void KeepManager::MainHandlerTimer(int timeid)
 {
-    //AUTO_LOCK(this);
-    TimeObserver* obser = hash.remove(timeid);
+    TimeObserver* obser = RemoveTime(timeid);
     //如果obser为null,证明程序泄漏
     if(obser && obser->isRunning())
     {
@@ -91,10 +80,10 @@ void KeepManager::run()
 //返回最近的一个时间
 TIME_T KeepManager::GetCompleteTimers(std::vector<uint32>& timers)
 {
-    //AUTO_LOCK(this);
     HashMap<int, TimeObserver*>::Iterator iter;
     TIME_T next_time = 0;
     TIME_T current_time = TimeUtil::GetTimer();
+    AUTO_LOCK(this);
     for(iter = hash.begin(); iter!=hash.end(); iter++)
     {
         auto obser = iter->second;
@@ -120,4 +109,21 @@ TIME_T KeepManager::GetCompleteTimers(std::vector<uint32>& timers)
         }
     }
     return next_time;
+}
+
+int KeepManager::AddTime(Clock* timer, TIME_T delay)
+{
+    AUTO_LOCK(this);
+    while(hash.has(++currentTimeid))
+    {
+        if(currentTimeid == MAX_INT32) currentTimeid = 0;
+    };
+    hash.put(currentTimeid, new TimeObserver(currentTimeid, timer, delay));
+    return currentTimeid;
+}
+
+TimeObserver* KeepManager::RemoveTime(int timeid)
+{
+    AUTO_LOCK(this);
+    return hash.remove(timeid);
 }

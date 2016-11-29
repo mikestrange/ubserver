@@ -44,7 +44,6 @@ void analytic(DataArray *array, const char* bytes, int size)
             array->WriteChars(byte, sub_len + 1);
             //argLen++;
         }
-        
     }
 }
 

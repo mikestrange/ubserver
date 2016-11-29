@@ -97,7 +97,6 @@ void vim_complete(DataArray* array)
     }
 }
 
-
 int main(int argc, const char * argv[])
 {
     RunTime::getInstance()->launch();

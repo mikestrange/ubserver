@@ -1,5 +1,5 @@
 #include "lock.h"
-
+#include <iostream>
 
 Locked::Locked()
 :is_locked(false)

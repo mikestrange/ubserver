@@ -34,7 +34,7 @@ public:
     
     int CreateTimer(Clock* timer, TIME_T delay = 0);
     
-    void DelTimer(int timeid);
+    void StopTimer(int timeid);
     
     void MainHandlerTimer(int timeid);
     
@@ -43,6 +43,10 @@ protected:
     
 private:
     TIME_T GetCompleteTimers(std::vector<uint32>& ticks);
+    
+    int AddTime(Clock* timer, TIME_T delay);
+    
+    TimeObserver* RemoveTime(int timeid);
 };
 
 #endif /* KeepManager_h */

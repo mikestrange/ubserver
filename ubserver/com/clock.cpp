@@ -39,7 +39,7 @@ void Clock::stop()
 {
     if(isRunning())
     {
-        KeepManager::getInstance()->DelTimer(timeid);
+        KeepManager::getInstance()->StopTimer(timeid);
         timeid = 0;
     }
 }
