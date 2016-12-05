@@ -1,0 +1,16 @@
+*.lnk
+*.vcxproj.user
+*.so
+*.o
+*.a
+
+*.bak
+*.ipa
+*.svn
+
+*.log
+*.class
+*.R.java
+
+*.dSYM
+*.xcodeproj
