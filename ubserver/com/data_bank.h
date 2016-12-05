@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <string>
 
 #ifdef MY_SQL
 #include <mysql.h>
@@ -35,11 +36,15 @@ public:
     virtual ~DataBank();
     
 public:
-    virtual bool connent(const char* host,
-                         const char* user,
-                         const char* pswd,
-                         const char* table,
-                         unsigned int port);
+    virtual void setup(const char* host,
+                       const char* user,
+                       const char* pswd,
+                       const char* table,
+                       unsigned int port);
+    
+    virtual bool connent();
+    
+    virtual bool reconnect();
     
     virtual void close();
     
@@ -62,11 +67,17 @@ public:
         const char *pswd = "abc";
         const char *table = "user_info";
         unsigned int port = 3306;
-        connent(host, user, pswd, table, port);
+        setup(host, user, pswd, table, port);
         //find("select * from user_info.player");
     }
 protected:
     bool isconnected = false;
+private:
+    unsigned int port;
+    std::string host;
+    std::string user;
+    std::string password;
+    std::string table;
 #ifdef MY_SQL
 private:
     MYSQL myCont;

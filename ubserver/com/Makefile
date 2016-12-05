@@ -26,6 +26,7 @@ INCLUDE_PATH := -I/usr/include -I/usr/local/include -I/usr/local/mysql/include -
 
 ## used include librarys file path
 LIB_PATH := -L/usr/local/mysql/lib
+LIB_PATH += -L/usr/lib64/mysql/
 #-pthread
 
 ## need libs, add at here

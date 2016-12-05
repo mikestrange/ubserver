@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		204312E71DDE067300A18C0A /* GamePuzzle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 204312E51DDE067300A18C0A /* GamePuzzle.cpp */; };
+		204E36511DF12EF90008B8C2 /* coupler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 204E364F1DF12EF90008B8C2 /* coupler.cpp */; };
 		2070BB1F1DDA044F0017D59C /* data_bank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB1B1DDA044F0017D59C /* data_bank.cpp */; };
 		2070BB201DDA044F0017D59C /* data_query.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB1D1DDA044F0017D59C /* data_query.cpp */; };
-		2070BB261DDA0B040017D59C /* clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB241DDA0B040017D59C /* clock.cpp */; };
+		2070BB261DDA0B040017D59C /* ticker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB241DDA0B040017D59C /* ticker.cpp */; };
 		2070BB281DDA0CAB0017D59C /* time_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB271DDA0CAB0017D59C /* time_util.cpp */; };
 		2070BB2A1DDA0CEA0017D59C /* math_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB291DDA0CEA0017D59C /* math_util.cpp */; };
 		2070BB2C1DDA0D560017D59C /* string_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB2B1DDA0D560017D59C /* string_util.cpp */; };
@@ -20,6 +21,7 @@
 		2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */; };
 		2070BB3E1DDB13DD0017D59C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB3C1DDB13DD0017D59C /* Player.cpp */; };
 		208D8D701DD30008000D45C6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 208D8D6F1DD30008000D45C6 /* main.cpp */; };
+		209C30DE1DF521F200A4D886 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 209C30DC1DF521F200A4D886 /* md5.cpp */; };
 		20AB02381DDD846900102A07 /* GameSeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20AB02361DDD846900102A07 /* GameSeat.cpp */; };
 		20AB023B1DDD991300102A07 /* netsock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20AB02391DDD991300102A07 /* netsock.cpp */; };
 		20AB023E1DDDA13600102A07 /* SockEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20AB023C1DDDA13600102A07 /* SockEvent.cpp */; };
@@ -54,12 +56,14 @@
 /* Begin PBXFileReference section */
 		204312E51DDE067300A18C0A /* GamePuzzle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePuzzle.cpp; sourceTree = "<group>"; };
 		204312E61DDE067300A18C0A /* GamePuzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePuzzle.h; sourceTree = "<group>"; };
+		204E364F1DF12EF90008B8C2 /* coupler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = coupler.cpp; sourceTree = "<group>"; };
+		204E36501DF12EF90008B8C2 /* coupler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coupler.h; sourceTree = "<group>"; };
 		2070BB1B1DDA044F0017D59C /* data_bank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_bank.cpp; sourceTree = "<group>"; };
 		2070BB1C1DDA044F0017D59C /* data_bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_bank.h; sourceTree = "<group>"; };
 		2070BB1D1DDA044F0017D59C /* data_query.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_query.cpp; sourceTree = "<group>"; };
 		2070BB1E1DDA044F0017D59C /* data_query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_query.h; sourceTree = "<group>"; };
-		2070BB241DDA0B040017D59C /* clock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clock.cpp; sourceTree = "<group>"; };
-		2070BB251DDA0B040017D59C /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clock.h; sourceTree = "<group>"; };
+		2070BB241DDA0B040017D59C /* ticker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ticker.cpp; sourceTree = "<group>"; };
+		2070BB251DDA0B040017D59C /* ticker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ticker.h; sourceTree = "<group>"; };
 		2070BB271DDA0CAB0017D59C /* time_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time_util.cpp; sourceTree = "<group>"; };
 		2070BB291DDA0CEA0017D59C /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_util.cpp; sourceTree = "<group>"; };
 		2070BB2B1DDA0D560017D59C /* string_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_util.cpp; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 		2070BB3D1DDB13DD0017D59C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		208D8D6C1DD30008000D45C6 /* ubserver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ubserver; sourceTree = BUILT_PRODUCTS_DIR; };
 		208D8D6F1DD30008000D45C6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		209C30DC1DF521F200A4D886 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
+		209C30DD1DF521F200A4D886 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		20AB02361DDD846900102A07 /* GameSeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSeat.cpp; sourceTree = "<group>"; };
 		20AB02371DDD846900102A07 /* GameSeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSeat.h; sourceTree = "<group>"; };
 		20AB02391DDD991300102A07 /* netsock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = netsock.cpp; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				2070BB1C1DDA044F0017D59C /* data_bank.h */,
 				2070BB1D1DDA044F0017D59C /* data_query.cpp */,
 				2070BB1E1DDA044F0017D59C /* data_query.h */,
+				204E364F1DF12EF90008B8C2 /* coupler.cpp */,
+				204E36501DF12EF90008B8C2 /* coupler.h */,
 			);
 			name = db;
 			sourceTree = "<group>";
@@ -177,6 +185,15 @@
 				208D8D6F1DD30008000D45C6 /* main.cpp */,
 			);
 			path = ubserver;
+			sourceTree = "<group>";
+		};
+		209C30D81DF51DDA00A4D886 /* md5 */ = {
+			isa = PBXGroup;
+			children = (
+				209C30DC1DF521F200A4D886 /* md5.cpp */,
+				209C30DD1DF521F200A4D886 /* md5.h */,
+			);
+			name = md5;
 			sourceTree = "<group>";
 		};
 		20AB02331DDD5CE500102A07 /* private */ = {
@@ -222,6 +239,7 @@
 		20B3152E1DD5BF210087924A /* com */ = {
 			isa = PBXGroup;
 			children = (
+				209C30D81DF51DDA00A4D886 /* md5 */,
 				20B315791DD957950087924A /* core */,
 				20B315781DD957840087924A /* hash */,
 				20B315771DD957750087924A /* bytes */,
@@ -319,8 +337,8 @@
 				20AB023C1DDDA13600102A07 /* SockEvent.cpp */,
 				20B315861DD96B960087924A /* memorys.h */,
 				20B315881DD96DFB0087924A /* memorys.cpp */,
-				2070BB251DDA0B040017D59C /* clock.h */,
-				2070BB241DDA0B040017D59C /* clock.cpp */,
+				2070BB251DDA0B040017D59C /* ticker.h */,
+				2070BB241DDA0B040017D59C /* ticker.cpp */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -385,6 +403,7 @@
 				20AB023B1DDD991300102A07 /* netsock.cpp in Sources */,
 				20B3158C1DD975A40087924A /* log.cpp in Sources */,
 				20B315721DD9542D0087924A /* lock.cpp in Sources */,
+				204E36511DF12EF90008B8C2 /* coupler.cpp in Sources */,
 				20B315701DD9540E0087924A /* SerHandler.cpp in Sources */,
 				20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */,
 				2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */,
@@ -396,7 +415,7 @@
 				20B3156A1DD952530087924A /* runtime.cpp in Sources */,
 				204312E71DDE067300A18C0A /* GamePuzzle.cpp in Sources */,
 				20AB023E1DDDA13600102A07 /* SockEvent.cpp in Sources */,
-				2070BB261DDA0B040017D59C /* clock.cpp in Sources */,
+				2070BB261DDA0B040017D59C /* ticker.cpp in Sources */,
 				208D8D701DD30008000D45C6 /* main.cpp in Sources */,
 				2070BB321DDAA9D10017D59C /* TimeObserver.cpp in Sources */,
 				20AB02381DDD846900102A07 /* GameSeat.cpp in Sources */,
@@ -410,6 +429,7 @@
 				2070BB1F1DDA044F0017D59C /* data_bank.cpp in Sources */,
 				20B315971DD996B30087924A /* GameLogic.cpp in Sources */,
 				2070BB2F1DDAA9B10017D59C /* KeepManager.cpp in Sources */,
+				209C30DE1DF521F200A4D886 /* md5.cpp in Sources */,
 				20B315841DD96A860087924A /* SerEvent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -68,7 +68,7 @@ uint32 GamePlayer::AddBet(uint8 type, uint32 chips)
 void GamePlayer::CleanBets()
 {
     bet_totals = 0;
-    for(int8 i = 0; i < MAX_TYPE ; i++)
+    for(int i = 0; i < MAX_TYPE ; i++)
     {
         bet_list[i] = 0;
     }

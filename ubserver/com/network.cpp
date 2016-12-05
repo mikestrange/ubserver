@@ -18,7 +18,7 @@ int NET_SEND(SOCKET_T fd, const void* bytes, size_t len)
 
 int NET_SEND_PACKET(SOCKET_T fd, PacketBuffer* packet)
 {
-    return NET_SEND(fd, &packet->get(0), packet->wsize());
+    return NET_SEND(fd, &packet->get(0), packet->wpos());
 }
 
 namespace network

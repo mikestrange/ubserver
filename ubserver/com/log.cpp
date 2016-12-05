@@ -19,7 +19,7 @@ Log& Log::getLogger(int lv)
 
 Log& Log::setLogger(int lv)
 {
-    lock();
+    //lock();
     std::cout<<LOG_LIST[lv];
     return *this;
 }
@@ -29,7 +29,7 @@ Log& Log::operator <<(const char* v)
     if(v == LOG_END)
     {
         std::cout<<std::endl;
-        unlock();
+        //unlock();
     }else{
         std::cout<<v;
     }

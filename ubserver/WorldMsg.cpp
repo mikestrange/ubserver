@@ -37,11 +37,16 @@ void WorldMsg::OnPacketHandler(SocketHandler *packet)
 
 void WorldMsg::Login(SocketHandler *packet)
 {
+    uint8 type = packet->readInt8();
     USER_T uid = packet->readUint32();
     std::string pass_word = packet->readString();
+    //--
+    LOG_DEBUG<<(type+'\0')<<",uid="<<uid<<",pws="<<pass_word<<LOG_END;
     DataQuery result;
-    DBServer::getInstance()->findFormat(result, "select * from account where uid = '%d' and pwd = '%s'",
-                                        uid, pass_word.c_str());
+    DBCoupler sql(DBServer::getInstance());
+    //密码md5
+    MD5 md5(pass_word);
+    sql.SQL().findFormat(result, "select * from account where uid = '%d' and pwd = '%s'", uid, md5.md5().c_str());
     //result.toString();
     if(result.empty())
     {
@@ -71,12 +76,16 @@ void WorldMsg::Logout(SocketHandler *packet)
 
 void WorldMsg::test(SocketHandler *packet)
 {
-    trace("test cmd = %d", packet->readInt8());
-    PacketBuffer bytes;
-    bytes.setBegin(packet->getCmd());
-    bytes.WriteBegin();
-    bytes.writeInt8(112);
-    bytes.writeUint32(1234);
-    bytes.WriteEnd();
-    GameManager::getInstance()->SendPacket(packet->getUserID(), bytes);
+    int8 type = packet->readInt8();
+    uint32 chips = packet->readUint32();
+    
+    LOG_DEBUG<<(type+'\0')<<",chips="<<chips<<LOG_END;
+    
+//    PacketBuffer bytes;
+//    bytes.setBegin(packet->getCmd());
+//    bytes.WriteBegin();
+//    bytes.writeInt8(112);
+//    bytes.writeUint32(1234);
+//    bytes.WriteEnd();
+//    GameManager::getInstance()->SendPacket(packet->getUserID(), bytes);
 }

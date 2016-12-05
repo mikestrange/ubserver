@@ -119,17 +119,6 @@ public:
             LOG_DEBUG<<">>##ReadEnd is Flush"<<LOG_END;
         }
     }
-    
-    size_t wsize()
-    {
-        return wpos();
-    }
-    
-    //Current package remaining readable sub section
-    virtual size_t subLeng()
-    {
-        return packet_size - (_rpos - m_rpos);
-    }
 };
 
 #endif /* packet_buffer_h */

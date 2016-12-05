@@ -17,7 +17,7 @@ KeepManager::KeepManager()
 }
 
 //a线程
-int KeepManager::CreateTimer(Clock* timer, TIME_T delay)
+int KeepManager::CreateTimer(Ticker* timer, TIME_T delay)
 {
     int time_id = AddTime(timer, delay);
     resume();
@@ -45,9 +45,9 @@ void KeepManager::MainHandlerTimer(int timeid)
 {
     TimeObserver* obser = RemoveTime(timeid);
     //如果obser为null,证明程序泄漏
-    if(obser && obser->isRunning())
+    if(obser)
     {
-        obser->getClock()->_OnTimeoutHandler();
+        obser->OnTimeoutHandler();
     }
     SAFE_DELETE(obser);
 }
@@ -111,7 +111,7 @@ TIME_T KeepManager::GetCompleteTimers(std::vector<uint32>& timers)
     return next_time;
 }
 
-int KeepManager::AddTime(Clock* timer, TIME_T delay)
+int KeepManager::AddTime(Ticker* timer, TIME_T delay)
 {
     AUTO_LOCK(this);
     while(hash.has(++currentTimeid))

@@ -11,6 +11,7 @@
 
 bool NetSocket::Connect(const char* host, int port)
 {
+    AUTO_LOCK(this);
     if(isConnect())
     {
         return true;
@@ -23,6 +24,7 @@ bool NetSocket::Connect(const char* host, int port)
 
 void NetSocket::Close()
 {
+    AUTO_LOCK(this);
     if(isConnect())
     {
         isconnect = false;
@@ -66,6 +68,7 @@ void NetSocket::OnPacketHandler()
 
 void NetSocket::SendPacket(PacketBuffer& packet)
 {
+    AUTO_LOCK(this);
     if(isConnect())
     {
         NET_SEND_PACKET(sock_id, &packet);

@@ -12,14 +12,15 @@
 #include <stdio.h>
 #include "global.h"
 #include "string_util.h"
-
+#include "math_util.h"
 #include "hashmap.h"
+
+#include "ticker.h"
+
 #include "GamePlayer.h"
-#include "GameSeat.h"
-#include "clock.h"
 #include "GamePuzzle.h"
 #include "GameManager.h"
-#include "math_util.h"
+
 
 class GameManager;
 
@@ -57,11 +58,11 @@ private://游戏当前
     uint64 pot_totals;
     uint32 pot_list[MAX_TYPE];
 private://固定参数
-    const SEAT_T MAX_SEAT = 3;
+    //const SEAT_T MAX_SEAT = 3;
     const int MAX_USER = 1000;
     const TIME_T CHIP_TIME = 10*1000;    //下注时间
     const TIME_T WAIT_TIME = 10*1000;    //等待开始时间
-    const int BASE_CHIP = 1;            //底分
+    //const int BASE_CHIP = 1;            //底分
     const int bet_time = 10;
     const int wait_time = 10;
     const int max_chip = 1000000;
@@ -69,7 +70,7 @@ private:
     HashMap<USER_T, GamePlayer*> m_players;
     HashMap<SEAT_T, USER_T> m_seats;
 private://计时器
-    Clock m_clock;
+    Ticker m_clock;
 public:
     GameLogic();
     virtual ~GameLogic();

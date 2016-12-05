@@ -13,6 +13,7 @@
 
 DataBank::DataBank()
 :isconnected(false)
+,port(0)
 {
 
 }
@@ -21,20 +22,34 @@ DataBank::~DataBank()
 {
     close();
 }
-    
-bool DataBank::connent(const char* host,
+
+void DataBank::setup(const char* host,
                        const char* user,
                        const char* pswd,
                        const char* table,
                        unsigned int port)
+{
+    this->host = host;
+    this->user = user;
+    this->password = pswd;
+    this->table = table;
+    this->port = port;
+}
+
+bool DataBank::connent()
 {
     if(isConnected())
     {
         LOG_DEBUG<<"mysql is connect"<<LOG_END;
         return true;
     }
+    return reconnect();
+}
+
+bool DataBank::reconnect()
+{
     isconnected = false;
-    #ifdef MY_SQL
+#ifdef MY_SQL
     //初始化
     if(mysql_init(&myCont)==NULL)
     {
@@ -42,7 +57,7 @@ bool DataBank::connent(const char* host,
         return false;
     };
     //连接数据库
-    if(mysql_real_connect(&myCont, host, user, pswd, table, port, NULL, 0))
+    if(mysql_real_connect(&myCont, host.c_str(), user.c_str(), password.c_str(), table.c_str(), port, NULL, 0))
     {
         isconnected = true;
         //设置编码格式 写入
@@ -52,15 +67,15 @@ bool DataBank::connent(const char* host,
         mysql_close(&myCont);
         LOG_ERROR<<"mysql failed!"<<LOG_END;
     };
-    #else
-        LOG_WARN<<"undefined MY_SQL"<<LOG_END;
-    #endif
+#else
+    LOG_WARN<<"undefined MY_SQL"<<LOG_END;
+#endif
     return isconnected;
 }
 
 void DataBank::close()
 {
-    if(isconnected)
+    if(isConnected())
     {
         isconnected = false;
         #ifdef MY_SQL
@@ -79,33 +94,32 @@ bool DataBank::isConnected()const
 
 bool DataBank::apply(const char* sql)
 {
-    if(!isConnected()){
-        LOG_WARN<<"mysql apply error: is no open"<<LOG_END;
-        return false;
-    }
-    LOG_DEBUG<<"mysql = "<<sql<<LOG_END;
-    int ret = -1;
-    #ifdef MY_SQL
-    ret = mysql_query(&myCont, sql);
-    #endif
-    if(ret != 0)
+    if(isConnected())
     {
-        LOG_WARN<<"mysql apply error:"<<ret<<LOG_END;
+        LOG_DEBUG<<"mysql = "<<sql<<LOG_END;
+        int ret = -1;
+        #ifdef MY_SQL
+            ret = mysql_query(&myCont, sql);
+        #endif
+        if(ret != 0)
+        {
+            LOG_WARN<<"mysql apply error:"<<ret<<LOG_END;
+        }
+        return ret == 0;
     }
-    return ret == 0;
+    LOG_WARN<<"mysql apply error: is no open"<<LOG_END;
+    return false;
 }
 
 bool DataBank::applyFormat(const char* fm, ...)
 {
-    static const int SQL_SIZE = 1024;
-    STR_FORMAT(SQL_SIZE);
+    STR_FORMAT(1024);
     return apply(buf);
 }
 
 bool DataBank::findFormat(DataQuery& query, const char* fm,...)
 {
-    static const int SQL_SIZE = 255;
-    STR_FORMAT(SQL_SIZE);
+    STR_FORMAT(1024);
     return find(query, buf);
 }
 
@@ -139,8 +153,10 @@ bool DataBank::find(DataQuery& query, const char* sql)
             }
             //释放结果资源
             mysql_free_result(result);
+            return true;
         }else{
             LOG_WARN<<"mysql find result error"<<LOG_END;
+            return false;
         }
     }
     #endif

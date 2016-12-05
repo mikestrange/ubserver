@@ -31,7 +31,10 @@ SUB_COM_OBJS := $(foreach dir,$(SRC_PATH)/com,$(wildcard $(dir)/*.cpp))
 INCLUDE_PATH := -I/usr/include -I/usr/local/include -I/usr/local/mysql/include -I/usr/include/mysql -I./com
 
 ## used include librarys file path
-LIB_PATH := -L/usr/local/mysql/lib
+## mac下
+LIB_PATH := -L/usr/local/mysql/lib 
+## centos下
+LIB_PATH += -L/usr/lib64/mysql/
 #-pthread
 
 ## need libs, add at here
@@ -52,12 +55,13 @@ CFLAGS += $(LIB_PATH)
 #CFLAGS += $(LIBS)
 
         
-all: clean build
+all: build
 
 build:
 	$(CC) -c $(CFLAGS) $(SRCS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SUB_COM_OBJS) $(OBJS) $(LIBS)
-	$(RM) $(OBJS)
+	
+##$(RM) $(OBJS)
 	
 clean:
 	$(RM) $(OBJS) $(TARGET)

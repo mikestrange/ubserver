@@ -12,13 +12,14 @@
 #include <stdio.h>
 #include "thread.h"
 #include "network.h"
+#include "lock.h"
 
 #include "packet_buffer.h"
 #include "SockEvent.h"
 
 class SocketEvent;
 
-class NetSocket : private Thread , public PacketBuffer
+class NetSocket : private Thread , private Locked, public PacketBuffer
 {
 private:
     SOCKET_T sock_id;

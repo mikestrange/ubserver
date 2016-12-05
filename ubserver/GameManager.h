@@ -15,11 +15,13 @@
 #include "hashmap.h"
 #include "client.h"
 #include "log.h"
-#include "GameLogic.h"
+
 #include "CmdDefined.h"
+#include "GameLogic.h"
 #include "PlayerManager.h"
 
 class GameLogic;
+class PlayerManager;
 
 //mananger
 class GameManager

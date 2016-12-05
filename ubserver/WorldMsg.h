@@ -19,6 +19,8 @@
 
 #include "PlayerManager.h"
 #include "DBServer.h"
+#include "coupler.h"
+#include "md5.h"
 
 class WorldMsg
 {

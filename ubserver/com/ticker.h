@@ -15,8 +15,8 @@
 #include "time_util.h"
 
 #include "KeepManager.h"
+#include "global.h"
 
-class Clock;
 class KeepManager;
 
 class ITimeoutHandler
@@ -25,10 +25,9 @@ public:
     virtual void OnTimeProcess(int type)=0;
 };
 
-class Clock
+class Ticker
 {
 private:
-    friend class KeepManager;
     int timeid;
 private:
     TIME_T delay;
@@ -37,9 +36,9 @@ private:
     ITimeoutHandler* delegate;
     int m_type;
 public:
-    Clock();
+    Ticker();
     
-    virtual ~Clock();
+    virtual ~Ticker();
     
     void start(TIME_T value, int count = 1, int type = 0);
     
@@ -49,9 +48,8 @@ public:
     
     void setEventDelegate(ITimeoutHandler* target);
     
-private:
-    friend class KeepManager;
-    void _OnTimeoutHandler();
+public:
+    void OnTimeoutHandler();
 };
 
 

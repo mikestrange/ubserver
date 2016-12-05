@@ -122,17 +122,18 @@ Class* Class::getInstance()\
 //当前函数名
 #define SYM_FUNC    __FUNCTION__
 
-//替换
-//#define MTE_HOLDER  std::placeholders
+
 
 #define block(args...) [](args)
+//替换
+#define MTE_HOLDER  std::placeholders
 //成员函数绑定
-//#define handler_0(target, func) std::bind(func, target)
-//#define handler_1(target, func) std::bind(func, target, MTE_HOLDER::_1)
-//#define handler_2(target, func) std::bind(func, target, MTE_HOLDER::_1, MTE_HOLDER::_2)
-//#define handler_3(target, func) std::bind(func, target, MTE_HOLDER::_1, MTE_HOLDER::_2, MTE_HOLDER::_3)
-//#define handler_4(target, func) std::bind(func, target, MTE_HOLDER::_1, MTE_HOLDER::_2, MTE_HOLDER::_3, MTE_HOLDER::_4)
+#define handler_0(target, func) std::bind(func, target)
+#define handler_1(target, func) std::bind(func, target, MTE_HOLDER::_1)
+#define handler_2(target, func) std::bind(func, target, MTE_HOLDER::_1, MTE_HOLDER::_2)
+#define handler_3(target, func) std::bind(func, target, MTE_HOLDER::_1, MTE_HOLDER::_2, MTE_HOLDER::_3)
+#define handler_4(target, func) std::bind(func, target, MTE_HOLDER::_1, MTE_HOLDER::_2, MTE_HOLDER::_3, MTE_HOLDER::_4)
 ////第一个为返回值
-//#define Function(R, args...) std::function<R(args)>
+#define Function(R, args...) std::function<R(args)>
 
 #endif /* global_hpp */

@@ -7,10 +7,10 @@
 //  Copyright © 2016年 MikeRiy. All rights reserved.
 //
 
-#include "clock.h"
+#include "ticker.h"
 
 
-Clock::Clock()
+Ticker::Ticker()
 :timeid(0)
 ,delay(0)
 ,currentCount(0)
@@ -20,12 +20,12 @@ Clock::Clock()
     
 }
 
-Clock::~Clock()
+Ticker::~Ticker()
 {
     stop();
 }
 
-void Clock::start(TIME_T value, int count, int type)
+void Ticker::start(TIME_T value, int count, int type)
 {
     delay = value;
     repeatCount = count;
@@ -35,7 +35,7 @@ void Clock::start(TIME_T value, int count, int type)
     timeid = KeepManager::getInstance()->CreateTimer(this, delay);
 }
 
-void Clock::stop()
+void Ticker::stop()
 {
     if(isRunning())
     {
@@ -44,12 +44,12 @@ void Clock::stop()
     }
 }
 
-bool Clock::isRunning()const
+bool Ticker::isRunning()const
 {
     return timeid > 0;
 }
 
-void Clock::_OnTimeoutHandler()
+void Ticker::OnTimeoutHandler()
 {
     if(repeatCount <= 0)
     {
@@ -68,7 +68,7 @@ void Clock::_OnTimeoutHandler()
     }
 }
 
-void Clock::setEventDelegate(ITimeoutHandler* target)
+void Ticker::setEventDelegate(ITimeoutHandler* target)
 {
     delegate = target;
 }

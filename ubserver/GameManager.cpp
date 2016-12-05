@@ -90,7 +90,10 @@ void GameManager::OnPacketHandler(SocketHandler* client)
             break;
         case SERVER_CMD_TIGER_GBET:
             //chip,type
-            room->UserBet(client->getUserID(), client->readUint8(), client->readUint32());
+            int8 type = client->readInt8();
+            uint32 chips = client->readUint32();
+            LOG_DEBUG<<"下注收到: type="<<(type+'\0')<<",chips="<<chips<<LOG_END;
+            room->UserBet(client->getUserID(), type, chips);
             break;
     }
 }

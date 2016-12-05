@@ -97,7 +97,7 @@ int GameLogic::ExitPlayer(USER_T uid)
         SEAT_T seat_id = player->StandUp();
         if(seat_id > 0)
         {
-            m_seats.remove(seat_id);
+            //m_seats.remove(seat_id);
             LOG_DEBUG<<"stand ok: room = "<<m_table_id<<" seat = "<<parseByte(seat_id)<<LOG_END;
         }
         LOG_DEBUG<<"exit room ok: room = "<<m_table_id<<" uid = "<<uid<<LOG_END;
@@ -313,7 +313,7 @@ void GameLogic::AddPotBet(uint8 type, uint32 chip)
 void GameLogic::CleanPotBets()
 {
     pot_totals = 0;
-    for(int8 i = 0; i < MAX_TYPE ; i++)
+    for(int i = 0; i < MAX_TYPE ; i++)
     {
         pot_list[i] = 0;
     }

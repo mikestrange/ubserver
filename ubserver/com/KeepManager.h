@@ -10,17 +10,18 @@
 #define KeepManager_h
 
 #include <stdio.h>
-#include "clock.h"
 #include "hashmap.h"
-#include "TimeObserver.h"
 #include "thread.h"
 #include "runtime.h"
 #include "lock.h"
 #include "log.h"
 #include "time_util.h"
 
+#include "ticker.h"
+#include "TimeObserver.h"
+
+class Ticker;
 class TimeObserver;
-class Clock;
 
 class KeepManager : private Thread, private Locked
 {
@@ -32,7 +33,7 @@ public:
     
     KeepManager();
     
-    int CreateTimer(Clock* timer, TIME_T delay = 0);
+    int CreateTimer(Ticker* timer, TIME_T delay = 0);
     
     void StopTimer(int timeid);
     
@@ -44,7 +45,7 @@ protected:
 private:
     TIME_T GetCompleteTimers(std::vector<uint32>& ticks);
     
-    int AddTime(Clock* timer, TIME_T delay);
+    int AddTime(Ticker* timer, TIME_T delay);
     
     TimeObserver* RemoveTime(int timeid);
 };

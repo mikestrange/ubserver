@@ -9,11 +9,12 @@
 #include "TimeObserver.h"
 
 
-TimeObserver::TimeObserver(int tid, Clock* t1, TIME_T t2)
+TimeObserver::TimeObserver(int tid, Ticker* value,TIME_T t2)
 :timeid(tid)
-,target(t1)
 ,runtime(0)
 ,delay(t2)
+,target(value)
+,isrunning(true)
 {
     reset(TimeUtil::GetTimer());
 }
@@ -30,17 +31,20 @@ void TimeObserver::reset(TIME_T current)
 
 void TimeObserver::stop()
 {
-    target = NULL;
+    isrunning = false;
 }
 
 bool TimeObserver::isRunning()
 {
-    return target != NULL;
+    return isrunning;
 }
 
-Clock* TimeObserver::getClock()const
+void TimeObserver::OnTimeoutHandler()
 {
-    return target;
+    if(isRunning())
+    {
+        target->OnTimeoutHandler();
+    }
 }
 
 TIME_T TimeObserver::getRuntime()const
