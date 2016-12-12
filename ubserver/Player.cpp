@@ -8,26 +8,47 @@
 
 #include "Player.h"
 
-
-Player::Player(USER_T uid, SocketHandler* sock)
-:_sock(sock)
+Player::Player(USER_T uid, GameUser* sock)
+:m_sock(NULL)
 ,user_id(uid)
-,sock_id(sock->GetSocketFd())
 ,view_id(0)
 {
-    sock->BindUser(uid);
+    LinkSocket(sock);
 }
 
 Player::~Player()
 {
     ExitRoom();
-    _sock->BindUser(0);
 }
 
 
-SocketHandler* Player::getSocket()const
+void Player::LinkSocket(GameUser* node)
 {
-    return _sock;
+    //解除之前的
+    UnLinkSocket();
+    m_sock = node;
+    m_sock->BindPlayer(this);
+}
+
+void Player::UnLinkSocket()
+{
+    if(m_sock)
+    {
+        m_sock->UnBindPlayer();
+        m_sock->DisConnect();
+        m_sock = NULL;
+    }
+    //假设无引用，那么删除释放
+}
+
+bool Player::isLinkSocket()const
+{
+    return m_sock;
+}
+
+GameUser* Player::getSocket()const
+{
+    return m_sock;
 }
 
 void Player::ExitRoom()
@@ -44,4 +65,10 @@ bool Player::EnterRoom(TABLE_ID tid)
     if(view_id > 0) return false;
     view_id = tid;
     return true;
+}
+
+
+USER_T Player::getUserID()const
+{
+    return user_id;
 }

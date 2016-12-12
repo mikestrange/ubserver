@@ -21,7 +21,6 @@ DBCoupler::~DBCoupler()
     target->close();
 }
 
-
 DataBank& DBCoupler::SQL()const
 {
     return *target;

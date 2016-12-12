@@ -52,48 +52,63 @@ void GameManager::ExitGame(USER_T uid, TABLE_ID tid)
     }
 }
 //
-void GameManager::OnPacketHandler(SocketHandler* client)
+void GameManager::OnPacketHandler(GameUser* client)
 {
-    //LOG_DEBUG<<"game handler cmd = "<<client->getCmd()<<LOG_END;
     auto room = tab.getValue(client->getViewId());
     if(client->isNoLogin())
     {
-        LOG_DEBUG<<"this is no login fd = "<<client->GetSocketFd()<<LOG_END;
+        Log::Warn("this is no login fd = %d", client->getSockID());
         return;
     }
     //--
     if(room == NULL)
     {
-        LOG_DEBUG<<"enter room error: no table"<<client->getViewId()<<LOG_END;
+        Log::Warn("enter room error: no table %d",client->getViewId());
         return;
     };
     //--
+    USER_T uid = client->getPlayer()->getUserID();
     switch(client->getCmd())
     {
         case SERVER_CMD_GAME_ENTER:
-            if(PlayerManager::getInstance()->EnterView(client->getUserID(), client->getViewId()))
-            {
-                room->EnterPlayer(new GamePlayer(client->getUserID(), client));
-            }
+            //获取用户数据
+            OnEnter(room, client);
             break;
         case SERVER_CMD_GAME_EXIT:
-            room->ExitPlayer(client->getUserID());
+            room->ExitPlayer(uid);
             //世界退出
-            PlayerManager::getInstance()->ExitView(client->getUserID());
+            PlayerManager::getInstance()->ExitView(uid);
             break;
         case SERVER_CMD_GAME_SITDOWN:
             //sid
-            room->SitDown(client->getUserID(), client->readUint8());
+            room->SitDown(uid, client->readUint8());
             break;
         case SERVER_CMD_GAME_STAND:
-            room->StandUp(client->getUserID());
+            room->StandUp(uid);
             break;
         case SERVER_CMD_TIGER_GBET:
             //chip,type
             int8 type = client->readInt8();
             uint32 chips = client->readUint32();
-            LOG_DEBUG<<"下注收到: type="<<(type+'\0')<<",chips="<<chips<<LOG_END;
-            room->UserBet(client->getUserID(), type, chips);
+            room->UserBet(uid, type, chips);
             break;
+    }
+}
+
+void GameManager::OnEnter(GameLogic* room, GameUser* client)
+{
+    USER_T uid = client->getPlayer()->getUserID();
+    UserObj *obj = new UserObj(uid);
+    //--
+    if(obj->result())
+    {
+        if(PlayerManager::getInstance()->EnterView(uid, client->getViewId()))
+        {
+            room->EnterPlayer(new GamePlayer(uid, obj));
+        }else{
+            SAFE_DELETE(obj);
+        }
+    }else{
+        SAFE_DELETE(obj);
     }
 }

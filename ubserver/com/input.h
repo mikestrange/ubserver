@@ -60,11 +60,11 @@ void epoll_input(FUN fun)
         try{
             fun(&input_data);
         }catch(...){
-            LOG_DEBUG<<"#@input handle error"<<LOG_END;
+            Log::Warn("#@input handle error");
         }
         str.clear();
     };
-    LOG_DEBUG<<"input exit!"<<LOG_END;
+    Log::Warn("#@input exit!");
 }
 
 #endif /* input_h */

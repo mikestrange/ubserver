@@ -13,17 +13,9 @@ STATIC_CLASS_INIT(PlayerManager);
 
 bool PlayerManager::AddPlayer(Player *player)
 {
-    Player* old_p = m_players.remove(player->user_id);
-    //删除之前的登录
-    if(old_p)
-    {
-        LOG_INFO<<"tick uid = "<<old_p->user_id<<LOG_END;
-        //被踢
-        old_p->getSocket()->Disconnect();
-        SAFE_DELETE(old_p);
-    }
-    m_players.put(player->user_id, player);
-    LOG_INFO<<"add player uid = "<<player->user_id<<LOG_END;
+    //之前不能存在的用户才能加入
+    m_players.put(player->getUserID(), player);
+    Log::Info("add player uid=%d", player->getUserID());
     return true;
 }
 
@@ -34,8 +26,8 @@ void PlayerManager::DelPlayer(USER_T uid)
     Player* player = m_players.remove(uid);
     if(player)
     {
-        player->getSocket()->Disconnect();
-        LOG_INFO<<"del player uid = "<<uid<<LOG_END;
+        player->getSocket()->DisConnect();
+        Log::Info("del player uid=%d",uid);
     }
     SAFE_DELETE(player);
 }
@@ -47,6 +39,11 @@ void PlayerManager::SendPlayer(USER_T uid, PacketBuffer& buffer)
     {
         player->getSocket()->SendPacket(buffer);
     }
+}
+
+Player* PlayerManager::getPlayer(USER_T uid)
+{
+    return m_players.getValue(uid);
 }
 
 bool PlayerManager::EnterView(USER_T uid, TABLE_ID tid)

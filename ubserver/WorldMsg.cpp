@@ -17,9 +17,8 @@ WorldMsg::WorldMsg()
 }
 
 //所有消息处理
-void WorldMsg::OnPacketHandler(SocketHandler *packet)
+void WorldMsg::OnPacketHandler(GameUser *packet)
 {
-    //LOG_DEBUG<<"world handler cmd = "<<packet->getCmd()<<LOG_END;
     switch(packet->getCmd())
     {
         case SERVER_CMD_LOGIN:
@@ -35,29 +34,43 @@ void WorldMsg::OnPacketHandler(SocketHandler *packet)
 };
 
 
-void WorldMsg::Login(SocketHandler *packet)
+void WorldMsg::Login(GameUser *packet)
 {
+    //数据读取
     uint8 type = packet->readInt8();
     USER_T uid = packet->readUint32();
     std::string pass_word = packet->readString();
+    std::string device_id = packet->readString();
     //--
-    LOG_DEBUG<<(type+'\0')<<",uid="<<uid<<",pws="<<pass_word<<LOG_END;
-    DataQuery result;
-    DBCoupler sql(DBServer::getInstance());
-    //密码md5
-    MD5 md5(pass_word);
-    sql.SQL().findFormat(result, "select * from account where uid = '%d' and pwd = '%s'", uid, md5.md5().c_str());
-    //result.toString();
-    if(result.empty())
+    Log::Debug("login input uid=%d pws=%s device=%s",uid,pass_word.c_str(),device_id.c_str());
+    bool is_login = false;
+    //登录类型
+    if(type == 1){
+        //密码登录
+        is_login = DBServer::getInstance()->login_with_user(uid, pass_word);
+    }else if(type == 2){
+        //设备登录
+        is_login = DBServer::getInstance()->login_with_device(uid, device_id);
+    }
+    if(!is_login)
     {
-        LOG_WARN<<"log error no match uid or pwd"<<LOG_END;
-        packet->Disconnect();
+        Log::Warn("log error no match uid or pwd");
+        packet->DisConnect();
     }else{
-        LOG_WARN<<"log ok uid = "<<uid<<LOG_END;
-        //未登录可以登录
+        //未登录可以登录(先注销)
         if(packet->isNoLogin())
         {
-            PlayerManager::getInstance()->AddPlayer(new Player(uid, packet));
+             Log::Debug("log ok uid=%d",uid);
+            auto player = PlayerManager::getInstance()->getPlayer(uid);
+            //存在用户
+            if(player)
+            {
+                //之前的socket会断开
+                player->LinkSocket(packet);
+            }else{
+                //不存在的用户
+                PlayerManager::getInstance()->AddPlayer(new Player(uid, packet));
+            }
             //--
             PacketBuffer buffer;
             buffer.setBegin(SERVER_CMD_LOGIN);
@@ -65,22 +78,21 @@ void WorldMsg::Login(SocketHandler *packet)
             //玩家信息
             buffer.WriteEnd();
             packet->SendPacket(buffer);
+        }else{
+            Log::Debug("log error this socket is login");
         }
     }
 }
 
-void WorldMsg::Logout(SocketHandler *packet)
+void WorldMsg::Logout(GameUser *packet)
 {
     //no handler
 }
 
-void WorldMsg::test(SocketHandler *packet)
+void WorldMsg::test(GameUser *packet)
 {
-    int8 type = packet->readInt8();
-    uint32 chips = packet->readUint32();
-    
-    LOG_DEBUG<<(type+'\0')<<",chips="<<chips<<LOG_END;
-    
+    //int8 type = packet->readInt8();
+    //uint32 chips = packet->readUint32();
 //    PacketBuffer bytes;
 //    bytes.setBegin(packet->getCmd());
 //    bytes.WriteBegin();

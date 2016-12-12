@@ -26,7 +26,6 @@
 
 #include "global.h"
 #include "packet_buffer.h"
-#include "netlink.h"
 #include "log.h"
 
 #define INVALID_SOCKET -1
@@ -47,48 +46,25 @@ enum{
     SOCKET_EVENT_SEND,
 };
 
-class NetLink;
-//class
-class INet
+//第二版本事务
+typedef enum
 {
-private:
-    bool is_running;
-public:
-    INet():is_running(false){};
-    
-    void launch(){is_running = true;};
-    
-    void close(){is_running = false;};
-    
-    virtual bool isRunning()const
-    {
-        return is_running;
-    };
-    
-    virtual void OnConnect(NetLink* value)=0;
-    virtual void OnClose(NetLink* value)=0;
-    virtual void OnRead(NetLink* value, char* bytes, size_t size)=0;
-};
+    SOCKET_LISTEN,          //端口监听成功
+    SOCKET_CONNECT,         //套接字建立
+    SOCKET_CLOSED,          //套接关闭
+    SOCKET_READ_DATA,       //套接字信息
+    SOCKET_OVEREND,         //端口终止
+}SOCKET_EVENT;
 
 
 //net
 bool NET_CLOSE(SOCKET_T fd);
 
-int NET_RECV(SOCKET_T fd, void* bytes, size_t len);
+size_t NET_RECV(SOCKET_T fd, void* bytes, size_t len);
 
 int NET_SEND(SOCKET_T fd, const void* bytes, size_t len);
 
 int NET_SEND_PACKET(SOCKET_T fd, PacketBuffer* packet);
 
-namespace network
-{
-    //开放一个端口
-    SOCKET_T listener(int port);
-    
-    //链接一个远程
-    SOCKET_T connect(const char* ip, int port);
-    
-    void epoll_server(SOCKET_T serid, INet* net, int maxfd = 10);
-}
 
 #endif /* network_h */

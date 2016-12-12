@@ -2,7 +2,7 @@
 //  SerHandler.h
 //  ubserver
 //
-//  Created by MikeRiy on 16/11/14.
+//  Created by MikeRiy on 16/12/12.
 //  Copyright © 2016年 MikeRiy. All rights reserved.
 //
 
@@ -10,40 +10,38 @@
 #define SerHandler_h
 
 #include <stdio.h>
-
-#include "SerEvent.h"
-
-#include "global.h"
-#include "log.h"
-#include "network.h"
-#include "runtime.h"
+#include "NetServer.h"
 #include "hashmap.h"
-#include "client.h"
-#include "lock.h"
-#include "memorys.h"
+#include "GameUser.h"
+#include "CmdDefined.h"
 
-#include "packet_buffer.h"
-//
-class SerHandler : public INet
+#include "WorldMsg.h"
+#include "GameManager.h"
+#include "PlayerManager.h"
+
+class SerHandler : public NetServer
 {
     STATIC_CLASS(SerHandler);
 private:
-    HashMap<SOCKET_T, SocketHandler*> hash;
-public:
-    virtual ~SerHandler();
-    //
-    void OnConnect(NetLink* value)override;
-    void OnClose(NetLink* value)override;
-    void OnRead(NetLink* value, char* bytes, size_t size)override;
+    HashMap<SOCKET_T, GameUser*> uMap;
     
 public:
-    void OnCloseHandler(NetLink* value);
+    NetNode* create_node()override;
+public:
+    void OnEvent(EventBase* event)override;
     
-    SocketHandler* GetClient(SOCKET_T fd);
+    void print();
     
-    void OnAcceptHandler(NetLink* value);
+    NetNode* getNode(SOCKET_T fd);
     
-    void Print();
+private:
+    void AddNode(NetNode* node);
+    
+    void RemoveNode(NetNode* node);
+    
+    void HandleNode(GameUser* node, char* bytes, size_t size);
+    
+    void OnPacketHandler(GameUser* node);
 };
 
 #endif /* SerHandler_h */

@@ -19,7 +19,7 @@ RunTime::~RunTime()
 
 void RunTime::launch()
 {
-    LOG_DEBUG<<"[Runtime is Launch]"<<LOG_END;
+    Log::Debug("[Runtime is Launch]");
     start();
 }
 

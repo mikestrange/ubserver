@@ -46,6 +46,8 @@ public:
     
     void wait(TIME_T runtime);
     
+    void wait_delay(TIME_T runtime);
+    
     void kill();
     
 protected:

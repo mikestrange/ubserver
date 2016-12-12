@@ -30,9 +30,13 @@ namespace StringUtil
 
 namespace UNIT
 {
-    int parseInt(const char* src);
+    int32 parseInt(const char* src);
     
-    int parseInt(std::string& src);
+    int32 parseInt(std::string& src);
+    
+    int64 parseInt64(const char* src);
+    
+    int64 parseInt64(std::string& src);
 }
 
 #endif /* string_utils_h */

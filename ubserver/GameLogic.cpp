@@ -42,18 +42,18 @@ int GameLogic::EnterPlayer(GamePlayer* player)
     if(m_players.length() == MAX_USER)
     {
         SAFE_DELETE(player);
-        LOG_DEBUG<<"enter room error: room = "<<m_table_id<<" is full"<<LOG_END;
+        Log::Info("enter room error: room=%d is full", m_table_id);
         return 2;
     }
     if(m_players.has(player->getUserID()))
     {
         SAFE_DELETE(player);
-        LOG_DEBUG<<"enter room error uid = "<<player->getUserID()<<" is in this room"<<LOG_END;
+        Log::Info("enter room error uid=%d is in this room", player->getUserID());
         return 1;
     }
     m_players.put(player->getUserID(), player);
     player->OnEnter();
-    LOG_DEBUG<<"enter room ok: room = "<<m_table_id<<" uid = "<<player->getUserID()<<LOG_END;
+    Log::Info("enter room ok: room =%d uid=", m_table_id, player->getUserID());
     //通知个人获取房间数据
     PacketBuffer game_data;
     game_data.setBegin(SERVER_CMD_GAME_ROOM_DATA);
@@ -98,9 +98,8 @@ int GameLogic::ExitPlayer(USER_T uid)
         if(seat_id > 0)
         {
             //m_seats.remove(seat_id);
-            LOG_DEBUG<<"stand ok: room = "<<m_table_id<<" seat = "<<parseByte(seat_id)<<LOG_END;
         }
-        LOG_DEBUG<<"exit room ok: room = "<<m_table_id<<" uid = "<<uid<<LOG_END;
+        Log::Debug("exit room ok: room=%d uid=%d",m_table_id, uid);
         player->OnExit();
         //通知其他玩家
         PacketBuffer packet;
@@ -185,13 +184,13 @@ void GameLogic::GameStart()
     start_time = TimeUtil::GetTimer();
     m_clock.start(CHIP_TIME, 1, TIGER_TIMER_START);
     //
-    LOG_DEBUG<<"game start room = "<<m_table_id<<" user size = "<<m_players.length()<<LOG_END;
+    Log::Info("start game room=%d count=%d", m_table_id, m_players.length());
 }
 
 
 void GameLogic::GameOver()
 {
-    LOG_DEBUG<<"game over room = "<<m_table_id<<" user size = "<<m_players.length()<<LOG_END;
+    Log::Info("end game room=%d count=%d", m_table_id, m_players.length());
     m_game_state = TIGER_GAME_STOP_STATUS;
     //清空池
     CleanPotBets();
@@ -200,7 +199,7 @@ void GameLogic::GameOver()
     uint8 type = TIGER_TYPE_LIST[index - 1];     //类型
     uint8 mult = TIGER_BET_LIST[index - 1];     //倍数
     //结果啊
-    LOG_DEBUG<<"game result: index="<<parseByte(index)<<",type="<<parseByte(type)<<",mult="<<parseByte(mult)<<LOG_END;
+    Log::Info("game result index=%d type=%d mult=%d", index, type, mult);
     //赢最多
     uint32 first_user = 0;
     uint32 max_value = 0;
@@ -251,27 +250,30 @@ void GameLogic::GameOver()
 
 
 //玩家下注(不在房间的玩家，不能发送) 玩家，倍数，类型
-void GameLogic::UserBet(USER_T uid, uint8 type, uint32 chip)
+void GameLogic::UserBet(USER_T uid, uint8 type, uint32 chips)
 {
+    if(type == 0 || type > MAX_TYPE) return;
+    //
     if(m_game_state == TIGER_GAME_START_STATUS)
     {
-        GamePlayer* player = m_players.getValue(uid);
-        if(player)
+        //超过上限
+        if(pot_list[type - 1] + chips > max_chip)
         {
-            uint32 sub_value = player->AddBet(type, chip);
-            if(sub_value > 0)
-            {
-                PacketBuffer packet;
-                packet.setBegin(SERVER_CMD_TIGER_GBET);
-                packet.WriteBegin();
-                packet.writeInt8(type);
-                packet.writeUint32(chip);
-                packet.writeUint64(player->getUserMoney());
-                packet.WriteEnd();
-                GameManager::getInstance()->SendPacket(uid, packet);
-                //--
-                AddPotBet(type, sub_value);
-            }
+            return;
+        }
+        GamePlayer* player = m_players.getValue(uid);
+        if(player && player->AddBet(type, chips))
+        {
+            PacketBuffer packet;
+            packet.setBegin(SERVER_CMD_TIGER_GBET);
+            packet.WriteBegin();
+            packet.writeInt8(type);
+            packet.writeUint32(player->getBetTotals(type));
+            packet.writeInt64(player->getUserMoney());
+            packet.WriteEnd();
+            GameManager::getInstance()->SendPacket(uid, packet);
+            //--
+            AddPotBet(type, chips);
         }
     }
 }
@@ -291,18 +293,17 @@ void GameLogic::OnTimeProcess(int type)
 };
 
 
-void GameLogic::AddPotBet(uint8 type, uint32 chip)
+void GameLogic::AddPotBet(uint8 type, uint32 chips)
 {
-    uint32 v = pot_list[type - 1];
-    v += chip;
-    pot_list[type - 1] = v;
-    pot_totals += chip;
+    pot_list[type - 1] += chips;
+    pot_totals += chips;
+    uint32 totals = pot_list[type - 1];
     //池通知
     PacketBuffer packet;
     packet.setBegin(SERVER_CMD_TIGER_GPOT_CHIPS);
     packet.WriteBegin();
     packet.writeInt8(type);
-    packet.writeUint32(v);
+    packet.writeUint32(totals);
     packet.WriteEnd();
     m_players.eachValues([&packet](GamePlayer* player)
                          {

@@ -29,14 +29,31 @@ namespace StringUtil
 
 namespace UNIT
 {
-    int parseInt(const char* src)
+    int32 parseInt(const char* src)
     {
         return atof(src);
     }
     
-    int parseInt(std::string& src)
+    int32 parseInt(std::string& src)
     {
         return parseInt(src.c_str());
+    }
+    
+    int64 parseInt64(const char* src)
+    {
+        int64 retval;
+        //int i;
+        retval = 0;
+        for (; *src; src++)
+        {
+            retval = 10*retval + (*src - '0');
+        }
+        return retval;
+    }
+    
+    int64 parseInt64(std::string& src)
+    {
+        return parseInt64(src.c_str());
     }
 }
 

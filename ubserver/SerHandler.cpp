@@ -2,74 +2,105 @@
 //  SerHandler.c
 //  ubserver
 //
-//  Created by MikeRiy on 16/11/14.
+//  Created by MikeRiy on 16/12/12.
 //  Copyright © 2016年 MikeRiy. All rights reserved.
 //
 
 #include "SerHandler.h"
 
+
 STATIC_CLASS_INIT(SerHandler);
 
-SerHandler::~SerHandler()
+NetNode* SerHandler::create_node()
 {
-    hash.eachValues([](SocketHandler* v)
-    {
-        SAFE_DELETE(v);
-    });
+    return new GameUser;
 }
 
-
-void SerHandler::OnConnect(NetLink* value)
+void SerHandler::OnEvent(EventBase *event)
 {
-    RUN_MAIN(new SerEvent(SOCKET_EVENT_CONNECT, value));
-};
-
-void SerHandler::OnClose(NetLink* value)
-{
-    RUN_MAIN(new SerEvent(SOCKET_EVENT_CLOSE, value));
-};
-
-void SerHandler::OnRead(NetLink* value, char* bytes, size_t size)
-{
-    RUN_MAIN(new SerEvent(SOCKET_EVENT_READ, value, bytes, size));
-};
-
-void SerHandler::OnAcceptHandler(NetLink* value)
-{
-    if(hash.has(value->getSocketID()))
+    SocketEvent* sock_event = (SocketEvent*)event;
+    switch(event->getType())
     {
-        value->DisConnect();
-    }else{
-        LOG_INFO<<"add client fd = "<<value->getSocketID()<<LOG_END;
-        hash.put(value->getSocketID(), new SocketHandler(value));
+        case SOCKET_CONNECT:
+            AddNode(sock_event->getNode());
+            break;
+        case SOCKET_CLOSED:
+            RemoveNode(sock_event->getNode());
+            break;
+        case SOCKET_READ_DATA:
+            HandleNode((GameUser*)sock_event->getNode(),sock_event->getBytes(),sock_event->getSize());
+            break;
     }
 }
 
-void SerHandler::OnCloseHandler(NetLink* value)
+NetNode* SerHandler::getNode(SOCKET_T fd)
 {
-    SocketHandler* sock = hash.remove(value->getSocketID());
-    LOG_INFO<<"remove client fd = "<<value->getSocketID()<<LOG_END;
-    if(sock)
-    {
-        PlayerManager::getInstance()->DelPlayer(sock->getUserID());
-    }else{
-        SAFE_DELETE(value);
-    }
-    SAFE_DELETE(sock);
+    return uMap.getValue(fd);
 }
 
-SocketHandler* SerHandler::GetClient(SOCKET_T fd)
+void SerHandler::AddNode(NetNode* node)
 {
-    return hash.getValue(fd);
+    if(uMap.has(node->getSockID()))
+    {
+        node->DisConnect();
+        return;
+    }
+    uMap.put(node->getSockID(), (GameUser*)node);
 }
 
-void SerHandler::Print()
+void SerHandler::RemoveNode(NetNode* node)
 {
-    HashMap<SOCKET_T, SocketHandler*>::Iterator iter;
-    LOG_DEBUG<<"SerHandler fds ={"<<LOG_END;
-    for(iter = hash.begin();iter!=hash.end();iter++)
+    uMap.remove(node->getSockID());
+    SAFE_DELETE(node);
+}
+
+void SerHandler::HandleNode(GameUser* node, char* bytes, size_t size)
+{
+    TimeUtil::begin();
+    if(node->isConnect())
     {
-        LOG_DEBUG<<"fd = "<<iter->second->GetSocketFd()<<LOG_END;
+        node->LoadBytes(bytes, size);
+        try{
+            while(node->HasPacket())
+            {
+                node->ReadBegin();
+                OnPacketHandler(node);
+                node->ReadEnd();
+            }
+        }catch(...){
+            node->DisConnect();
+        }
     }
-    LOG_DEBUG<<"}"<<LOG_END;
+    TimeUtil::end();
+}
+
+void SerHandler::OnPacketHandler(GameUser* node)
+{
+    Log::Info("packet: cmd=%d type=%d", node->getCmd(), node->getType());
+    switch(node->getType())
+    {
+        case SERVER_WORLD_MESSAEGE:
+            WorldMsg::getInstance()->OnPacketHandler(node);
+            break;
+        case SERVER_GAME_MESSAGE:
+            GameManager::getInstance()->OnPacketHandler(node);
+            break;
+        default:
+            WorldMsg::getInstance()->OnPacketHandler(node);
+            break;
+    }
+}
+
+
+void SerHandler::print()
+{
+    HashMap<SOCKET_T, GameUser*>::Iterator iter;
+    std::string str;
+    str += "SerHandler fds ={\n";
+    for(iter = uMap.begin();iter!=uMap.end();iter++)
+    {
+        str += StringUtil::format("fd=%d\n",iter->second->getSockID());
+    }
+    str += "}";
+    Log::Debug("%s",str.c_str());
 }

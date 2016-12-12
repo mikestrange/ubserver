@@ -31,6 +31,8 @@ public:
     
     void DelPlayer(USER_T uid);
     
+    Player* getPlayer(USER_T uid);
+    
     void SendPlayer(USER_T uid, PacketBuffer& buffer);
     
     bool EnterView(USER_T uid, TABLE_ID tid);

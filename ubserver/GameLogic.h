@@ -65,7 +65,7 @@ private://固定参数
     //const int BASE_CHIP = 1;            //底分
     const int bet_time = 10;
     const int wait_time = 10;
-    const int max_chip = 1000000;
+    const int max_chip = 10000000;          //1000万最大
 private:
     HashMap<USER_T, GamePlayer*> m_players;
     HashMap<SEAT_T, USER_T> m_seats;
@@ -85,10 +85,10 @@ public:
 private:
     void GameStart();
     void GameOver();
-    void AddPotBet(uint8 type, uint32 chip);
+    void AddPotBet(uint8 type, uint32 chips);
     void CleanPotBets();
 public:
-    void UserBet(USER_T uid, uint8 type, uint32 chip);
+    void UserBet(USER_T uid, uint8 type, uint32 chips);
     //--
     void OnTimeProcess(int type)override;
 };

@@ -15,29 +15,28 @@
 
 #include "lock.h"
 
-#define LOG_DEBUG       Log::getLogger(1)
-#define LOG_INFO        Log::getLogger(2)
-#define LOG_WARN        Log::getLogger(3)
-#define LOG_ERROR       Log::getLogger(4)
-#define LOG_END         "\n"
+typedef enum
+{
+    LOG_NONE,
+    LOG_DEBUG,
+    LOG_INFO,
+    LOG_WARN,
+    LOG_ERROR
+}LOG_LEVEL;
 
 class Log : private Locked
 {
     STATIC_CLASS(Log);
 public:
-    Log& setLogger(int lv);
+    void setLogLevel(int lv);
     
-    Log& operator <<(const char* v);
+    static void Debug(const char* fm, ...);
     
-    template <class V>
-    Log& operator <<(V v)
-    {
-        std::cout<<v;
-        return *this;
-    };
+    static void Info(const char* fm, ...);
     
-public:
-    static Log& getLogger(int lv);
+    static void Warn(const char* fm, ...);
+    
+    static void Error(const char* fm, ...);
 };
 
 #endif /* log_h */

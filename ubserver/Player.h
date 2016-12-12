@@ -11,29 +11,40 @@
 
 #include <stdio.h>
 #include "global.h"
-#include "client.h"
+#include "GameUser.h"
 #include "GameManager.h"
 
 class GameManager;
+class GameUser;
 
 class Player
 {
 private:
-    SocketHandler* _sock;
-public:
+    GameUser* m_sock;
+private:
     USER_T user_id;
-    SOCKET_T sock_id;
     TABLE_ID view_id;
     
-    Player(USER_T uid, SocketHandler* sock);
-
-    SocketHandler* getSocket()const;
+public:
+    Player(USER_T uid, GameUser* sock);
     
     virtual ~Player();
+
+    void LinkSocket(GameUser* node);
+    
+    void UnLinkSocket();
+    
+    bool isLinkSocket()const;
+    
+    GameUser* getSocket()const;
+    
+public:
     
     void ExitRoom();
     
     bool EnterRoom(TABLE_ID tid);
+    
+    USER_T getUserID()const;
 };
 
 #endif /* Player_h */

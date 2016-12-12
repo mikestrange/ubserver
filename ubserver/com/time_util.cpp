@@ -9,6 +9,7 @@ namespace TimeUtil
         gettimeofday(&tv, NULL);
     }
     
+    //毫秒
     TIME_T GetTimer()
     {
         TimeVal tv;
@@ -50,6 +51,6 @@ namespace TimeUtil
         TimeVal value;
         gettimeofday(&value, NULL);
         auto usec = value.tv_usec - runtime.tv_usec;
-        LOG_DEBUG<<"[消耗 秒 = "<<value.tv_sec - runtime.tv_sec<<", 微秒 = "<<usec<<", pic = "<<1000000/usec<<"]"<<LOG_END;
+        Log::Debug("[消耗 秒=%d 微妙=%d 单位=%d",value.tv_sec - runtime.tv_sec,usec,1000000/usec);
     }
 }

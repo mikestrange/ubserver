@@ -34,7 +34,7 @@ void KeepManager::StopTimer(int timeid)
         {
             obser->stop();
         }
-        LOG_DEBUG<<"STOP TIME : id = "<<timeid<<LOG_END;
+        Log::Info("STOP TIME id=%d",timeid);
     }while(0);
     //--
     resume();

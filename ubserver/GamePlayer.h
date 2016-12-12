@@ -15,38 +15,38 @@
 #include "GameSeat.h"
 #include "GamePuzzle.h"
 #include "string_util.h"
+#include "UserObj.h"
 
 #include "log.h"
 
-class GamePlayer : public IReader , public GameSeat
+class GamePlayer : public GameSeat
 {
 private:
-    uint64 user_money;
-    uint64 bet_totals;
+    UserObj* data;
+private:
+    uint32 bet_totals;
     uint32 bet_list[MAX_TYPE];
 public:
-    GamePlayer(USER_T uid, PacketBuffer* bytes);
+    GamePlayer(USER_T uid, UserObj* obj);
     
     virtual ~GamePlayer();
     
-    void WriteTo(WriteBytes& bytes)override;
-    
-    void ReadFor(ReadBytes& bytes)override;
-    
-    uint64 getUserMoney()const;
+    int64 getUserMoney()const;
     
 public:
     void OnEnter();
     
     void OnExit();
     
-    uint32 AddBet(uint8 type, uint32 chips);
+    bool AddBet(uint8 type, uint32 chips);
     
     void CleanBets();
     
     bool isNoBet()const;
     
     uint32 Reslut(uint8 type, int32 mult);
+    
+    uint32 getBetTotals(uint8 type)const;
 };
 
 #endif /* GamePlayer_h */

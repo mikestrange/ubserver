@@ -15,10 +15,9 @@
 
 #include "SerHandler.h"
 #include "WorldMsg.h"
-
+#include "NetSocket.h"
 #include "DBServer.h"
 #include "time_util.h"
-#include "netsock.h"
 
 #include "md5.h"
 
@@ -27,21 +26,10 @@
 const char* host = "127.0.0.1";
 const int port = 8081;
 
-NetSocket m_socket;
-
-void* thread_event(void* arg)
+void thread_socket()
 {
-    SOCKET_T serid = network::listener(port);
-    if(serid > 0)
-    {
-        network::epoll_server(serid, SerHandler::getInstance());
-    }
-    return 0;
-}
-
-void* thread_socket(void* arg)
-{
-    m_socket.Connect("127.0.0.1", port);
+    NetSocket m_socket;
+    m_socket.connect("127.0.0.1", port);
     //--
     PacketBuffer bytes;
     //登录
@@ -55,9 +43,9 @@ void* thread_socket(void* arg)
     bytes.setBegin(SERVER_CMD_GAME_ENTER, SERVER_GAME_MESSAGE, 101);
     bytes.WriteBegin();
     bytes.WriteEnd();
-    //
-    m_socket.SendPacket(bytes);
-    return 0;
+    //--
+    m_socket.SendPacket(&bytes[0], bytes.wpos());
+    sleep(1);
 }
 
 //输入
@@ -66,17 +54,17 @@ void vim_complete(DataArray* array)
     try{
         std::string str;
         str = array->readString();
-        LOG_DEBUG<<"输入:"<<str<<LOG_END;
+        Log::Debug("输入:%s", str.c_str());
         if(StringUtil::equal(str, "exit"))
         {
-            LOG_DEBUG<<"[进程已完成]"<<LOG_END;
+            Log::Debug("[进程已完成]");
             exit(0);
         }else if(StringUtil::equal(str, "run")){
-            Thread::create(&thread_event);
+            SerHandler::getInstance()->listener(port);
         }else if(StringUtil::equal(str, "print")){
-            SerHandler::getInstance()->Print();
+            SerHandler::getInstance()->print();
         }else if(StringUtil::equal(str, "send")){
-            Thread::create(&thread_socket);
+            thread_socket();
         }else if(StringUtil::equal(str, "sql")){
             DataQuery result;
             std::string sql;
@@ -87,22 +75,17 @@ void vim_complete(DataArray* array)
             std::string id;
             id = array->readString();
             int sockid = UNIT::parseInt(id);
-            auto socket = SerHandler::getInstance()->GetClient(sockid);
+            auto socket = SerHandler::getInstance()->getNode(sockid);
             if(socket)
             {
-                socket->Disconnect();
+                socket->DisConnect();
             }
         }else if(StringUtil::equal(str, "out")){
             //system("kill %2");
         }
     }catch(...){
-        LOG_DEBUG<<"[输入有误]"<<LOG_END;
+        Log::Debug("[输入有误]");
     }
-}
-
-void start_server(int argc)
-{
-    thread_event(0);
 }
 
 //用户id生成
@@ -139,14 +122,8 @@ void test()
 
 int main(int argc, const char * argv[])
 {
-//    PacketBuffer* bytes = new PacketBuffer();
-//    bytes->self()<<"abc ";
-//    MD5 md5(bytes->readString());
-//    std::cout<<md5.md5()<<std::endl;
-//    std::cout<<md5.md5()<<std::endl;
-//    
     RunTime::getInstance()->launch();
-    DBServer::getInstance()->launch(host);
+    DBServer::getInstance()->launch("120.77.149.74");
     //--
     epoll_input([](DataArray* data)
                 {

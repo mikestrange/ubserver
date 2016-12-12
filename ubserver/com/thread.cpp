@@ -89,6 +89,13 @@ void Thread::wait(TIME_T runtime)
     }
 }
 
+//延迟多少毫秒
+void Thread::wait_delay(TIME_T runtime)
+{
+    wait(TimeUtil::GetTimer() + runtime);
+}
+
+
 void Thread::kill()
 {
     if(pid_t > 0){

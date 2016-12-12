@@ -13,13 +13,15 @@
 #include <stdio.h>
 #include "global.h"
 #include "hashmap.h"
-#include "client.h"
 #include "log.h"
 
 #include "CmdDefined.h"
+#include "GameUser.h"
 #include "GameLogic.h"
 #include "PlayerManager.h"
+#include "UserObj.h"
 
+class GameUser;
 class GameLogic;
 class PlayerManager;
 
@@ -36,7 +38,7 @@ public:
     
     void shut(TABLE_ID tid);
     
-    void OnPacketHandler(SocketHandler* client);
+    void OnPacketHandler(GameUser* client);
     
     void SendPacket(USER_T uid, PacketBuffer& packet);
     
@@ -44,6 +46,8 @@ public:
     
 private:
     GameLogic* getLogic(TABLE_ID tid);
+    
+    void OnEnter(GameLogic* room, GameUser* client);
 };
 
 #endif /* GameManager_h */

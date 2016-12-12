@@ -13,7 +13,6 @@
 #include "event.h"
 #include "packet_buffer.h"
 #include "CmdDefined.h"
-#include "client.h"
 #include "log.h"
 #include "string_util.h"
 
@@ -22,6 +21,8 @@
 #include "coupler.h"
 #include "md5.h"
 
+class GameUser;
+
 class WorldMsg
 {
     STATIC_CLASS(WorldMsg);
@@ -29,12 +30,12 @@ public:
     WorldMsg();
     
 public:
-    void OnPacketHandler(SocketHandler *packet);
+    void OnPacketHandler(GameUser *packet);
     
 private:
-    void test(SocketHandler *packet);
-    void Login(SocketHandler *packet);
-    void Logout(SocketHandler *packet);
+    void test(GameUser *packet);
+    void Login(GameUser *packet);
+    void Logout(GameUser *packet);
 };
 
 

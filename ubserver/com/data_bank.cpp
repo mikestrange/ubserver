@@ -40,7 +40,7 @@ bool DataBank::connent()
 {
     if(isConnected())
     {
-        LOG_DEBUG<<"mysql is connect"<<LOG_END;
+        Log::Debug("mysql is connect");
         return true;
     }
     return reconnect();
@@ -53,7 +53,7 @@ bool DataBank::reconnect()
     //初始化
     if(mysql_init(&myCont)==NULL)
     {
-        LOG_ERROR<<"mysql init error"<<LOG_END;
+        Log::Debug("mysql init error");
         return false;
     };
     //连接数据库
@@ -62,13 +62,13 @@ bool DataBank::reconnect()
         isconnected = true;
         //设置编码格式 写入
         mysql_set_character_set(&myCont, "utf8");
-        LOG_DEBUG<<"mysql connect succeed!"<<LOG_END;
+        Log::Debug("mysql connect succeed");
     }else{
         mysql_close(&myCont);
-        LOG_ERROR<<"mysql failed!"<<LOG_END;
+        Log::Debug("mysql failed");
     };
 #else
-    LOG_WARN<<"undefined MY_SQL"<<LOG_END;
+    Log::Debug("undefined MY_SQL");
 #endif
     return isconnected;
 }
@@ -81,9 +81,9 @@ void DataBank::close()
         #ifdef MY_SQL
         mysql_close(&myCont);
         #endif
-        LOG_DEBUG<<"mysql close ok!"<<LOG_END;
+        Log::Debug("mysql close ok!");
     }else{
-        LOG_ERROR<<"mysql close error: is no open"<<LOG_END;
+        Log::Debug("mysql close error: is no open");
     }
 }
 
@@ -96,18 +96,18 @@ bool DataBank::apply(const char* sql)
 {
     if(isConnected())
     {
-        LOG_DEBUG<<"mysql = "<<sql<<LOG_END;
+        Log::Debug("mysql = %s", sql);
         int ret = -1;
         #ifdef MY_SQL
             ret = mysql_query(&myCont, sql);
         #endif
         if(ret != 0)
         {
-            LOG_WARN<<"mysql apply error:"<<ret<<LOG_END;
+            Log::Warn("mysql apply error ret=%d",ret);
         }
         return ret == 0;
     }
-    LOG_WARN<<"mysql apply error: is no open"<<LOG_END;
+    Log::Warn("mysql apply error: is no open");
     return false;
 }
 
@@ -155,7 +155,7 @@ bool DataBank::find(DataQuery& query, const char* sql)
             mysql_free_result(result);
             return true;
         }else{
-            LOG_WARN<<"mysql find result error"<<LOG_END;
+            Log::Warn("mysql find result error");
             return false;
         }
     }

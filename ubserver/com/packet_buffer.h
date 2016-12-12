@@ -83,7 +83,7 @@ public:
             {
                 ERROR_LOG("this packlen is overrun %u %ld", packet_size, wpos());
             }else{
-                LOG_DEBUG<<">>##ReadBegin Pocket: size="<<packet_size<<",r="<<rpos()<<",w="<<wpos()<<LOG_END;
+                Log::Debug(">>##ReadBegin Pocket: size=%d r=%d w=%d",packet_size,rpos(),wpos());
                 return HasPacket();
             }
         }
@@ -116,7 +116,7 @@ public:
             packet_size = 0;
             m_rpos = 0;
             if(rpos() == wpos()) clear();
-            LOG_DEBUG<<">>##ReadEnd is Flush"<<LOG_END;
+            Log::Debug(">>##ReadEnd is Flush");
         }
     }
 };
