@@ -26,26 +26,29 @@
 const char* host = "127.0.0.1";
 const int port = 8081;
 
+NetSocket m_socket;
+
 void thread_socket()
 {
-    NetSocket m_socket;
-    m_socket.connect("127.0.0.1", port);
+    if(m_socket.isClosed())
+    {
+         m_socket.connect("127.0.0.1", port);
+    }
     //--
     PacketBuffer bytes;
     //登录
     bytes.setBegin(SERVER_CMD_LOGIN);
     bytes.WriteBegin();
-    bytes.writeInt8(102);
+    bytes.writeInt8(1);
     bytes.writeUint32(10001);
     bytes.writeString("abc");
     bytes.WriteEnd();
     //进入房间
-    bytes.setBegin(SERVER_CMD_GAME_ENTER, SERVER_GAME_MESSAGE, 101);
-    bytes.WriteBegin();
-    bytes.WriteEnd();
+//    bytes.setBegin(SERVER_CMD_GAME_ENTER, SERVER_GAME_MESSAGE, 101);
+//    bytes.WriteBegin();
+//    bytes.WriteEnd();
     //--
     m_socket.SendPacket(&bytes[0], bytes.wpos());
-    sleep(1);
 }
 
 //输入

@@ -37,7 +37,6 @@
 		20B315971DD996B30087924A /* GameLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315921DD996B30087924A /* GameLogic.cpp */; };
 		20B315981DD996B30087924A /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315941DD996B30087924A /* GameManager.cpp */; };
 		20B3159B1DD9B51A0087924A /* GamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B315991DD9B51A0087924A /* GamePlayer.cpp */; };
-		20CBD8A61DF94A5D006EE7B0 /* test.c in Sources */ = {isa = PBXBuildFile; fileRef = 20CBD8A41DF94A5D006EE7B0 /* test.c */; };
 		20DD5BA61DFBB51B00C92E57 /* NetNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20DD5BA41DFBB51B00C92E57 /* NetNode.cpp */; };
 		20DD5BA91DFC580800C92E57 /* NetServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20DD5BA71DFC580800C92E57 /* NetServer.cpp */; };
 		20DD5BAF1DFC6CAA00C92E57 /* NetSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20DD5BAD1DFC6CAA00C92E57 /* NetSocket.cpp */; };
@@ -132,7 +131,6 @@
 		20B315951DD996B30087924A /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		20B315991DD9B51A0087924A /* GamePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePlayer.cpp; sourceTree = "<group>"; };
 		20B3159A1DD9B51A0087924A /* GamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayer.h; sourceTree = "<group>"; };
-		20CBD8A41DF94A5D006EE7B0 /* test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test.c; sourceTree = "<group>"; };
 		20DD5BA41DFBB51B00C92E57 /* NetNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetNode.cpp; sourceTree = "<group>"; };
 		20DD5BA51DFBB51B00C92E57 /* NetNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetNode.h; sourceTree = "<group>"; };
 		20DD5BA71DFC580800C92E57 /* NetServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetServer.cpp; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				20B315491DD6B5A50087924A /* game */,
 				20B3152E1DD5BF210087924A /* com */,
 				208D8D6F1DD30008000D45C6 /* main.cpp */,
-				20CBD8A41DF94A5D006EE7B0 /* test.c */,
 			);
 			path = ubserver;
 			sourceTree = "<group>";
@@ -446,7 +443,6 @@
 				20B315891DD96DFB0087924A /* memorys.cpp in Sources */,
 				20B315981DD996B30087924A /* GameManager.cpp in Sources */,
 				2070BB3E1DDB13DD0017D59C /* Player.cpp in Sources */,
-				20CBD8A61DF94A5D006EE7B0 /* test.c in Sources */,
 				20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */,
 				20B3156A1DD952530087924A /* runtime.cpp in Sources */,
 				204312E71DDE067300A18C0A /* GamePuzzle.cpp in Sources */,

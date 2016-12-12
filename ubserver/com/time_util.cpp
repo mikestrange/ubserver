@@ -50,7 +50,6 @@ namespace TimeUtil
     {
         TimeVal value;
         gettimeofday(&value, NULL);
-        auto usec = value.tv_usec - runtime.tv_usec;
-        Log::Debug("[消耗 秒=%d 微妙=%d 单位=%d",value.tv_sec - runtime.tv_sec,usec,1000000/usec);
+        Log::Debug("[消耗 秒=%d 微妙=%d 单位=%d", value.tv_sec - runtime.tv_sec, (value.tv_usec - runtime.tv_usec), 1000000/(value.tv_usec - runtime.tv_usec));
     }
 }

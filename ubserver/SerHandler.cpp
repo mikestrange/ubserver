@@ -56,7 +56,7 @@ void SerHandler::RemoveNode(NetNode* node)
 
 void SerHandler::HandleNode(GameUser* node, char* bytes, size_t size)
 {
-    TimeUtil::begin();
+    //TimeUtil::begin();
     if(node->isConnect())
     {
         node->LoadBytes(bytes, size);
@@ -71,7 +71,7 @@ void SerHandler::HandleNode(GameUser* node, char* bytes, size_t size)
             node->DisConnect();
         }
     }
-    TimeUtil::end();
+    //TimeUtil::end();
 }
 
 void SerHandler::OnPacketHandler(GameUser* node)

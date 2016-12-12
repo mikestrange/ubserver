@@ -84,8 +84,7 @@ void NetSocket::epoll_socket()
             }
         }
     }
-    DisConnect();
-    NET_CLOSE(getSockID());
+    NET_CLOSE(DisConnect());
     on_close();
 }
 

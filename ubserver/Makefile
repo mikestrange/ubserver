@@ -1,68 +1,36 @@
-#####################################################################
-## file        : test makefile for build current dir .c            ##
-## author      : jernymy                                           ##
-## date-time   : 05/06/2010                                        ##
-#####################################################################
+CC = g++
+CFLAGS = -Wall -g -std=c++11 # -v
+TARGET = main
+ROOT   := $(shell pwd)
 
-CC      = g++
-RM      = rm -rf
+#这里递归遍历3级子目录
+DIRS := $(shell find . -maxdepth 5 -type d)
+#这里循环遍历目录的cpp文件
+FILES = $(foreach dir, $(DIRS), $(wildcard $(dir)/*.cpp))
+#替换文件后缀 ，也可以写成 OBJS = $(FILES:%.cpp=%.o)
+OBJS = $(patsubst %.cpp,%.o, $(FILES))
 
-## source file path
-SRC_PATH   := $(shell pwd)
-
-CFLAGS := -Wall -g -std=c++11
-
-## target exec file name
-TARGET     := main
-
-## get all source files
-SRCS        := $(wildcard $(SRC_PATH)/*.cpp)
-
-## all .o based on all .c
-OBJS        := $(SRCS:.cpp=.o)
-
-#获取com需要的类
-SUB_COM_OBJS := $(foreach dir,$(SRC_PATH)/com,$(wildcard $(dir)/*.cpp))
-
-#$(warning  "<<-----begin----->>>") 
-#$(warning  $(SUB_OBJS)) 
-#$(warning  "<<-----end----->>>") 
-## used headers  file path
+#定义宏
+DEF = -DLINUX #-D__cplusplus
+## mac/centos
+LIB_PATH := -L/usr/local/mysql/lib -L/usr/lib64/mysql/
+#链接库文件
+LIBS = -lpthread -lm -lstdc++
+#头文件路径
 INCLUDE_PATH := -I/usr/include -I/usr/local/include -I/usr/local/mysql/include -I/usr/include/mysql -I./com
-
-## used include librarys file path
-## mac下
-LIB_PATH := -L/usr/local/mysql/lib 
-## centos下
-LIB_PATH += -L/usr/lib64/mysql/
-#-pthread
-
-## need libs, add at here
-LIBS := -pthread -lmysqlclient
-
-DEFS := -DDEBUG
-
-## get all defined
-CFLAGS += $(DEFS)
-
-## get all include path
+#add flags 
 CFLAGS += $(INCLUDE_PATH)
-
-## get all library path
 CFLAGS += $(LIB_PATH)
 
-## get all librarys
-#CFLAGS += $(LIBS)
-
+# Search paths
+.cpp.o:
+	$(CC) -c $(CFLAGS) $(DEF) $< -o $@
+.c.o:
+	$(CC) -c $(CFLAGS) $(DEF) $< -o $@
         
-all: build
-
-build:
-	$(CC) -c $(CFLAGS) $(SRCS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SUB_COM_OBJS) $(OBJS) $(LIBS)
-	
-##$(RM) $(OBJS)
-	
+main:$(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS)
+ 		
 clean:
-	$(RM) $(OBJS) $(TARGET)
-
+	$(RM) $(TARGET)
+	$(RM) $(OBJS)

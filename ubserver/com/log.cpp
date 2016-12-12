@@ -18,7 +18,7 @@ static int logLevel = 1;
 
 static void output(const char* log, const char* type)
 {
-    printf("[%s]%s\n", type, log);
+    printf("%s%s\n", type, log);
 }
 
 void Log::setLogLevel(int lv)

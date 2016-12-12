@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-
+//types
 enum
 {
     SERVER_WORLD_MESSAEGE = 1,

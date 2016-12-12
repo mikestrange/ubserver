@@ -47,10 +47,10 @@ void WorldMsg::Login(GameUser *packet)
     //登录类型
     if(type == 1){
         //密码登录
-        is_login = DBServer::getInstance()->login_with_user(uid, pass_word);
+        //is_login = DBServer::getInstance()->login_with_user(uid, pass_word);
     }else if(type == 2){
         //设备登录
-        is_login = DBServer::getInstance()->login_with_device(uid, device_id);
+        //is_login = DBServer::getInstance()->login_with_device(uid, device_id);
     }
     if(!is_login)
     {
