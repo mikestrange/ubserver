@@ -13,7 +13,7 @@
 
 #include "global.h"
 #include "lock.h"
-#include "command.h"
+//#include "command.h"
 #include "thread.h"
 #include "hashlist.h"
 #include "log.h"

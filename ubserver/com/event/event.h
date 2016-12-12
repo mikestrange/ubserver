@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "global.h"
 #include "hashmap.h"
-#include "comqueue.h"
+//#include "comqueue.h"
 
 template <class T>
 class MsgEvent

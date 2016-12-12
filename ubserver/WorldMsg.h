@@ -10,7 +10,6 @@
 #define WorldMsg_h
 
 #include <stdio.h>
-#include "event.h"
 #include "packet_buffer.h"
 #include "CmdDefined.h"
 #include "log.h"
