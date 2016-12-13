@@ -30,6 +30,9 @@ void SerHandler::OnEvent(EventBase *event)
         case SOCKET_READ_DATA:
             HandleNode((GameUser*)sock_event->getNode(),sock_event->getBytes(),sock_event->getSize());
             break;
+        case SOCKET_HEARTBET:
+            WorldRep::HeartBead((GameUser*)sock_event->getNode());
+            break;
     }
 }
 
@@ -68,6 +71,7 @@ void SerHandler::HandleNode(GameUser* node, char* bytes, size_t size)
                 node->ReadEnd();
             }
         }catch(...){
+            Log::Warn("解析出错 fd=%d", node->getSockID());
             node->DisConnect();
         }
     }

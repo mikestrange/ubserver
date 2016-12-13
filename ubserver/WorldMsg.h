@@ -19,6 +19,7 @@
 #include "DBServer.h"
 #include "coupler.h"
 #include "md5.h"
+#include "WorldRep.h"
 
 class GameUser;
 

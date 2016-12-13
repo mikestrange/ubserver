@@ -22,6 +22,12 @@ Player::~Player()
 }
 
 
+USER_T Player::getUserID()const
+{
+    return user_id;
+}
+
+//socket
 void Player::LinkSocket(GameUser* node)
 {
     //解除之前的
@@ -51,15 +57,7 @@ GameUser* Player::getSocket()const
     return m_sock;
 }
 
-void Player::ExitRoom()
-{
-    if(view_id > 0)
-    {
-        GameManager::getInstance()->ExitGame(user_id, view_id);
-        view_id = 0;
-    }
-}
-
+//room
 bool Player::EnterRoom(TABLE_ID tid)
 {
     if(view_id > 0) return false;
@@ -67,8 +65,11 @@ bool Player::EnterRoom(TABLE_ID tid)
     return true;
 }
 
-
-USER_T Player::getUserID()const
+void Player::ExitRoom()
 {
-    return user_id;
+    if(view_id > 0)
+    {
+        GameManager::getInstance()->ExitGame(user_id, view_id);
+        view_id = 0;
+    }
 }

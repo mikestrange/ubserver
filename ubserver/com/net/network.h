@@ -38,20 +38,13 @@
 
 #define SET_TIMEOUT(t, m, s) t.tv_sec = m;t.tv_usec = s;
 
-//socket event
-enum{
-    SOCKET_EVENT_CONNECT = 1,
-    SOCKET_EVENT_CLOSE,
-    SOCKET_EVENT_READ,
-    SOCKET_EVENT_SEND,
-};
-
 //第二版本事务
 typedef enum
 {
     SOCKET_LISTEN,          //端口监听成功
     SOCKET_CONNECT,         //套接字建立
     SOCKET_CLOSED,          //套接关闭
+    SOCKET_HEARTBET,        //心跳
     SOCKET_READ_DATA,       //套接字信息
     SOCKET_OVEREND,         //端口终止
 }SOCKET_EVENT;

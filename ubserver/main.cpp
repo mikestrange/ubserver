@@ -40,8 +40,9 @@ void thread_socket()
     bytes.setBegin(SERVER_CMD_LOGIN);
     bytes.WriteBegin();
     bytes.writeInt8(1);
-    bytes.writeUint32(10001);
+    bytes.writeUint32(10002);
     bytes.writeString("abc");
+    bytes.writeString("adf");
     bytes.WriteEnd();
     //进入房间
 //    bytes.setBegin(SERVER_CMD_GAME_ENTER, SERVER_GAME_MESSAGE, 101);

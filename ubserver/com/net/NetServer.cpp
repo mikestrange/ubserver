@@ -52,6 +52,11 @@ void NetServer::stop()
     m_isopen = false;
 }
 
+TIME_T NetServer::getHeartBeatTime()
+{
+    return 1000*60*3;//3分钟默认
+}
+
 void NetServer::epoll_server()
 {
     on_listen();
@@ -86,6 +91,12 @@ void NetServer::epoll_server()
             {
                 close_handler(i, node, &rset, fd_list);
             }else{
+                //心跳
+                if(node->HeartBeat(TimeUtil::GetTimer(), getHeartBeatTime()))
+                {
+                    on_heartbeat(node);
+                };
+                //读写
                 if(FD_ISSET(node->getSockID(), &mt))
                 {
                     size_t ret = NET_RECV(node->getSockID(), bytes, MAX_BUFFER);
@@ -178,6 +189,11 @@ void NetServer::on_accept(NetNode* node)
 void NetServer::on_close(NetNode* node)
 {
     RUN_MAIN(new SocketEvent(SOCKET_CLOSED, this, node));
+}
+
+void NetServer::on_heartbeat(NetNode* node)
+{
+    RUN_MAIN(new SocketEvent(SOCKET_HEARTBET, this, node));
 }
 
 void NetServer::on_read(NetNode* node, char* bytes, size_t size)

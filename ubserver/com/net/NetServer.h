@@ -32,8 +32,10 @@ public:
     void stop();
     
 public:
-     //为了保证数据的可变性，可以自己定义绑定节点类型
-     virtual NetNode* create_node();
+    //为了保证数据的可变性，可以自己定义绑定节点类型
+    virtual NetNode* create_node();
+    
+    virtual TIME_T getHeartBeatTime();
     
 private://handlers
     int accept_handler(fd_set* rset,int max_fds, NetNode* fd_list[]);
@@ -46,6 +48,7 @@ private:
     void on_listen();
     void on_accept(NetNode* node);
     void on_close(NetNode* node);
+    void on_heartbeat(NetNode* node);
     void on_read(NetNode* node, char* bytes, size_t size);
     void on_overend();
     

@@ -31,6 +31,7 @@ namespace TimeUtil
 {
     void GetTimer(TimeVal& tv);
     
+    //毫秒
     TIME_T GetTimer();
     
     //秒

@@ -1,23 +1,17 @@
 //
-//  keeper.h
+//  TimePush.h
 //  ubserver
 //
-//  Created by MikeRiy on 16/11/14.
+//  Created by MikeRiy on 16/12/13.
 //  Copyright © 2016年 MikeRiy. All rights reserved.
 //
 
-#ifndef keeper_h
-#define keeper_h
+#ifndef TimePush_h
+#define TimePush_h
 
 #include <stdio.h>
-#include "runtime.h"
-#include "thread.h"
-#include "time_util.h"
-
-#include "KeepManager.h"
-#include "global.h"
-
-class KeepManager;
+#include "TimeEvent.h"
+#include "TimeRunning.h"
 
 class ITimeoutHandler
 {
@@ -25,22 +19,21 @@ public:
     virtual void OnTimeProcess(int type)=0;
 };
 
-class Ticker
+class TimePush
 {
 private:
     int timeid;
 private:
-    TIME_T delay;
+    TIME_T m_delay;
     int currentCount;
     int repeatCount;
     ITimeoutHandler* delegate;
-    int m_type;
 public:
-    Ticker();
+    TimePush();
     
-    virtual ~Ticker();
+    virtual ~TimePush();
     
-    void start(TIME_T value, int count = 1, int type = 0);
+    void start(TIME_T delay, int count = 1, int type = 0);
     
     void stop();
     
@@ -48,9 +41,10 @@ public:
     
     void setEventDelegate(ITimeoutHandler* target);
     
-public:
-    void OnTimeoutHandler();
+private:
+    friend class TimeEvent;
+    void OnTimeoutHandler(int type);
 };
 
 
-#endif /* keeper_h */
+#endif /* TimePush_h */

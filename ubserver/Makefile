@@ -15,7 +15,7 @@ DEF = -DLINUX #-D__cplusplus
 ## mac/centos
 LIB_PATH := -L/usr/local/mysql/lib -L/usr/lib64/mysql/
 #链接库文件
-LIBS = -lpthread -lm -lstdc++
+LIBS = -lpthread -lm -lstdc++ -lmysqlclient
 #头文件路径
 INCLUDE_PATH := -I/usr/include -I/usr/local/include -I/usr/local/mysql/include -I/usr/include/mysql
 INCLUDE_PATH += $(patsubst %,-I%, $(DIRS))

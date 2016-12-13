@@ -42,19 +42,20 @@ void WorldMsg::Login(GameUser *packet)
     std::string pass_word = packet->readString();
     std::string device_id = packet->readString();
     //--
-    Log::Debug("login input uid=%d pws=%s device=%s",uid,pass_word.c_str(),device_id.c_str());
+    Log::Debug("login input uid=%d pws=%s device=%s", uid, pass_word.c_str(), device_id.c_str());
     bool is_login = false;
     //登录类型
     if(type == 1){
         //密码登录
-        //is_login = DBServer::getInstance()->login_with_user(uid, pass_word);
+        is_login = DBServer::getInstance()->login_with_user(uid, pass_word);
     }else if(type == 2){
         //设备登录
-        //is_login = DBServer::getInstance()->login_with_device(uid, device_id);
+        is_login = DBServer::getInstance()->login_with_device(uid, device_id);
     }
     if(!is_login)
     {
         Log::Warn("log error no match uid or pwd");
+        WorldRep::Login(packet, 1);
         packet->DisConnect();
     }else{
         //未登录可以登录(先注销)
@@ -65,19 +66,18 @@ void WorldMsg::Login(GameUser *packet)
             //存在用户
             if(player)
             {
+                //其他连接登录 踢下线
+                if(player->isLinkSocket())
+                {
+                    WorldRep::Logout(player->getSocket(), 1);
+                }
                 //之前的socket会断开
                 player->LinkSocket(packet);
             }else{
                 //不存在的用户
                 PlayerManager::getInstance()->AddPlayer(new Player(uid, packet));
             }
-            //--
-            PacketBuffer buffer;
-            buffer.setBegin(SERVER_CMD_LOGIN);
-            buffer.WriteBegin();
-            //玩家信息
-            buffer.WriteEnd();
-            packet->SendPacket(buffer);
+            WorldRep::Login(packet, 0);
         }else{
             Log::Debug("log error this socket is login");
         }

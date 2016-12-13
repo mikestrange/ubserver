@@ -11,7 +11,10 @@
 NetNode::NetNode()
 :sock_fd(0)
 ,isconnect(false)
-{}
+,begin_time(0)
+{
+    begin_time = TimeUtil::GetTimer();
+}
 
 NetNode::~NetNode()
 {
@@ -52,4 +55,14 @@ void NetNode::SendPacket(const void* bytes, size_t size)
     {
         NET_SEND(sock_fd, bytes, size);
     }
+}
+
+bool NetNode::HeartBeat(TIME_T value, TIME_T outtime)
+{
+    if(value - begin_time >= outtime)
+    {
+        begin_time = value;
+        return true;
+    }
+    return false;
 }

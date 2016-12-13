@@ -23,6 +23,8 @@ enum
 enum{
     SERVER_CMD_TEST = 1,
     
+    SERVER_CMD_HEARTBEAT = 11,
+    
     SERVER_CMD_LOGIN = 101,
     SERVER_CMD_LOGOUT,
     

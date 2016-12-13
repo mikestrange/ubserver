@@ -30,6 +30,9 @@ public:
     
     virtual ~Player();
 
+    USER_T getUserID()const;
+    
+public:
     void LinkSocket(GameUser* node);
     
     void UnLinkSocket();
@@ -39,12 +42,9 @@ public:
     GameUser* getSocket()const;
     
 public:
-    
     void ExitRoom();
     
     bool EnterRoom(TABLE_ID tid);
-    
-    USER_T getUserID()const;
 };
 
 #endif /* Player_h */

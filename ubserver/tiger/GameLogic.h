@@ -15,7 +15,7 @@
 #include "math_util.h"
 #include "hashmap.h"
 
-#include "ticker.h"
+#include "TimePush.h"
 
 #include "GamePlayer.h"
 #include "GamePuzzle.h"
@@ -70,7 +70,7 @@ private:
     HashMap<USER_T, GamePlayer*> m_players;
     HashMap<SEAT_T, USER_T> m_seats;
 private://计时器
-    Ticker m_clock;
+    TimePush m_clock;
 public:
     GameLogic();
     virtual ~GameLogic();

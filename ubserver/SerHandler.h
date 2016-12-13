@@ -18,6 +18,7 @@
 #include "WorldMsg.h"
 #include "GameManager.h"
 #include "PlayerManager.h"
+#include "WorldRep.h"
 
 class SerHandler : public NetServer
 {

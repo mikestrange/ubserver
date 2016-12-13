@@ -37,8 +37,7 @@ public://用户行为
     
 private:
     friend class Player;
-    void UnBindPlayer();                //退出登录解绑用户
-    friend class Player;
+    void UnBindPlayer();             //退出登录解绑用户
     void BindPlayer(Player* value);  //登录角色
 };
 

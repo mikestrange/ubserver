@@ -86,6 +86,7 @@ void NetSocket::epoll_socket()
     }
     NET_CLOSE(DisConnect());
     on_close();
+    Log::Info("close socket");
 }
 
 //主线程处理
