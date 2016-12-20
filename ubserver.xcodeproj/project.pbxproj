@@ -7,42 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		201C4C4A1DFEEF51007FD18A /* coupler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C101DFEEF51007FD18A /* coupler.cpp */; };
-		201C4C4B1DFEEF51007FD18A /* data_bank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C131DFEEF51007FD18A /* data_bank.cpp */; };
-		201C4C4C1DFEEF51007FD18A /* data_query.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C151DFEEF51007FD18A /* data_query.cpp */; };
-		201C4C4D1DFEEF51007FD18A /* EventBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C1B1DFEEF51007FD18A /* EventBase.cpp */; };
-		201C4C4E1DFEEF51007FD18A /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C201DFEEF51007FD18A /* log.cpp */; };
-		201C4C4F1DFEEF51007FD18A /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C231DFEEF51007FD18A /* md5.cpp */; };
-		201C4C501DFEEF51007FD18A /* NetNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C261DFEEF51007FD18A /* NetNode.cpp */; };
-		201C4C511DFEEF51007FD18A /* NetServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C281DFEEF51007FD18A /* NetServer.cpp */; };
-		201C4C521DFEEF51007FD18A /* NetSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C2A1DFEEF51007FD18A /* NetSocket.cpp */; };
-		201C4C531DFEEF51007FD18A /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C2C1DFEEF51007FD18A /* network.cpp */; };
-		201C4C541DFEEF51007FD18A /* SocketEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C2E1DFEEF51007FD18A /* SocketEvent.cpp */; };
-		201C4C551DFEEF51007FD18A /* runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C301DFEEF51007FD18A /* runtime.cpp */; };
-		201C4C561DFEEF51007FD18A /* lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C331DFEEF51007FD18A /* lock.cpp */; };
-		201C4C571DFEEF51007FD18A /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C351DFEEF51007FD18A /* thread.cpp */; };
-		201C4C5B1DFEEF51007FD18A /* math_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C421DFEEF51007FD18A /* math_util.cpp */; };
-		201C4C5C1DFEEF51007FD18A /* memorys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C441DFEEF51007FD18A /* memorys.cpp */; };
-		201C4C5D1DFEEF51007FD18A /* string_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C461DFEEF51007FD18A /* string_util.cpp */; };
-		201C4C5E1DFEEF51007FD18A /* time_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C481DFEEF51007FD18A /* time_util.cpp */; };
-		201C4C6A1DFEF749007FD18A /* GameLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C601DFEF749007FD18A /* GameLogic.cpp */; };
-		201C4C6B1DFEF749007FD18A /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C621DFEF749007FD18A /* GameManager.cpp */; };
-		201C4C6C1DFEF749007FD18A /* GamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C641DFEF749007FD18A /* GamePlayer.cpp */; };
-		201C4C6D1DFEF749007FD18A /* GamePuzzle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C661DFEF749007FD18A /* GamePuzzle.cpp */; };
-		201C4C6E1DFEF749007FD18A /* GameSeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C681DFEF749007FD18A /* GameSeat.cpp */; };
 		201C4C741DFEF756007FD18A /* DBServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C701DFEF756007FD18A /* DBServer.cpp */; };
 		201C4C751DFEF756007FD18A /* UserObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C721DFEF756007FD18A /* UserObj.cpp */; };
-		201C4C781DFEFA81007FD18A /* WorldRep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C761DFEFA81007FD18A /* WorldRep.cpp */; };
-		201C4C7B1DFEFC76007FD18A /* GameRep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C791DFEFC76007FD18A /* GameRep.cpp */; };
-		201C4C7E1DFF072C007FD18A /* TimeEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C7C1DFF072C007FD18A /* TimeEvent.cpp */; };
-		201C4C811DFF07C1007FD18A /* TimePush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C7F1DFF07C1007FD18A /* TimePush.cpp */; };
-		201C4C871DFF0BF0007FD18A /* TimeRunning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 201C4C851DFF0BF0007FD18A /* TimeRunning.cpp */; };
-		202052EE1DFE44E500CBB029 /* GameUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 202052EC1DFE44E500CBB029 /* GameUser.cpp */; };
-		202052F11DFE462500CBB029 /* SerHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 202052EF1DFE462500CBB029 /* SerHandler.cpp */; };
-		2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */; };
-		2070BB3E1DDB13DD0017D59C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2070BB3C1DDB13DD0017D59C /* Player.cpp */; };
+		2028A0F31DFFA20C006DE5B9 /* GateMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A0F11DFFA20C006DE5B9 /* GateMsg.cpp */; };
+		2028A0F61DFFA21D006DE5B9 /* GateRep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A0F41DFFA21D006DE5B9 /* GateRep.cpp */; };
+		2028A10D1DFFA332006DE5B9 /* ZoneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A0FE1DFFA332006DE5B9 /* ZoneManager.cpp */; };
+		2028A10E1DFFA332006DE5B9 /* TigerLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A1011DFFA332006DE5B9 /* TigerLogic.cpp */; };
+		2028A10F1DFFA332006DE5B9 /* GamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A1031DFFA332006DE5B9 /* GamePlayer.cpp */; };
+		2028A1101DFFA332006DE5B9 /* GamePuzzle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A1051DFFA332006DE5B9 /* GamePuzzle.cpp */; };
+		2028A1161DFFA380006DE5B9 /* LogicBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A1141DFFA380006DE5B9 /* LogicBase.cpp */; };
+		2028A1221DFFAAAA006DE5B9 /* WorldMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A11C1DFFAAAA006DE5B9 /* WorldMsg.cpp */; };
+		2028A1231DFFAAAA006DE5B9 /* WorldRep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A11E1DFFAAAA006DE5B9 /* WorldRep.cpp */; };
+		2028A18D1E003EBB006DE5B9 /* LadLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2028A18B1E003EBB006DE5B9 /* LadLogic.cpp */; };
+		203733C21E03BEBC00CB4951 /* data_bank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2037338C1E03BEBC00CB4951 /* data_bank.cpp */; };
+		203733C31E03BEBC00CB4951 /* data_query.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2037338E1E03BEBC00CB4951 /* data_query.cpp */; };
+		203733C41E03BEBC00CB4951 /* EventBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733911E03BEBC00CB4951 /* EventBase.cpp */; };
+		203733C51E03BEBC00CB4951 /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733951E03BEBC00CB4951 /* log.cpp */; };
+		203733C61E03BEBC00CB4951 /* NetNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733981E03BEBC00CB4951 /* NetNode.cpp */; };
+		203733C71E03BEBC00CB4951 /* NetServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2037339A1E03BEBC00CB4951 /* NetServer.cpp */; };
+		203733C81E03BEBC00CB4951 /* NetSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2037339C1E03BEBC00CB4951 /* NetSocket.cpp */; };
+		203733C91E03BEBC00CB4951 /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2037339E1E03BEBC00CB4951 /* Network.cpp */; };
+		203733CA1E03BEBC00CB4951 /* SocketEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733A01E03BEBC00CB4951 /* SocketEvent.cpp */; };
+		203733CB1E03BEBC00CB4951 /* runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733A21E03BEBC00CB4951 /* runtime.cpp */; };
+		203733CC1E03BEBC00CB4951 /* lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733A51E03BEBC00CB4951 /* lock.cpp */; };
+		203733CD1E03BEBC00CB4951 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733A71E03BEBC00CB4951 /* thread.cpp */; };
+		203733CE1E03BEBC00CB4951 /* TimeEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733AA1E03BEBC00CB4951 /* TimeEvent.cpp */; };
+		203733CF1E03BEBC00CB4951 /* TimePush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733AC1E03BEBC00CB4951 /* TimePush.cpp */; };
+		203733D01E03BEBC00CB4951 /* TimeRunning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733AE1E03BEBC00CB4951 /* TimeRunning.cpp */; };
+		203733D11E03BEBC00CB4951 /* math_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733B61E03BEBC00CB4951 /* math_util.cpp */; };
+		203733D21E03BEBC00CB4951 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733B91E03BEBC00CB4951 /* md5.cpp */; };
+		203733D31E03BEBC00CB4951 /* memorys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733BB1E03BEBC00CB4951 /* memorys.cpp */; };
+		203733D41E03BEBC00CB4951 /* string_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733BD1E03BEBC00CB4951 /* string_util.cpp */; };
+		203733D51E03BEBC00CB4951 /* time_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733BF1E03BEBC00CB4951 /* time_util.cpp */; };
+		203733D81E03BEF700CB4951 /* DBConnect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203733D61E03BEF700CB4951 /* DBConnect.cpp */; };
+		2054B1A61E018481003ADBEC /* HookNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2054B1A41E018481003ADBEC /* HookNode.cpp */; };
+		2054B1AF1E0186DB003ADBEC /* RoObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2054B1AD1E0186DB003ADBEC /* RoObject.cpp */; };
+		2054B1B51E01941E003ADBEC /* ObjectCollect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2054B1B31E01941E003ADBEC /* ObjectCollect.cpp */; };
+		2054B1B81E01A40E003ADBEC /* WorldServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2054B1B61E01A40E003ADBEC /* WorldServer.cpp */; };
+		205D4EEF1E08218A0037F9C6 /* ZoneMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 205D4EED1E08218A0037F9C6 /* ZoneMsg.cpp */; };
+		205D4EF21E08220E0037F9C6 /* ZoneRep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 205D4EF01E08220E0037F9C6 /* ZoneRep.cpp */; };
 		208D8D701DD30008000D45C6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 208D8D6F1DD30008000D45C6 /* main.cpp */; };
-		20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B3156B1DD953EF0087924A /* WorldMsg.cpp */; };
+		20EF1FF41E02321700309845 /* GateServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20EF1FF21E02321700309845 /* GateServer.cpp */; };
+		20F56DD41E04246D0025183F /* MsgHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20F56DD21E04246D0025183F /* MsgHandler.cpp */; };
+		20F56DD71E0424CF0025183F /* PacketBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20F56DD51E0424CF0025183F /* PacketBuffer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,93 +65,100 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		201C4C0A1DFEEF51007FD18A /* buffer_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer_base.h; sourceTree = "<group>"; };
-		201C4C0B1DFEEF51007FD18A /* packet_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet_buffer.h; sourceTree = "<group>"; };
-		201C4C0C1DFEEF51007FD18A /* packet_header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet_header.h; sourceTree = "<group>"; };
-		201C4C0D1DFEEF51007FD18A /* read_bytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = read_bytes.h; sourceTree = "<group>"; };
-		201C4C0E1DFEEF51007FD18A /* write_bytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = write_bytes.h; sourceTree = "<group>"; };
-		201C4C101DFEEF51007FD18A /* coupler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = coupler.cpp; sourceTree = "<group>"; };
-		201C4C111DFEEF51007FD18A /* coupler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coupler.h; sourceTree = "<group>"; };
-		201C4C121DFEEF51007FD18A /* data_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_array.h; sourceTree = "<group>"; };
-		201C4C131DFEEF51007FD18A /* data_bank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_bank.cpp; sourceTree = "<group>"; };
-		201C4C141DFEEF51007FD18A /* data_bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_bank.h; sourceTree = "<group>"; };
-		201C4C151DFEEF51007FD18A /* data_query.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_query.cpp; sourceTree = "<group>"; };
-		201C4C161DFEEF51007FD18A /* data_query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_query.h; sourceTree = "<group>"; };
-		201C4C181DFEEF51007FD18A /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = command.h; sourceTree = "<group>"; };
-		201C4C191DFEEF51007FD18A /* comqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comqueue.h; sourceTree = "<group>"; };
-		201C4C1A1DFEEF51007FD18A /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
-		201C4C1B1DFEEF51007FD18A /* EventBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventBase.cpp; sourceTree = "<group>"; };
-		201C4C1C1DFEEF51007FD18A /* EventBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventBase.h; sourceTree = "<group>"; };
-		201C4C1D1DFEEF51007FD18A /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
-		201C4C1E1DFEEF51007FD18A /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
-		201C4C201DFEEF51007FD18A /* log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log.cpp; sourceTree = "<group>"; };
-		201C4C211DFEEF51007FD18A /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
-		201C4C231DFEEF51007FD18A /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
-		201C4C241DFEEF51007FD18A /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		201C4C261DFEEF51007FD18A /* NetNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetNode.cpp; sourceTree = "<group>"; };
-		201C4C271DFEEF51007FD18A /* NetNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetNode.h; sourceTree = "<group>"; };
-		201C4C281DFEEF51007FD18A /* NetServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetServer.cpp; sourceTree = "<group>"; };
-		201C4C291DFEEF51007FD18A /* NetServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetServer.h; sourceTree = "<group>"; };
-		201C4C2A1DFEEF51007FD18A /* NetSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetSocket.cpp; sourceTree = "<group>"; };
-		201C4C2B1DFEEF51007FD18A /* NetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetSocket.h; sourceTree = "<group>"; };
-		201C4C2C1DFEEF51007FD18A /* network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network.cpp; sourceTree = "<group>"; };
-		201C4C2D1DFEEF51007FD18A /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network.h; sourceTree = "<group>"; };
-		201C4C2E1DFEEF51007FD18A /* SocketEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocketEvent.cpp; sourceTree = "<group>"; };
-		201C4C2F1DFEEF51007FD18A /* SocketEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketEvent.h; sourceTree = "<group>"; };
-		201C4C301DFEEF51007FD18A /* runtime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = runtime.cpp; sourceTree = "<group>"; };
-		201C4C311DFEEF51007FD18A /* runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runtime.h; sourceTree = "<group>"; };
-		201C4C331DFEEF51007FD18A /* lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lock.cpp; sourceTree = "<group>"; };
-		201C4C341DFEEF51007FD18A /* lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lock.h; sourceTree = "<group>"; };
-		201C4C351DFEEF51007FD18A /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
-		201C4C361DFEEF51007FD18A /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
-		201C4C3F1DFEEF51007FD18A /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
-		201C4C401DFEEF51007FD18A /* hashlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashlist.h; sourceTree = "<group>"; };
-		201C4C411DFEEF51007FD18A /* hashmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashmap.h; sourceTree = "<group>"; };
-		201C4C421DFEEF51007FD18A /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_util.cpp; sourceTree = "<group>"; };
-		201C4C431DFEEF51007FD18A /* math_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_util.h; sourceTree = "<group>"; };
-		201C4C441DFEEF51007FD18A /* memorys.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memorys.cpp; sourceTree = "<group>"; };
-		201C4C451DFEEF51007FD18A /* memorys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memorys.h; sourceTree = "<group>"; };
-		201C4C461DFEEF51007FD18A /* string_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_util.cpp; sourceTree = "<group>"; };
-		201C4C471DFEEF51007FD18A /* string_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_util.h; sourceTree = "<group>"; };
-		201C4C481DFEEF51007FD18A /* time_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time_util.cpp; sourceTree = "<group>"; };
-		201C4C491DFEEF51007FD18A /* time_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time_util.h; sourceTree = "<group>"; };
-		201C4C601DFEF749007FD18A /* GameLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLogic.cpp; sourceTree = "<group>"; };
-		201C4C611DFEF749007FD18A /* GameLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLogic.h; sourceTree = "<group>"; };
-		201C4C621DFEF749007FD18A /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
-		201C4C631DFEF749007FD18A /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
-		201C4C641DFEF749007FD18A /* GamePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePlayer.cpp; sourceTree = "<group>"; };
-		201C4C651DFEF749007FD18A /* GamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayer.h; sourceTree = "<group>"; };
-		201C4C661DFEF749007FD18A /* GamePuzzle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePuzzle.cpp; sourceTree = "<group>"; };
-		201C4C671DFEF749007FD18A /* GamePuzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePuzzle.h; sourceTree = "<group>"; };
-		201C4C681DFEF749007FD18A /* GameSeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSeat.cpp; sourceTree = "<group>"; };
-		201C4C691DFEF749007FD18A /* GameSeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSeat.h; sourceTree = "<group>"; };
 		201C4C701DFEF756007FD18A /* DBServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DBServer.cpp; sourceTree = "<group>"; };
 		201C4C711DFEF756007FD18A /* DBServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBServer.h; sourceTree = "<group>"; };
 		201C4C721DFEF756007FD18A /* UserObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserObj.cpp; sourceTree = "<group>"; };
 		201C4C731DFEF756007FD18A /* UserObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObj.h; sourceTree = "<group>"; };
-		201C4C761DFEFA81007FD18A /* WorldRep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldRep.cpp; sourceTree = "<group>"; };
-		201C4C771DFEFA81007FD18A /* WorldRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldRep.h; sourceTree = "<group>"; };
-		201C4C791DFEFC76007FD18A /* GameRep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRep.cpp; sourceTree = "<group>"; };
-		201C4C7A1DFEFC76007FD18A /* GameRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRep.h; sourceTree = "<group>"; };
-		201C4C7C1DFF072C007FD18A /* TimeEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeEvent.cpp; sourceTree = "<group>"; };
-		201C4C7D1DFF072C007FD18A /* TimeEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeEvent.h; sourceTree = "<group>"; };
-		201C4C7F1DFF07C1007FD18A /* TimePush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimePush.cpp; sourceTree = "<group>"; };
-		201C4C801DFF07C1007FD18A /* TimePush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePush.h; sourceTree = "<group>"; };
-		201C4C851DFF0BF0007FD18A /* TimeRunning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeRunning.cpp; sourceTree = "<group>"; };
-		201C4C861DFF0BF0007FD18A /* TimeRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeRunning.h; sourceTree = "<group>"; };
-		202052EC1DFE44E500CBB029 /* GameUser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUser.cpp; sourceTree = "<group>"; };
-		202052ED1DFE44E500CBB029 /* GameUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUser.h; sourceTree = "<group>"; };
-		202052EF1DFE462500CBB029 /* SerHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerHandler.cpp; sourceTree = "<group>"; };
-		202052F01DFE462500CBB029 /* SerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerHandler.h; sourceTree = "<group>"; };
-		2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerManager.cpp; sourceTree = "<group>"; };
-		2070BB371DDAFE5F0017D59C /* PlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManager.h; sourceTree = "<group>"; };
-		2070BB3C1DDB13DD0017D59C /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
-		2070BB3D1DDB13DD0017D59C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		2028A0F11DFFA20C006DE5B9 /* GateMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GateMsg.cpp; sourceTree = "<group>"; };
+		2028A0F21DFFA20C006DE5B9 /* GateMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GateMsg.h; sourceTree = "<group>"; };
+		2028A0F41DFFA21D006DE5B9 /* GateRep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GateRep.cpp; sourceTree = "<group>"; };
+		2028A0F51DFFA21D006DE5B9 /* GateRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GateRep.h; sourceTree = "<group>"; };
+		2028A0FE1DFFA332006DE5B9 /* ZoneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneManager.cpp; sourceTree = "<group>"; };
+		2028A0FF1DFFA332006DE5B9 /* ZoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneManager.h; sourceTree = "<group>"; };
+		2028A1011DFFA332006DE5B9 /* TigerLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TigerLogic.cpp; sourceTree = "<group>"; };
+		2028A1021DFFA332006DE5B9 /* TigerLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TigerLogic.h; sourceTree = "<group>"; };
+		2028A1031DFFA332006DE5B9 /* GamePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePlayer.cpp; sourceTree = "<group>"; };
+		2028A1041DFFA332006DE5B9 /* GamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayer.h; sourceTree = "<group>"; };
+		2028A1051DFFA332006DE5B9 /* GamePuzzle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GamePuzzle.cpp; sourceTree = "<group>"; };
+		2028A1061DFFA332006DE5B9 /* GamePuzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePuzzle.h; sourceTree = "<group>"; };
+		2028A1141DFFA380006DE5B9 /* LogicBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogicBase.cpp; sourceTree = "<group>"; };
+		2028A1151DFFA380006DE5B9 /* LogicBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogicBase.h; sourceTree = "<group>"; };
+		2028A11C1DFFAAAA006DE5B9 /* WorldMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldMsg.cpp; sourceTree = "<group>"; };
+		2028A11D1DFFAAAA006DE5B9 /* WorldMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMsg.h; sourceTree = "<group>"; };
+		2028A11E1DFFAAAA006DE5B9 /* WorldRep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldRep.cpp; sourceTree = "<group>"; };
+		2028A11F1DFFAAAA006DE5B9 /* WorldRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldRep.h; sourceTree = "<group>"; };
+		2028A18B1E003EBB006DE5B9 /* LadLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LadLogic.cpp; sourceTree = "<group>"; };
+		2028A18C1E003EBB006DE5B9 /* LadLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LadLogic.h; sourceTree = "<group>"; };
+		203733851E03BEBC00CB4951 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
+		2037338C1E03BEBC00CB4951 /* data_bank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_bank.cpp; sourceTree = "<group>"; };
+		2037338D1E03BEBC00CB4951 /* data_bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_bank.h; sourceTree = "<group>"; };
+		2037338E1E03BEBC00CB4951 /* data_query.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_query.cpp; sourceTree = "<group>"; };
+		2037338F1E03BEBC00CB4951 /* data_query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_query.h; sourceTree = "<group>"; };
+		203733911E03BEBC00CB4951 /* EventBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventBase.cpp; sourceTree = "<group>"; };
+		203733921E03BEBC00CB4951 /* EventBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventBase.h; sourceTree = "<group>"; };
+		203733931E03BEBC00CB4951 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		203733951E03BEBC00CB4951 /* log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log.cpp; sourceTree = "<group>"; };
+		203733961E03BEBC00CB4951 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
+		203733981E03BEBC00CB4951 /* NetNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetNode.cpp; sourceTree = "<group>"; };
+		203733991E03BEBC00CB4951 /* NetNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetNode.h; sourceTree = "<group>"; };
+		2037339A1E03BEBC00CB4951 /* NetServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetServer.cpp; sourceTree = "<group>"; };
+		2037339B1E03BEBC00CB4951 /* NetServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetServer.h; sourceTree = "<group>"; };
+		2037339C1E03BEBC00CB4951 /* NetSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetSocket.cpp; sourceTree = "<group>"; };
+		2037339D1E03BEBC00CB4951 /* NetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetSocket.h; sourceTree = "<group>"; };
+		2037339E1E03BEBC00CB4951 /* Network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Network.cpp; sourceTree = "<group>"; };
+		2037339F1E03BEBC00CB4951 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
+		203733A01E03BEBC00CB4951 /* SocketEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocketEvent.cpp; sourceTree = "<group>"; };
+		203733A11E03BEBC00CB4951 /* SocketEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketEvent.h; sourceTree = "<group>"; };
+		203733A21E03BEBC00CB4951 /* runtime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = runtime.cpp; sourceTree = "<group>"; };
+		203733A31E03BEBC00CB4951 /* runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runtime.h; sourceTree = "<group>"; };
+		203733A51E03BEBC00CB4951 /* lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lock.cpp; sourceTree = "<group>"; };
+		203733A61E03BEBC00CB4951 /* lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lock.h; sourceTree = "<group>"; };
+		203733A71E03BEBC00CB4951 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
+		203733A81E03BEBC00CB4951 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
+		203733AA1E03BEBC00CB4951 /* TimeEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeEvent.cpp; sourceTree = "<group>"; };
+		203733AB1E03BEBC00CB4951 /* TimeEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeEvent.h; sourceTree = "<group>"; };
+		203733AC1E03BEBC00CB4951 /* TimePush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimePush.cpp; sourceTree = "<group>"; };
+		203733AD1E03BEBC00CB4951 /* TimePush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePush.h; sourceTree = "<group>"; };
+		203733AE1E03BEBC00CB4951 /* TimeRunning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeRunning.cpp; sourceTree = "<group>"; };
+		203733AF1E03BEBC00CB4951 /* TimeRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeRunning.h; sourceTree = "<group>"; };
+		203733B11E03BEBC00CB4951 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
+		203733B21E03BEBC00CB4951 /* ByteArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByteArray.h; sourceTree = "<group>"; };
+		203733B31E03BEBC00CB4951 /* ByteStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByteStream.h; sourceTree = "<group>"; };
+		203733B41E03BEBC00CB4951 /* hashlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashlist.h; sourceTree = "<group>"; };
+		203733B51E03BEBC00CB4951 /* hashmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashmap.h; sourceTree = "<group>"; };
+		203733B61E03BEBC00CB4951 /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_util.cpp; sourceTree = "<group>"; };
+		203733B71E03BEBC00CB4951 /* math_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_util.h; sourceTree = "<group>"; };
+		203733B91E03BEBC00CB4951 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
+		203733BA1E03BEBC00CB4951 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		203733BB1E03BEBC00CB4951 /* memorys.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memorys.cpp; sourceTree = "<group>"; };
+		203733BC1E03BEBC00CB4951 /* memorys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memorys.h; sourceTree = "<group>"; };
+		203733BD1E03BEBC00CB4951 /* string_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_util.cpp; sourceTree = "<group>"; };
+		203733BE1E03BEBC00CB4951 /* string_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_util.h; sourceTree = "<group>"; };
+		203733BF1E03BEBC00CB4951 /* time_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time_util.cpp; sourceTree = "<group>"; };
+		203733C01E03BEBC00CB4951 /* time_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time_util.h; sourceTree = "<group>"; };
+		203733D61E03BEF700CB4951 /* DBConnect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DBConnect.cpp; sourceTree = "<group>"; };
+		203733D71E03BEF700CB4951 /* DBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBConnect.h; sourceTree = "<group>"; };
+		2054B1A41E018481003ADBEC /* HookNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HookNode.cpp; sourceTree = "<group>"; };
+		2054B1A51E018481003ADBEC /* HookNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HookNode.h; sourceTree = "<group>"; };
+		2054B1AD1E0186DB003ADBEC /* RoObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoObject.cpp; sourceTree = "<group>"; };
+		2054B1AE1E0186DB003ADBEC /* RoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoObject.h; sourceTree = "<group>"; };
+		2054B1B31E01941E003ADBEC /* ObjectCollect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectCollect.cpp; sourceTree = "<group>"; };
+		2054B1B41E01941E003ADBEC /* ObjectCollect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectCollect.h; sourceTree = "<group>"; };
+		2054B1B61E01A40E003ADBEC /* WorldServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldServer.cpp; sourceTree = "<group>"; };
+		2054B1B71E01A40E003ADBEC /* WorldServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldServer.h; sourceTree = "<group>"; };
+		205D4EED1E08218A0037F9C6 /* ZoneMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneMsg.cpp; sourceTree = "<group>"; };
+		205D4EEE1E08218A0037F9C6 /* ZoneMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneMsg.h; sourceTree = "<group>"; };
+		205D4EF01E08220E0037F9C6 /* ZoneRep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoneRep.cpp; sourceTree = "<group>"; };
+		205D4EF11E08220E0037F9C6 /* ZoneRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneRep.h; sourceTree = "<group>"; };
 		208D8D6C1DD30008000D45C6 /* ubserver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ubserver; sourceTree = BUILT_PRODUCTS_DIR; };
 		208D8D6F1DD30008000D45C6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		20B3156B1DD953EF0087924A /* WorldMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldMsg.cpp; sourceTree = "<group>"; };
-		20B3156C1DD953EF0087924A /* WorldMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldMsg.h; sourceTree = "<group>"; };
 		20B3157D1DD95CC10087924A /* CmdDefined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CmdDefined.h; sourceTree = "<group>"; };
+		20EF1FF21E02321700309845 /* GateServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GateServer.cpp; sourceTree = "<group>"; };
+		20EF1FF31E02321700309845 /* GateServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GateServer.h; sourceTree = "<group>"; };
+		20F56DD21E04246D0025183F /* MsgHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MsgHandler.cpp; sourceTree = "<group>"; };
+		20F56DD31E04246D0025183F /* MsgHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgHandler.h; sourceTree = "<group>"; };
+		20F56DD51E0424CF0025183F /* PacketBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketBuffer.cpp; sourceTree = "<group>"; };
+		20F56DD61E0424CF0025183F /* PacketBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBuffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,160 +172,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		201C4C081DFEEF51007FD18A /* com */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C091DFEEF51007FD18A /* bit */,
-				201C4C0F1DFEEF51007FD18A /* db */,
-				201C4C171DFEEF51007FD18A /* event */,
-				201C4C1D1DFEEF51007FD18A /* global.h */,
-				201C4C1E1DFEEF51007FD18A /* input.h */,
-				201C4C1F1DFEEF51007FD18A /* log */,
-				201C4C221DFEEF51007FD18A /* md5 */,
-				201C4C251DFEEF51007FD18A /* net */,
-				201C4C301DFEEF51007FD18A /* runtime.cpp */,
-				201C4C311DFEEF51007FD18A /* runtime.h */,
-				201C4C321DFEEF51007FD18A /* thread */,
-				201C4C371DFEEF51007FD18A /* timer */,
-				201C4C3E1DFEEF51007FD18A /* util */,
-			);
-			path = com;
-			sourceTree = "<group>";
-		};
-		201C4C091DFEEF51007FD18A /* bit */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C0A1DFEEF51007FD18A /* buffer_base.h */,
-				201C4C0B1DFEEF51007FD18A /* packet_buffer.h */,
-				201C4C0C1DFEEF51007FD18A /* packet_header.h */,
-				201C4C0D1DFEEF51007FD18A /* read_bytes.h */,
-				201C4C0E1DFEEF51007FD18A /* write_bytes.h */,
-			);
-			path = bit;
-			sourceTree = "<group>";
-		};
-		201C4C0F1DFEEF51007FD18A /* db */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C101DFEEF51007FD18A /* coupler.cpp */,
-				201C4C111DFEEF51007FD18A /* coupler.h */,
-				201C4C121DFEEF51007FD18A /* data_array.h */,
-				201C4C131DFEEF51007FD18A /* data_bank.cpp */,
-				201C4C141DFEEF51007FD18A /* data_bank.h */,
-				201C4C151DFEEF51007FD18A /* data_query.cpp */,
-				201C4C161DFEEF51007FD18A /* data_query.h */,
-			);
-			path = db;
-			sourceTree = "<group>";
-		};
-		201C4C171DFEEF51007FD18A /* event */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C181DFEEF51007FD18A /* command.h */,
-				201C4C191DFEEF51007FD18A /* comqueue.h */,
-				201C4C1A1DFEEF51007FD18A /* event.h */,
-				201C4C1B1DFEEF51007FD18A /* EventBase.cpp */,
-				201C4C1C1DFEEF51007FD18A /* EventBase.h */,
-			);
-			path = event;
-			sourceTree = "<group>";
-		};
-		201C4C1F1DFEEF51007FD18A /* log */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C201DFEEF51007FD18A /* log.cpp */,
-				201C4C211DFEEF51007FD18A /* log.h */,
-			);
-			path = log;
-			sourceTree = "<group>";
-		};
-		201C4C221DFEEF51007FD18A /* md5 */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C231DFEEF51007FD18A /* md5.cpp */,
-				201C4C241DFEEF51007FD18A /* md5.h */,
-			);
-			path = md5;
-			sourceTree = "<group>";
-		};
-		201C4C251DFEEF51007FD18A /* net */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C261DFEEF51007FD18A /* NetNode.cpp */,
-				201C4C271DFEEF51007FD18A /* NetNode.h */,
-				201C4C281DFEEF51007FD18A /* NetServer.cpp */,
-				201C4C291DFEEF51007FD18A /* NetServer.h */,
-				201C4C2A1DFEEF51007FD18A /* NetSocket.cpp */,
-				201C4C2B1DFEEF51007FD18A /* NetSocket.h */,
-				201C4C2C1DFEEF51007FD18A /* network.cpp */,
-				201C4C2D1DFEEF51007FD18A /* network.h */,
-				201C4C2E1DFEEF51007FD18A /* SocketEvent.cpp */,
-				201C4C2F1DFEEF51007FD18A /* SocketEvent.h */,
-			);
-			path = net;
-			sourceTree = "<group>";
-		};
-		201C4C321DFEEF51007FD18A /* thread */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C331DFEEF51007FD18A /* lock.cpp */,
-				201C4C341DFEEF51007FD18A /* lock.h */,
-				201C4C351DFEEF51007FD18A /* thread.cpp */,
-				201C4C361DFEEF51007FD18A /* thread.h */,
-			);
-			path = thread;
-			sourceTree = "<group>";
-		};
-		201C4C371DFEEF51007FD18A /* timer */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C7C1DFF072C007FD18A /* TimeEvent.cpp */,
-				201C4C7D1DFF072C007FD18A /* TimeEvent.h */,
-				201C4C7F1DFF07C1007FD18A /* TimePush.cpp */,
-				201C4C801DFF07C1007FD18A /* TimePush.h */,
-				201C4C851DFF0BF0007FD18A /* TimeRunning.cpp */,
-				201C4C861DFF0BF0007FD18A /* TimeRunning.h */,
-			);
-			path = timer;
-			sourceTree = "<group>";
-		};
-		201C4C3E1DFEEF51007FD18A /* util */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C3F1DFEEF51007FD18A /* array.h */,
-				201C4C401DFEEF51007FD18A /* hashlist.h */,
-				201C4C411DFEEF51007FD18A /* hashmap.h */,
-				201C4C421DFEEF51007FD18A /* math_util.cpp */,
-				201C4C431DFEEF51007FD18A /* math_util.h */,
-				201C4C441DFEEF51007FD18A /* memorys.cpp */,
-				201C4C451DFEEF51007FD18A /* memorys.h */,
-				201C4C461DFEEF51007FD18A /* string_util.cpp */,
-				201C4C471DFEEF51007FD18A /* string_util.h */,
-				201C4C481DFEEF51007FD18A /* time_util.cpp */,
-				201C4C491DFEEF51007FD18A /* time_util.h */,
-			);
-			path = util;
-			sourceTree = "<group>";
-		};
-		201C4C5F1DFEF749007FD18A /* tiger */ = {
-			isa = PBXGroup;
-			children = (
-				201C4C601DFEF749007FD18A /* GameLogic.cpp */,
-				201C4C611DFEF749007FD18A /* GameLogic.h */,
-				201C4C621DFEF749007FD18A /* GameManager.cpp */,
-				201C4C631DFEF749007FD18A /* GameManager.h */,
-				201C4C641DFEF749007FD18A /* GamePlayer.cpp */,
-				201C4C651DFEF749007FD18A /* GamePlayer.h */,
-				201C4C661DFEF749007FD18A /* GamePuzzle.cpp */,
-				201C4C671DFEF749007FD18A /* GamePuzzle.h */,
-				201C4C681DFEF749007FD18A /* GameSeat.cpp */,
-				201C4C691DFEF749007FD18A /* GameSeat.h */,
-				201C4C791DFEFC76007FD18A /* GameRep.cpp */,
-				201C4C7A1DFEFC76007FD18A /* GameRep.h */,
-			);
-			path = tiger;
-			sourceTree = "<group>";
-		};
 		201C4C6F1DFEF756007FD18A /* obj */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +181,209 @@
 				201C4C731DFEF756007FD18A /* UserObj.h */,
 			);
 			path = obj;
+			sourceTree = "<group>";
+		};
+		2028A0F01DFFA1BB006DE5B9 /* gate */ = {
+			isa = PBXGroup;
+			children = (
+				2028A0F11DFFA20C006DE5B9 /* GateMsg.cpp */,
+				2028A0F21DFFA20C006DE5B9 /* GateMsg.h */,
+				2028A0F41DFFA21D006DE5B9 /* GateRep.cpp */,
+				2028A0F51DFFA21D006DE5B9 /* GateRep.h */,
+				20EF1FF21E02321700309845 /* GateServer.cpp */,
+				20EF1FF31E02321700309845 /* GateServer.h */,
+			);
+			path = gate;
+			sourceTree = "<group>";
+		};
+		2028A0FD1DFFA332006DE5B9 /* zone */ = {
+			isa = PBXGroup;
+			children = (
+				2028A1871E003E81006DE5B9 /* landlord */,
+				2028A1001DFFA332006DE5B9 /* tiger */,
+				2028A1141DFFA380006DE5B9 /* LogicBase.cpp */,
+				2028A1151DFFA380006DE5B9 /* LogicBase.h */,
+				2028A0FE1DFFA332006DE5B9 /* ZoneManager.cpp */,
+				2028A0FF1DFFA332006DE5B9 /* ZoneManager.h */,
+				205D4EED1E08218A0037F9C6 /* ZoneMsg.cpp */,
+				205D4EEE1E08218A0037F9C6 /* ZoneMsg.h */,
+				205D4EF01E08220E0037F9C6 /* ZoneRep.cpp */,
+				205D4EF11E08220E0037F9C6 /* ZoneRep.h */,
+			);
+			path = zone;
+			sourceTree = "<group>";
+		};
+		2028A1001DFFA332006DE5B9 /* tiger */ = {
+			isa = PBXGroup;
+			children = (
+				2028A1011DFFA332006DE5B9 /* TigerLogic.cpp */,
+				2028A1021DFFA332006DE5B9 /* TigerLogic.h */,
+				2028A1031DFFA332006DE5B9 /* GamePlayer.cpp */,
+				2028A1041DFFA332006DE5B9 /* GamePlayer.h */,
+				2028A1051DFFA332006DE5B9 /* GamePuzzle.cpp */,
+				2028A1061DFFA332006DE5B9 /* GamePuzzle.h */,
+			);
+			path = tiger;
+			sourceTree = "<group>";
+		};
+		2028A1171DFFAAAA006DE5B9 /* world */ = {
+			isa = PBXGroup;
+			children = (
+				2028A11C1DFFAAAA006DE5B9 /* WorldMsg.cpp */,
+				2028A11D1DFFAAAA006DE5B9 /* WorldMsg.h */,
+				2028A11E1DFFAAAA006DE5B9 /* WorldRep.cpp */,
+				2028A11F1DFFAAAA006DE5B9 /* WorldRep.h */,
+				2054B1A41E018481003ADBEC /* HookNode.cpp */,
+				2054B1A51E018481003ADBEC /* HookNode.h */,
+				2054B1AD1E0186DB003ADBEC /* RoObject.cpp */,
+				2054B1AE1E0186DB003ADBEC /* RoObject.h */,
+				2054B1B31E01941E003ADBEC /* ObjectCollect.cpp */,
+				2054B1B41E01941E003ADBEC /* ObjectCollect.h */,
+				2054B1B61E01A40E003ADBEC /* WorldServer.cpp */,
+				2054B1B71E01A40E003ADBEC /* WorldServer.h */,
+			);
+			path = world;
+			sourceTree = "<group>";
+		};
+		2028A1871E003E81006DE5B9 /* landlord */ = {
+			isa = PBXGroup;
+			children = (
+				2028A18B1E003EBB006DE5B9 /* LadLogic.cpp */,
+				2028A18C1E003EBB006DE5B9 /* LadLogic.h */,
+			);
+			path = landlord;
+			sourceTree = "<group>";
+		};
+		203733841E03BEBC00CB4951 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				203733851E03BEBC00CB4951 /* input.h */,
+				203733881E03BEBC00CB4951 /* soy */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		203733881E03BEBC00CB4951 /* soy */ = {
+			isa = PBXGroup;
+			children = (
+				203733891E03BEBC00CB4951 /* db */,
+				203733901E03BEBC00CB4951 /* event */,
+				203733931E03BEBC00CB4951 /* global.h */,
+				203733941E03BEBC00CB4951 /* log */,
+				203733971E03BEBC00CB4951 /* net */,
+				203733A21E03BEBC00CB4951 /* runtime.cpp */,
+				203733A31E03BEBC00CB4951 /* runtime.h */,
+				203733A41E03BEBC00CB4951 /* thread */,
+				203733A91E03BEBC00CB4951 /* timer */,
+				203733B01E03BEBC00CB4951 /* util */,
+			);
+			path = soy;
+			sourceTree = "<group>";
+		};
+		203733891E03BEBC00CB4951 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				2037338C1E03BEBC00CB4951 /* data_bank.cpp */,
+				2037338D1E03BEBC00CB4951 /* data_bank.h */,
+				2037338E1E03BEBC00CB4951 /* data_query.cpp */,
+				2037338F1E03BEBC00CB4951 /* data_query.h */,
+				203733D61E03BEF700CB4951 /* DBConnect.cpp */,
+				203733D71E03BEF700CB4951 /* DBConnect.h */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		203733901E03BEBC00CB4951 /* event */ = {
+			isa = PBXGroup;
+			children = (
+				203733911E03BEBC00CB4951 /* EventBase.cpp */,
+				203733921E03BEBC00CB4951 /* EventBase.h */,
+			);
+			path = event;
+			sourceTree = "<group>";
+		};
+		203733941E03BEBC00CB4951 /* log */ = {
+			isa = PBXGroup;
+			children = (
+				203733951E03BEBC00CB4951 /* log.cpp */,
+				203733961E03BEBC00CB4951 /* log.h */,
+			);
+			path = log;
+			sourceTree = "<group>";
+		};
+		203733971E03BEBC00CB4951 /* net */ = {
+			isa = PBXGroup;
+			children = (
+				203733981E03BEBC00CB4951 /* NetNode.cpp */,
+				203733991E03BEBC00CB4951 /* NetNode.h */,
+				2037339A1E03BEBC00CB4951 /* NetServer.cpp */,
+				2037339B1E03BEBC00CB4951 /* NetServer.h */,
+				2037339C1E03BEBC00CB4951 /* NetSocket.cpp */,
+				2037339D1E03BEBC00CB4951 /* NetSocket.h */,
+				2037339E1E03BEBC00CB4951 /* Network.cpp */,
+				2037339F1E03BEBC00CB4951 /* Network.h */,
+				203733A01E03BEBC00CB4951 /* SocketEvent.cpp */,
+				203733A11E03BEBC00CB4951 /* SocketEvent.h */,
+				20F56DD21E04246D0025183F /* MsgHandler.cpp */,
+				20F56DD31E04246D0025183F /* MsgHandler.h */,
+				20F56DD51E0424CF0025183F /* PacketBuffer.cpp */,
+				20F56DD61E0424CF0025183F /* PacketBuffer.h */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		203733A41E03BEBC00CB4951 /* thread */ = {
+			isa = PBXGroup;
+			children = (
+				203733A51E03BEBC00CB4951 /* lock.cpp */,
+				203733A61E03BEBC00CB4951 /* lock.h */,
+				203733A71E03BEBC00CB4951 /* thread.cpp */,
+				203733A81E03BEBC00CB4951 /* thread.h */,
+			);
+			path = thread;
+			sourceTree = "<group>";
+		};
+		203733A91E03BEBC00CB4951 /* timer */ = {
+			isa = PBXGroup;
+			children = (
+				203733AA1E03BEBC00CB4951 /* TimeEvent.cpp */,
+				203733AB1E03BEBC00CB4951 /* TimeEvent.h */,
+				203733AC1E03BEBC00CB4951 /* TimePush.cpp */,
+				203733AD1E03BEBC00CB4951 /* TimePush.h */,
+				203733AE1E03BEBC00CB4951 /* TimeRunning.cpp */,
+				203733AF1E03BEBC00CB4951 /* TimeRunning.h */,
+			);
+			path = timer;
+			sourceTree = "<group>";
+		};
+		203733B01E03BEBC00CB4951 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				203733B11E03BEBC00CB4951 /* array.h */,
+				203733B21E03BEBC00CB4951 /* ByteArray.h */,
+				203733B31E03BEBC00CB4951 /* ByteStream.h */,
+				203733B41E03BEBC00CB4951 /* hashlist.h */,
+				203733B51E03BEBC00CB4951 /* hashmap.h */,
+				203733B61E03BEBC00CB4951 /* math_util.cpp */,
+				203733B71E03BEBC00CB4951 /* math_util.h */,
+				203733B81E03BEBC00CB4951 /* md5 */,
+				203733BB1E03BEBC00CB4951 /* memorys.cpp */,
+				203733BC1E03BEBC00CB4951 /* memorys.h */,
+				203733BD1E03BEBC00CB4951 /* string_util.cpp */,
+				203733BE1E03BEBC00CB4951 /* string_util.h */,
+				203733BF1E03BEBC00CB4951 /* time_util.cpp */,
+				203733C01E03BEBC00CB4951 /* time_util.h */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		203733B81E03BEBC00CB4951 /* md5 */ = {
+			isa = PBXGroup;
+			children = (
+				203733B91E03BEBC00CB4951 /* md5.cpp */,
+				203733BA1E03BEBC00CB4951 /* md5.h */,
+			);
+			path = md5;
 			sourceTree = "<group>";
 		};
 		208D8D631DD30008000D45C6 = {
@@ -342,33 +405,15 @@
 		208D8D6E1DD30008000D45C6 /* ubserver */ = {
 			isa = PBXGroup;
 			children = (
-				20AB02341DDD838500102A07 /* world */,
+				203733841E03BEBC00CB4951 /* com */,
+				2028A1171DFFAAAA006DE5B9 /* world */,
+				2028A0FD1DFFA332006DE5B9 /* zone */,
+				2028A0F01DFFA1BB006DE5B9 /* gate */,
 				201C4C6F1DFEF756007FD18A /* obj */,
-				201C4C5F1DFEF749007FD18A /* tiger */,
-				201C4C081DFEEF51007FD18A /* com */,
+				20B3157D1DD95CC10087924A /* CmdDefined.h */,
 				208D8D6F1DD30008000D45C6 /* main.cpp */,
 			);
 			path = ubserver;
-			sourceTree = "<group>";
-		};
-		20AB02341DDD838500102A07 /* world */ = {
-			isa = PBXGroup;
-			children = (
-				20B3157D1DD95CC10087924A /* CmdDefined.h */,
-				202052ED1DFE44E500CBB029 /* GameUser.h */,
-				202052EC1DFE44E500CBB029 /* GameUser.cpp */,
-				202052F01DFE462500CBB029 /* SerHandler.h */,
-				202052EF1DFE462500CBB029 /* SerHandler.cpp */,
-				2070BB371DDAFE5F0017D59C /* PlayerManager.h */,
-				2070BB361DDAFE5F0017D59C /* PlayerManager.cpp */,
-				2070BB3D1DDB13DD0017D59C /* Player.h */,
-				2070BB3C1DDB13DD0017D59C /* Player.cpp */,
-				20B3156C1DD953EF0087924A /* WorldMsg.h */,
-				20B3156B1DD953EF0087924A /* WorldMsg.cpp */,
-				201C4C771DFEFA81007FD18A /* WorldRep.h */,
-				201C4C761DFEFA81007FD18A /* WorldRep.cpp */,
-			);
-			name = world;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,42 +472,49 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				203733C51E03BEBC00CB4951 /* log.cpp in Sources */,
 				201C4C741DFEF756007FD18A /* DBServer.cpp in Sources */,
-				201C4C781DFEFA81007FD18A /* WorldRep.cpp in Sources */,
+				203733C41E03BEBC00CB4951 /* EventBase.cpp in Sources */,
 				201C4C751DFEF756007FD18A /* UserObj.cpp in Sources */,
-				201C4C811DFF07C1007FD18A /* TimePush.cpp in Sources */,
-				201C4C4E1DFEEF51007FD18A /* log.cpp in Sources */,
-				201C4C871DFF0BF0007FD18A /* TimeRunning.cpp in Sources */,
-				201C4C4B1DFEEF51007FD18A /* data_bank.cpp in Sources */,
-				201C4C5D1DFEEF51007FD18A /* string_util.cpp in Sources */,
-				201C4C6E1DFEF749007FD18A /* GameSeat.cpp in Sources */,
-				202052F11DFE462500CBB029 /* SerHandler.cpp in Sources */,
-				2070BB381DDAFE5F0017D59C /* PlayerManager.cpp in Sources */,
-				201C4C531DFEEF51007FD18A /* network.cpp in Sources */,
-				201C4C5C1DFEEF51007FD18A /* memorys.cpp in Sources */,
-				201C4C7E1DFF072C007FD18A /* TimeEvent.cpp in Sources */,
-				201C4C6B1DFEF749007FD18A /* GameManager.cpp in Sources */,
-				201C4C5E1DFEEF51007FD18A /* time_util.cpp in Sources */,
-				2070BB3E1DDB13DD0017D59C /* Player.cpp in Sources */,
-				201C4C6A1DFEF749007FD18A /* GameLogic.cpp in Sources */,
-				20B3156D1DD953EF0087924A /* WorldMsg.cpp in Sources */,
-				201C4C571DFEEF51007FD18A /* thread.cpp in Sources */,
+				2028A18D1E003EBB006DE5B9 /* LadLogic.cpp in Sources */,
+				203733C21E03BEBC00CB4951 /* data_bank.cpp in Sources */,
+				203733D21E03BEBC00CB4951 /* md5.cpp in Sources */,
+				2028A10E1DFFA332006DE5B9 /* TigerLogic.cpp in Sources */,
+				2028A0F61DFFA21D006DE5B9 /* GateRep.cpp in Sources */,
+				2028A10D1DFFA332006DE5B9 /* ZoneManager.cpp in Sources */,
+				203733C61E03BEBC00CB4951 /* NetNode.cpp in Sources */,
+				203733D51E03BEBC00CB4951 /* time_util.cpp in Sources */,
+				20F56DD71E0424CF0025183F /* PacketBuffer.cpp in Sources */,
+				203733D11E03BEBC00CB4951 /* math_util.cpp in Sources */,
+				203733CE1E03BEBC00CB4951 /* TimeEvent.cpp in Sources */,
+				203733CA1E03BEBC00CB4951 /* SocketEvent.cpp in Sources */,
+				203733C91E03BEBC00CB4951 /* Network.cpp in Sources */,
+				2054B1A61E018481003ADBEC /* HookNode.cpp in Sources */,
+				2028A0F31DFFA20C006DE5B9 /* GateMsg.cpp in Sources */,
+				203733D41E03BEBC00CB4951 /* string_util.cpp in Sources */,
+				2028A10F1DFFA332006DE5B9 /* GamePlayer.cpp in Sources */,
+				203733C81E03BEBC00CB4951 /* NetSocket.cpp in Sources */,
+				203733CB1E03BEBC00CB4951 /* runtime.cpp in Sources */,
+				205D4EEF1E08218A0037F9C6 /* ZoneMsg.cpp in Sources */,
+				2054B1AF1E0186DB003ADBEC /* RoObject.cpp in Sources */,
+				205D4EF21E08220E0037F9C6 /* ZoneRep.cpp in Sources */,
+				203733D81E03BEF700CB4951 /* DBConnect.cpp in Sources */,
+				203733CD1E03BEBC00CB4951 /* thread.cpp in Sources */,
+				20EF1FF41E02321700309845 /* GateServer.cpp in Sources */,
+				2054B1B81E01A40E003ADBEC /* WorldServer.cpp in Sources */,
+				203733C71E03BEBC00CB4951 /* NetServer.cpp in Sources */,
+				2028A1161DFFA380006DE5B9 /* LogicBase.cpp in Sources */,
+				2054B1B51E01941E003ADBEC /* ObjectCollect.cpp in Sources */,
+				2028A1231DFFAAAA006DE5B9 /* WorldRep.cpp in Sources */,
 				208D8D701DD30008000D45C6 /* main.cpp in Sources */,
-				201C4C541DFEEF51007FD18A /* SocketEvent.cpp in Sources */,
-				201C4C551DFEEF51007FD18A /* runtime.cpp in Sources */,
-				201C4C511DFEEF51007FD18A /* NetServer.cpp in Sources */,
-				202052EE1DFE44E500CBB029 /* GameUser.cpp in Sources */,
-				201C4C6C1DFEF749007FD18A /* GamePlayer.cpp in Sources */,
-				201C4C501DFEEF51007FD18A /* NetNode.cpp in Sources */,
-				201C4C561DFEEF51007FD18A /* lock.cpp in Sources */,
-				201C4C5B1DFEEF51007FD18A /* math_util.cpp in Sources */,
-				201C4C4F1DFEEF51007FD18A /* md5.cpp in Sources */,
-				201C4C521DFEEF51007FD18A /* NetSocket.cpp in Sources */,
-				201C4C4A1DFEEF51007FD18A /* coupler.cpp in Sources */,
-				201C4C6D1DFEF749007FD18A /* GamePuzzle.cpp in Sources */,
-				201C4C4C1DFEEF51007FD18A /* data_query.cpp in Sources */,
-				201C4C4D1DFEEF51007FD18A /* EventBase.cpp in Sources */,
-				201C4C7B1DFEFC76007FD18A /* GameRep.cpp in Sources */,
+				20F56DD41E04246D0025183F /* MsgHandler.cpp in Sources */,
+				203733CF1E03BEBC00CB4951 /* TimePush.cpp in Sources */,
+				203733D31E03BEBC00CB4951 /* memorys.cpp in Sources */,
+				203733CC1E03BEBC00CB4951 /* lock.cpp in Sources */,
+				203733D01E03BEBC00CB4951 /* TimeRunning.cpp in Sources */,
+				2028A1221DFFAAAA006DE5B9 /* WorldMsg.cpp in Sources */,
+				2028A1101DFFA332006DE5B9 /* GamePuzzle.cpp in Sources */,
+				203733C31E03BEBC00CB4951 /* data_query.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

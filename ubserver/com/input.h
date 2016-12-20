@@ -12,11 +12,11 @@
 #include <iostream>
 #include <stdio.h>
 
-#include "data_array.h"
+#include "ByteArray.h"
 #include "log.h"
 
 //class method
-void analytic(DataArray *array, const char* bytes, int size)
+void analytic(ByteArray *array, const char* bytes, int size)
 {
     array->clear();
     int sub_len = 0;
@@ -28,7 +28,7 @@ void analytic(DataArray *array, const char* bytes, int size)
             char byte[sub_len + 1];
             memcpy(byte, &bytes[prev_pos], sub_len);
             byte[sub_len] = '\0';
-            array->WriteChars(byte, sub_len + 1);
+            array->writeBytes(byte, sub_len + 1);
             //argLen++;
             prev_pos = i + 1;
             sub_len = 0;
@@ -41,7 +41,7 @@ void analytic(DataArray *array, const char* bytes, int size)
             char byte[sub_len + 1];
             memcpy(byte, &bytes[prev_pos], sub_len);
             byte[sub_len] = '\0';
-            array->WriteChars(byte, sub_len + 1);
+            array->writeBytes(byte, sub_len + 1);
             //argLen++;
         }
     }
@@ -50,21 +50,21 @@ void analytic(DataArray *array, const char* bytes, int size)
 #define MAX_INPUT 1024
 
 template <class FUN>
-void epoll_input(FUN fun)
+void epoll_input(FUN func)
 {
-    DataArray input_data;
+    ByteArray input_data;
     std::string str;
     while(getline(std::cin, str))
     {
         analytic(&input_data, str.c_str(), (int)str.length());
         try{
-            fun(&input_data);
+            func(&input_data);
         }catch(...){
-            Log::Warn("#@input handle error");
+            LOG_WARN("#@input handle error");
         }
         str.clear();
     };
-    Log::Warn("#@input exit!");
+    LOG_WARN("#@input exit!");
 }
 
 #endif /* input_h */

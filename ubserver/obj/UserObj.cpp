@@ -24,15 +24,15 @@ bool UserObj::result()
     if(is_result) return true;
     //
     DataQuery result;
-    DBCoupler sql(DBServer::getInstance());
+    DBConnect sql(DBServer::getInstance());
     sql.SQL().findFormat(result, "select * from player where uid = '%d'", user_id);
     //
     if(!result.empty())
     {
-        money = UNIT::parseInt64(result["money"]->value);
-        exp = UNIT::parseInt(result["exp"]->value);
-        vipexp = UNIT::parseInt(result["vipexp"]->value);
-        viptype = UNIT::parseInt(result["viptype"]->value);
+        money = soy::parseInt64(result["money"]->value);
+        exp = soy::parseInt(result["exp"]->value);
+        vipexp = soy::parseInt(result["vipexp"]->value);
+        viptype = soy::parseInt(result["viptype"]->value);
         uname = result["name"]->value;
         is_result = true;
     }
