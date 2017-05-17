@@ -56,7 +56,7 @@ private://计时器
 public:
     TigerLogic();
     virtual ~TigerLogic();
-    void OnPacketHandler(MsgHandler* packet)override;
+    void OnPacketHandler(SocketHandler* packet)override;
 protected:
     void EnterHome(USER_T uid);
     void LeaveHome(USER_T uid);

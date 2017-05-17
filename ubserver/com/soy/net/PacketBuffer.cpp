@@ -30,7 +30,7 @@ int32 PacketBuffer::WriteEnd()
 {
     int32 mark = (int32)wpos() - m_wpos;
     wpos(m_wpos);
-    append(mark - PACKET_BEGIN);
+    writeInt(mark - PACKET_BEGIN);
     wpos(mark + m_wpos);
     m_wpos = (int32)wpos();
     //返回包长度
@@ -67,12 +67,11 @@ void PacketBuffer::ReadEnd()
     }
 }
 
-void PacketBuffer::WriteTo(ByteStream &bytes)
+void PacketBuffer::Setout()
 {
-    
-}
-
-void PacketBuffer::ReadFor(ByteStream &bytes)
-{
-    
+    this->reset();
+    this->m_wpos = 0;
+    this->m_rpos = 0;
+    this->packet_size = 0;
+    this->clear();
 }

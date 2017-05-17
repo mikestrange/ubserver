@@ -14,7 +14,7 @@
 //包头字节长度
 #define PACKET_BEGIN 4
 //最大1MB的包长
-#define PACKET_MAX 1024*1024
+#define MESSAGE_PACKET_MAX 1024*1024
 
 class PacketBuffer : public ByteArray , public IReader
 {
@@ -37,9 +37,7 @@ public:
     
     virtual void ReadEnd();
     
-public:
-    void WriteTo(ByteStream& bytes)override;
-    void ReadFor(ByteStream& bytes)override;
+    virtual void Setout();
 };
 
 #endif /* PacketBuffer_h */

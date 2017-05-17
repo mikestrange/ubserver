@@ -33,7 +33,7 @@ void ZoneManager::shut(TABLE_ID tid)
     SAFE_DELETE(logic);
 }
 
-void ZoneManager::OnPacketHandler(MsgHandler* packet)
+void ZoneManager::OnPacketHandler(SocketHandler* packet)
 {
     TABLE_ID room_id = packet->getViewId();
     LogicBase* game = tab.getValue(room_id);

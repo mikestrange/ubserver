@@ -10,6 +10,7 @@
 #define TimeRunning_h
 
 #include "lock.h"
+#include "array.h"
 #include "hashmap.h"
 
 #include "TimePush.h"
@@ -26,9 +27,10 @@ public:
     
 private:
     int currentTimeid;
-    HashMap<int, TimeEvent*> tMap;
     
-    int _AddTime(TimePush* target, TIME_T delay = 0, int type = 0);
+    HashMap<int, TimeEvent*> m_table;
+    
+    int CreateTimer(TimePush* target, TIME_T delay = 0, int type = 0);
     
     void _StopTime(int tid);
     

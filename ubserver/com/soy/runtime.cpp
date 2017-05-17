@@ -1,13 +1,9 @@
 #include "runtime.h"
 
-
 STATIC_CLASS_INIT(RunTime);
 
-
 RunTime::RunTime()
-{
-    
-}
+{}
 
 RunTime::~RunTime()
 {
@@ -51,7 +47,14 @@ bool RunTime::call()
 bool RunTime::push(RunTask* v)
 {
     AUTO_LOCK(this);
-    list.add(v);
+    if(list.full())
+    {
+        v->destroy();
+        SAFE_DELETE(v);
+        return false;
+    }else{
+        list.add(v);
+    }
     return true;
 }
 

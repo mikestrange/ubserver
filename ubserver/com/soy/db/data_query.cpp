@@ -29,7 +29,7 @@ RowItem* RowItem::create(char* key, char* value)
 
 //class DataQuery
 DataQuery::DataQuery()
-:_row(0)
+:m_row(0)
 {}
 
 DataQuery::~DataQuery()
@@ -37,43 +37,43 @@ DataQuery::~DataQuery()
     clear();
 }
 
-DataQuery::DBList& DataQuery::Next()
+DataQuery::DBList* DataQuery::Next()
 {
-    DBList *row = new DBList;
-    _Vector.push_back(row);
-    return *row;
+    DBList *v = new DBList;
+    m_vector.push_back(v);
+    return v;
 }
 
     //gets
 void DataQuery::row(size_t v)
 {
-    _row = v;
+    m_row = v;
 }
 
 size_t DataQuery::row()
 {
-    return _row;
+    return m_row;
 }
 
 size_t DataQuery::length()const
 {
-    return _Vector.size();
+    return m_vector.size();
 }
 
 bool DataQuery::empty()const
 {
-    return _Vector.empty();
+    return m_vector.empty();
 }
 
 bool DataQuery::exceed()const
 {
-    return _row >= _Vector.size();
+    return m_row >= m_vector.size();
 }
 
 DataQuery::DBList* DataQuery::current()
 {
     if(exceed()) return NULL;
-    return _Vector[_row];
+    return m_vector[m_row];
 }
 
 //当前行的一个结果(健和值)
@@ -94,7 +94,7 @@ RowItem* DataQuery::result(const char* key)
     for(size_t i = 0; i < row.size(); i++)
     {
         auto item = row[i];
-        if(strcmp(key, item->key) == 0)
+        if(strcmp(key, item->key.c_str()) == 0)
         {
             return item;
         }
@@ -117,7 +117,7 @@ RowItem* DataQuery::operator[] (size_t index)
 bool DataQuery::match(const char* key, const char* value)
 {
     auto item = result(key);
-    if(item && strcmp(item->value, value) == 0)
+    if(item && strcmp(item->value.c_str(), value) == 0)
     {
         return true;
     }
@@ -127,7 +127,7 @@ bool DataQuery::match(const char* key, const char* value)
 bool DataQuery::match(size_t index, const char* value)
 {
     auto item = result(index);
-    if(item && strcmp(item->value, value) == 0)
+    if(item && strcmp(item->value.c_str(), value) == 0)
     {
         return true;
     }
@@ -136,35 +136,36 @@ bool DataQuery::match(size_t index, const char* value)
 
 void DataQuery::clear()
 {
-    size_t len = _Vector.size();
-    _row = 0;
+    int len = (int)m_vector.size();
+    m_row = 0;
     if(len > 0)
     {
-        for(size_t i = 0; i < len; i++)
+        for(int i = len - 1; i >= 0; i--)
         {
-            DBList& row = *_Vector[i];
-            for(size_t j = 0; j < row.size(); j++)
+            DBList& v = *m_vector[i];
+            LOG_DEBUG("删除啊->%ld %d", i, v.size());
+            for(int j = (int)v.size() - 1; j >= 0; j--)
             {
-                delete row[j];
+                delete v[j];
             }
-            delete _Vector[i];
+            delete m_vector[i];
         }
-        _Vector.clear();
+        m_vector.clear();
     }
 }
 
 //查看
 void DataQuery::toString()
 {
-    size_t length = _Vector.size();
+    size_t length = m_vector.size();
     for(size_t i = 0; i < length; i++)
     {
-        DBList& row = *_Vector[i];
+        DBList& v = *m_vector[i];
         std::cout<<(i+1)<<" = {"<<std::endl;
-        size_t rowLen = row.size();
+        size_t rowLen = v.size();
         for(size_t j = 0; j < rowLen; j++)
         {
-            RowItem* item = row[j];
+            RowItem* item = v[j];
             std::cout<<"    key="<<item->key<<", value="<<item->value<<std::endl;
         }
         std::cout<<"};"<<std::endl;

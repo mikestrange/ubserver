@@ -28,7 +28,7 @@ void analytic(ByteArray *array, const char* bytes, int size)
             char byte[sub_len + 1];
             memcpy(byte, &bytes[prev_pos], sub_len);
             byte[sub_len] = '\0';
-            array->writeBytes(byte, sub_len + 1);
+            array->writeChars(byte, sub_len + 1);
             //argLen++;
             prev_pos = i + 1;
             sub_len = 0;
@@ -41,7 +41,7 @@ void analytic(ByteArray *array, const char* bytes, int size)
             char byte[sub_len + 1];
             memcpy(byte, &bytes[prev_pos], sub_len);
             byte[sub_len] = '\0';
-            array->writeBytes(byte, sub_len + 1);
+            array->writeChars(byte, sub_len + 1);
             //argLen++;
         }
     }

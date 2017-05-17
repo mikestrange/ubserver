@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "global.h"
-#include "MsgHandler.h"
+#include "SocketHandler.h"
 
 class LogicBase
 {
@@ -28,7 +28,7 @@ public:
     
     virtual void OnExit();
     
-    virtual void OnPacketHandler(MsgHandler* packet)=0;
+    virtual void OnPacketHandler(SocketHandler* packet)=0;
     
 public:
     TABLE_ID getTableID()const;

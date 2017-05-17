@@ -11,7 +11,7 @@
 
 #include "global.h"
 #include "ObjectCollect.h"
-#include "NetNode.h"
+#include "NetContext.h"
 
 class ObjectCollect;
 class HookNode;
@@ -22,20 +22,13 @@ private:
     USER_T m_uid;
     uint8 m_type;
     TOKEN_T m_regid;
-    bool is_login;
 private:
-    NetNode* m_node;
+    NetContext* m_context;
 public:
-    RoObject(USER_T uid, uint8 type = 0);
+    RoObject(USER_T uid, NetContext* context, uint8 type = 0);
     virtual ~RoObject();
-private:
-    friend class ObjectCollect;
-    void OnLoginReg(NetNode* node);
-    bool OnLogoutReg();
 public:
-    bool isLogin()const;
-    NetNode* getSock()const;
-    SOCKET_T getSockID();
+    NetContext* getContext()const;
     USER_T getUID()const;
 };
 

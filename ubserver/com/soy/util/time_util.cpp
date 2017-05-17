@@ -33,13 +33,13 @@ namespace TimeUtil
     //毫秒
     TIME_T ConverMSec(TimeVal& tv)
     {
-        return tv.tv_sec*1000 + tv.tv_usec/1000;
+        return tv.tv_sec*MVAL_TIME + tv.tv_usec/MVAL_TIME;
     }
     
     //微秒
     TIME_T ConverUSec(TimeVal& tv)
     {
-        return tv.tv_sec*1000000 + tv.tv_usec;
+        return tv.tv_sec*UVAL_TIME + tv.tv_usec;
     }
     
     void ConverSpec(TIME_T v, struct timespec& t)
@@ -50,13 +50,28 @@ namespace TimeUtil
     
     void begin()
     {
-        gettimeofday(&runtime, NULL);
+        TimeUtil::GetTimer(runtime);
     }
     
     void end()
     {
         TimeVal value;
-        gettimeofday(&value, NULL);
-        LOG_DEBUG("[消耗 秒=%d 微妙=%d 单位=%d", value.tv_sec - runtime.tv_sec, (value.tv_usec - runtime.tv_usec), 1000000/(value.tv_usec - runtime.tv_usec));
+        TimeUtil::GetTimer(value);
+        long sub_s = value.tv_sec - runtime.tv_sec;
+        double sub_us = (double)(value.tv_usec - runtime.tv_usec)/UVAL_TIME;
+        double sub_ss = sub_s + sub_us;     //经历多少秒
+        long count = 1/sub_ss;              //1秒执行次数
+        trace("[s=%d微妙 %ldmsg/s]", int(sub_us*UVAL_TIME), count);
+    }
+    
+    void end(size_t size)
+    {
+        TimeVal value;
+        TimeUtil::GetTimer(value);
+        long sub_s = value.tv_sec - runtime.tv_sec;
+        double sub_us = (double)(value.tv_usec - runtime.tv_usec)/UVAL_TIME;
+        double sub_ss = sub_s + sub_us;
+        long count = 1/sub_ss;
+        trace("[s=%f %ldMib/s]", sub_ss, count*size/(1024*1024));
     }
 }

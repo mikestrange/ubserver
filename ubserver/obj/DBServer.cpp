@@ -8,9 +8,7 @@
 
 #include "DBServer.h"
 
-
 STATIC_CLASS_INIT(DBServer);
-
 
 void DBServer::launch(const char *host)
 {

@@ -22,6 +22,7 @@ public:
 class TimePush
 {
 private:
+    friend class TimeRunning;
     int timeid;
 private:
     TIME_T m_delay;

@@ -143,12 +143,12 @@ bool DataBank::find(DataQuery& query, const char* sql)
             MYSQL_ROW sql_row;
             while((sql_row = mysql_fetch_row(result)))
             {
-                DataQuery::DBList &row = query.Next();
+                DataQuery::DBList *row = query.Next();
                 for(int i = 0; i < line; i++)
                 {
                     MYSQL_FIELD* field = keys[i];
                     //当前行添加
-                    row.push_back(RowItem::create(field->name, sql_row[i]));
+                    row->push_back(RowItem::create(field->name, sql_row[i]));
                 }
             }
             //释放结果资源

@@ -45,6 +45,7 @@ namespace TimeUtil
     //消耗打印
     void begin();
     void end();
+    void end(size_t size);
 }
 
 

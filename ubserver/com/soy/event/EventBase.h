@@ -15,12 +15,14 @@
 
 class EventBase;
 
+//事务处理器
 class IEventHandler
 {
 public:
     virtual void OnEvent(EventBase* event)=0;
 };
 
+//事务处理
 class EventBase : public RunTask
 {
 private:
@@ -29,6 +31,8 @@ private:
     
 public:
     EventBase(int type, IEventHandler* target);
+    
+    virtual ~EventBase(){};
     
     void OnTaskHandler()override;
 public:

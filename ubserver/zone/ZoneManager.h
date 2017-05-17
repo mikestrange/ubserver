@@ -19,7 +19,7 @@
 #include "LogicBase.h"
 #include "TigerLogic.h"
 #include "UserObj.h"
-#include "MsgHandler.h"
+#include "SocketHandler.h"
 
 class LogicBase;
 class TigerLogic;
@@ -37,7 +37,7 @@ public:
     //关闭房间
     void shut(TABLE_ID tid);
     //分发(房间和用户)
-    void OnPacketHandler(MsgHandler* packet);
+    void OnPacketHandler(SocketHandler* packet);
 };
 
 #endif /* GameManager_h */

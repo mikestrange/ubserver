@@ -25,7 +25,7 @@ TigerLogic::~TigerLogic()
     });
 }
 
-void TigerLogic::OnPacketHandler(MsgHandler* packet)
+void TigerLogic::OnPacketHandler(SocketHandler* packet)
 {
     switch(packet->getCmd())
     {
@@ -182,14 +182,14 @@ void TigerLogic::EnterRep(int8 code, USER_T uid, GamePlayer* player)
     //处理
     if(code != 0)
     {
-        MsgHandler packet;
+        SocketHandler packet;
         packet.setBegin(SERVER_CMD_GAME_ENTER_ERROR);
         packet.writeByte(code);
         packet.WriteEnd();
         return;
     }
     //自己返回
-    MsgHandler game_data;
+    SocketHandler game_data;
     game_data.setBegin(SERVER_CMD_GAME_ROOM_DATA);
     //必须的三个
     game_data.writeInt(getTableID());
@@ -215,7 +215,7 @@ void TigerLogic::EnterRep(int8 code, USER_T uid, GamePlayer* player)
     game_data.WriteEnd();
     ZoneRep::SendTo(player->getUserID(), game_data);
     //通知其他玩家此人进入房间(自己也通知)
-    MsgHandler packet;
+    SocketHandler packet;
     packet.setBegin(SERVER_CMD_GAME_ENTER);
     packet.writeInt(player->getUserID());
     packet.WriteEnd();
@@ -231,7 +231,7 @@ void TigerLogic::ExitRep(int8 code, USER_T uid)
     //通知房管
     //ZoneManager::getInstance()->OnExitHandler(code, uid, getTableID());
     //
-    MsgHandler packet;
+    SocketHandler packet;
     packet.setBegin(SERVER_CMD_GAME_EXIT);
     packet.writeByte(code);
     packet.writeInt(uid);
@@ -248,7 +248,7 @@ void TigerLogic::ExitRep(int8 code, USER_T uid)
 //开始通知
 void TigerLogic::StartRep()
 {
-    MsgHandler packet;
+    SocketHandler packet;
     packet.setBegin(SERVER_CMD_TIGER_GSTART);
     packet.WriteEnd();
     m_players.eachValues([&packet](GamePlayer* player)
@@ -264,7 +264,7 @@ void TigerLogic::StartRep()
 void TigerLogic::BetRep(GamePlayer* player, uint8 type, uint32 chips)
 {
     //自己通知
-    MsgHandler self_rep;
+    SocketHandler self_rep;
     self_rep.setBegin(SERVER_CMD_TIGER_GBET);
     self_rep.writeByte(type);
     self_rep.writeUInt(player->getBetTotals(type));
@@ -276,7 +276,7 @@ void TigerLogic::BetRep(GamePlayer* player, uint8 type, uint32 chips)
     pot_totals += chips;
     uint32 totals = pot_list[type - 1];
     //池通知
-    MsgHandler packet;
+    SocketHandler packet;
     packet.setBegin(SERVER_CMD_TIGER_GPOT_CHIPS);
     packet.writeByte(type);
     packet.writeUInt(totals);
@@ -304,7 +304,7 @@ void TigerLogic::ResultRep(uint8 index, uint8 type, uint8 mult)
             max_value = change_value;
             first_user = player->getUserID();
         };
-        MsgHandler packet;
+        SocketHandler packet;
         packet.setBegin(SERVER_CMD_TIGER_GSTOP);
         packet.writeByte(index);
         packet.writeByte(type);
@@ -317,7 +317,7 @@ void TigerLogic::ResultRep(uint8 index, uint8 type, uint8 mult)
     //第一名通知所有玩家
     if(first_user > 0)
     {
-        MsgHandler win_packet;
+        SocketHandler win_packet;
         win_packet.setBegin(SERVER_CMD_TIGER_GRESULT);
         win_packet.writeInt(first_user);
         win_packet.writeInt(max_value);

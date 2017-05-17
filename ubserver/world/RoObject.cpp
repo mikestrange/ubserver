@@ -9,52 +9,26 @@
 #include "RoObject.h"
 
 
-RoObject::RoObject(USER_T uid, uint8 type)
+RoObject::RoObject(USER_T uid, NetContext* context, uint8 type)
 :m_uid(uid)
-,m_node(NULL)
+,m_context(context)
 ,m_regid(0)
 ,m_type(type)
-,is_login(false)
-{};
+{
+    LOG_INFO("add user %d", uid);
+};
 
 RoObject::~RoObject()
-{}
-
-void RoObject::OnLoginReg(NetNode* node)
 {
-    m_node = node;
-    is_login = true;
-    LOG_DEBUG("login uid=%d", m_uid);
+    LOG_INFO("remove user %d", m_uid);
 }
 
-bool RoObject::OnLogoutReg()
+NetContext* RoObject::getContext()const
 {
-    is_login = false;
-    m_node = NULL;
-    LOG_DEBUG("logout uid=%d", m_uid);
-    return true;
-}
-
-bool RoObject::isLogin()const
-{
-    return is_login;
-}
-
-NetNode* RoObject::getSock()const
-{
-    return m_node;
+    return m_context;
 }
 
 USER_T RoObject::getUID()const
 {
     return m_uid;
-}
-
-SOCKET_T RoObject::getSockID()
-{
-    if(m_node)
-    {
-        return m_node->getSockID();
-    }
-    return -1;
 }

@@ -28,6 +28,8 @@ typedef unsigned short SHORT_U;        //16
 typedef unsigned int DWORD_U;          //32
 typedef unsigned long long INT64_U;    //64
 
+typedef size_t SIZE_T;
+
 //游戏相关
 typedef int SOCKET_T;
 typedef int MsgID;
@@ -104,7 +106,7 @@ Class* Class::getInstance()\
 {\
     if(!_instance)\
     {\
-        _instance = new Class;\
+        _instance = new Class();\
     }\
     return _instance;\
 }

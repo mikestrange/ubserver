@@ -27,7 +27,7 @@ void TimePush::start(TIME_T delay, int count, int type)
     repeatCount = count;
     currentCount = 0;
     stop();
-    timeid = TimeRunning::getInstance()->AddTimer(this, delay, type);
+    TimeRunning::getInstance()->AddTimer(this, delay, type);
 }
 
 void TimePush::stop()
@@ -53,12 +53,12 @@ void TimePush::OnTimeoutHandler(int type)
 {
     if(repeatCount <= 0)
     {
-        timeid = TimeRunning::getInstance()->AddTimer(this, m_delay, type);
+        TimeRunning::getInstance()->AddTimer(this, m_delay, type);
     }else{
         if(++currentCount == repeatCount){
             stop();
         }else{
-            timeid = TimeRunning::getInstance()->AddTimer(this, m_delay, type);
+            TimeRunning::getInstance()->AddTimer(this, m_delay, type);
         }
     }
     //任务最终坐落

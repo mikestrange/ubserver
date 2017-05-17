@@ -8,35 +8,29 @@
 
 #include "TimeEvent.h"
 
-TimeEvent::TimeEvent(int type, IEventHandler* target, TimePush* node, int timeid, TIME_T delay)
-:EventBase(type, target)
+TimeEvent::TimeEvent(int type, IEventHandler* mlisten, TimePush* node, int timeid, TIME_T delay)
+:EventBase(type, mlisten)
 ,m_timeid(timeid)
-,isrunning(true)
-,m_timer(node)
+,m_isrunning(true)
+,m_target(node)
 {
-    runtime = TimeUtil::GetTimer() + delay;
-}
-
-TimePush* TimeEvent::getTimer()const
-{
-    return m_timer;
+    m_runtime = TimeUtil::GetTimer() + delay;
 }
 
 void TimeEvent::stop()
 {
-    isrunning = false;
+    m_isrunning = false;
 }
 
 bool TimeEvent::isRunning()
 {
-    return isrunning;
+    return m_isrunning;
 }
 
 TIME_T TimeEvent::getRuntime()const
 {
-    return runtime;
+    return m_runtime;
 }
-
 
 int TimeEvent::getTimerID()const
 {
@@ -48,6 +42,6 @@ void TimeEvent::OnTimeAttemper()
 {
     if(isRunning())
     {
-        m_timer->OnTimeoutHandler(getType());
+        m_target->OnTimeoutHandler(getType());
     }
 }

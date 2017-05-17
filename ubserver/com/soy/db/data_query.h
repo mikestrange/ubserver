@@ -9,7 +9,6 @@
 #ifndef data_query_hpp
 #define data_query_hpp
 
-#include <stdio.h>
 #include <vector>
 #include "global.h"
 #include "log.h"
@@ -18,8 +17,8 @@
 class RowItem
 {
 public:
-    char* key;
-    char* value;
+    std::string key;
+    std::string value;
     void toString();
     ~RowItem();
 public:
@@ -38,26 +37,26 @@ public:
     virtual ~DataQuery();
 public:
     //当前行
-    virtual DBList& Next();
+    DBList* Next();
     //gets
 public:
-    virtual void row(size_t v);
+    void row(size_t v);
     
-    virtual size_t row();
+    size_t row();
     
-    virtual size_t length()const;
+    size_t length()const;
     
-    virtual bool empty()const;
+    bool empty()const;
     
-    virtual bool exceed()const;
+    bool exceed()const;
     
-    virtual DBList* current();
+    DBList* current();
     
     //当前行的一个结果(健和值)
-    virtual RowItem* result(size_t index);
+    RowItem* result(size_t index);
     
     //当前行的一个结果(匹配key)
-    virtual RowItem* result(const char* key);
+    RowItem* result(const char* key);
     
     //快捷方式
     RowItem* operator[] (const char* key);
@@ -65,18 +64,18 @@ public:
     RowItem* operator[] (size_t index);
     
     //匹配当前行
-    virtual bool match(const char* key, const char* value);
+    bool match(const char* key, const char* value);
     
-    virtual bool match(size_t index, const char* value);
+    bool match(size_t index, const char* value);
     
-    virtual void clear();
+    void clear();
     
     //查看
-    virtual void toString();
+    void toString();
     
 private:
-    std::vector<DBList*> _Vector;
-    size_t _row;
+    std::vector<DBList*> m_vector;
+    size_t m_row;
     
 };
 #endif /* data_query_hpp */

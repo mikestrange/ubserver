@@ -12,24 +12,44 @@
 #include "global.h"
 #include <pthread.h>
 
-#define AUTO_LOCK(t)                    AutoLocked __am(t)
+#define AUTO_LOCK(t)                    AutoLocked private__lock(t)
 
+//锁
 class Locked
 {
-public:
-    Locked();
-    
-    virtual ~Locked();
-    
-    void lock();
-    
-    void unlock();
-    
-    pthread_mutex_t* mutex();
-    //属性
 protected:
     pthread_mutex_t m_lock;
     volatile bool is_locked;
+public:
+    Locked()
+    :is_locked(false)
+    ,m_lock()
+    {
+        pthread_mutex_init(&m_lock, NULL);
+    }
+    
+    virtual ~Locked()
+    {
+        if(is_locked) unlock();
+        pthread_mutex_destroy(&m_lock);
+    }
+    
+    void lock()
+    {
+        pthread_mutex_lock(&m_lock);
+        is_locked = true;
+    }
+    
+    void unlock()
+    {
+        is_locked = false;
+        pthread_mutex_unlock(&m_lock);
+    }
+    
+    pthread_mutex_t* mutex()
+    {
+        return &m_lock;
+    }
 };
 
 //自动线程锁
@@ -38,47 +58,58 @@ class AutoLocked
 private:
     Locked* _mutex;
 public:
-    AutoLocked(Locked *mutex);
+    AutoLocked(Locked *mutex)
+    :_mutex(mutex)
+    {
+        _mutex->lock();
+    }
     
-    AutoLocked(Locked &mutex);
+    AutoLocked(Locked &mutex)
+    :_mutex(&mutex)
+    {
+        _mutex->lock();
+    }
     
-    virtual ~AutoLocked();
+    virtual ~AutoLocked()
+    {
+        _mutex->unlock();
+    }
 };
 
-
-//
-//#define OBJ_RETAIN(obj)                 do{ if(obj){ obj->retain(); } }while(0)
-//#define OBJ_RELEASE(obj)                do{ if(obj){ obj->release(); obj = NULL;} }while(0)
-////回收obj
-//class RefObject
-//{
-//private:
-//    unsigned int m_count;
-//public:
-//    RefObject()
-//    :m_count(1)
-//    {}
-//    
-//    virtual ~RefObject()
-//    {
-//        
-//    }
-//    
-//    bool release()
-//    {
-//        ERROR_ASSERT(m_count==0);
-//        if(--m_count == 0)
-//        {
-//            delete this;
-//            return true;
-//        }
-//        return false;
-//    }
-//    
-//    void retain()
-//    {
-//        ++m_count;
-//    }
-//};
+//信号
+class CondLocked : public Locked
+{
+protected:
+    pthread_cond_t m_cond;
+public:
+    CondLocked()
+    {
+        pthread_cond_init(&m_cond, NULL);
+    }
+    
+    virtual ~CondLocked()
+    {
+        pthread_cond_destroy(&m_cond);
+    }
+    
+    int broadcast()
+    {
+        return pthread_cond_broadcast(&m_cond);
+    }
+    
+    void signal()
+    {
+        pthread_cond_signal(&m_cond);
+    }
+    
+    void wait(struct timespec * delay = NULL)
+    {
+        if(delay){
+            pthread_cond_timedwait(&m_cond, mutex(), delay);
+        }else{
+            pthread_cond_wait(&m_cond, mutex());
+        }
+    }
+};
 
 #endif /* lock_h */

@@ -22,7 +22,7 @@ namespace StringUtil
     
     bool scope(std::string &str, size_t left, size_t right)
     {
-        return str.length()>=left && str.length() <= right;
+        return str.length() >= left && str.length() <= right;
     }
 }
 

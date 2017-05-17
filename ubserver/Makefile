@@ -3,7 +3,7 @@ TARGET = main
 ROOT   := $(shell pwd)
 CFLAGS = -Wall -g -std=c++11 # -v
 
-#这里递归遍历3级子目录
+#这里递归遍历5级子目录
 DIRS := $(shell find . -maxdepth 5 -type d)
 #这里循环遍历目录的cpp文件
 FILES = $(foreach dir, $(DIRS), $(wildcard $(dir)/*.cpp))

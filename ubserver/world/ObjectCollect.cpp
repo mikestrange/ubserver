@@ -10,61 +10,73 @@
 
 STATIC_CLASS_INIT(ObjectCollect);
 
-RoObject* ObjectCollect::RegObject(USER_T uid, NetNode* node, uint8 type)
+RoObject* ObjectCollect::RegObject(USER_T uid, RoObject* player)
 {
-    auto role = getObject(uid);
-    if(role){
-        //通知之前的关闭
-        role->OnLoginReg(node);
-    }else{
-        role = new RoObject(uid, type);
-        uMap.put(uid, role);
-        role->OnLoginReg(node);
-    }
-    return role;
+    //删除之前的
+    RoObject* before = UnRegObject(uid);
+    //注册
+    this->put(uid, player);
+    //之前的信息
+    return before;
 }
 
-void ObjectCollect::UnRegObject(USER_T uid)
+RoObject* ObjectCollect::UnRegObject(USER_T uid)
 {
-    auto role = getObject(uid);
-    if(role && role->OnLogoutReg())
-    {
-        DelObject(uid);
-    }
+    return remove(uid);
 }
 
 RoObject* ObjectCollect::getObject(USER_T uid)
 {
-    return uMap.getValue(uid);
+    return getValue(uid);
 }
 
 void ObjectCollect::DelObject(USER_T uid)
 {
-    auto role = uMap.remove(uid);
-    SAFE_DELETE(role);
+    RoObject* player = remove(uid);
+    SAFE_DELETE(player);
 }
 
 void ObjectCollect::SendTo(USER_T uid, ByteArray& packet)
 {
-    auto role = getObject(uid);
-    if(role && role->isLogin())
+    RoObject* player = getObject(uid);
+    if(player)
     {
-        role->getSock()->SendPacket(packet);
+        player->getContext()->SendPacket(packet);
     }
 }
 
-void ObjectCollect::CloseNode(SOCKET_T sockid)
+void ObjectCollect::CloseObject(NetContext* context)
 {
     std::vector<RoObject*> list;
-    uMap.getValues(list);
+    getValues(list);
     std::vector<RoObject*>::iterator iter;
     //节点关闭，所有登录取消
     for(iter=list.begin();iter!=list.end();++iter)
     {
-        RoObject* role = *iter;
-        if(role->isLogin() && role->getSockID() == sockid && role->OnLogoutReg())
+        if((*iter)->getContext() == context)
         {
-            DelObject(role->getUID());
+            DelObject((*iter)->getUID());
+        }
+    }
+}
+
+void ObjectCollect::SendToAll(ByteArray& packet)
+{
+    HashMap<USER_T, RoObject*>::Iterator iter;
+    for(iter = begin(); iter!= end(); ++iter)
+    {
+        iter->second->getContext()->SendPacket(packet);
+    }
+}
+
+void ObjectCollect::SendToAll(USER_T uids[], int count, ByteArray& packet)
+{
+    for(int i = 0; i < count; i++)
+    {
+        RoObject* player = getValue(uids[i]);
+        if(player)
+        {
+            player->getContext()->SendPacket(packet);
         }
     }
 }

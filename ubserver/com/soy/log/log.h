@@ -13,6 +13,7 @@
 
 #include "global.h"
 #include "lock.h"
+#include "string_util.h"
 
 class Log : private Locked
 {

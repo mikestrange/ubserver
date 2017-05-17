@@ -10,7 +10,7 @@
 
 STATIC_CLASS_INIT(ZoneRep);
 
-void ZoneRep::SendTo(USER_T uid, MsgHandler& packet)
+void ZoneRep::SendTo(USER_T uid, SocketHandler& packet)
 {
     //发送给某给玩家（通知世界转发）
 }

@@ -18,19 +18,20 @@ class TimeEvent : public EventBase
 {
 private:
     int m_timeid;
-    bool isrunning;
-    TimePush* m_timer;
+    int m_retcount;
+    bool m_isrunning;
+    TimePush* m_target;
 private:
-    TIME_T runtime;
+    TIME_T m_runtime;
 public:
-    TimeEvent(int type, IEventHandler* target, TimePush* node, int timeid, TIME_T delay);
+    TimeEvent(int type, IEventHandler* mlisten, TimePush* target, int timeid, TIME_T delay);
+    
+    virtual ~TimeEvent(){};
     
 public:
     void stop();
     
     bool isRunning();
-    
-    TimePush* getTimer()const;
     
     TIME_T getRuntime()const;
     
